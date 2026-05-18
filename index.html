@@ -5,40 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EcomLab — Sistemas Digitales para Negocios que Crecen</title>
   <meta name="description" content="Escalamos negocios mediante tecnología, automatización y estrategia digital. Resultados reales en 90 días." />
+  <meta property="og:title" content="EcomLab — Sistemas Digitales para Negocios que Crecen" />
+  <meta property="og:description" content="Construimos la infraestructura digital que tu negocio necesita para escalar. Tecnología, automatización y estrategia con resultados medibles." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ─── TOKENS ─── */
+    /* ══════════════════════════════════════════════════
+       DESIGN TOKENS
+    ══════════════════════════════════════════════════ */
     :root {
       --orange:    #F97316;
       --orange-d:  #EA580C;
       --orange-l:  #FB923C;
-      --navy:      #0F1629;
-      --navy-2:    #161E35;
-      --navy-3:    #1E2A45;
-      --navy-4:    #263354;
+      --navy:      #0B1120;
+      --navy-2:    #111827;
+      --navy-3:    #1A2540;
+      --navy-4:    #243058;
       --white:     #FFFFFF;
-      --grey-1:    #F8FAFC;
-      --grey-2:    #E2E8F0;
       --grey-3:    #94A3B8;
       --grey-4:    #64748B;
       --success:   #22C55E;
       --cyan:      #06B6D4;
+      --purple:    #A855F7;
 
       --font-body: 'Inter', sans-serif;
       --font-head: 'Space Grotesk', sans-serif;
 
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
 
-      --shadow-card: 0 4px 24px rgba(0,0,0,.35);
-      --shadow-glow: 0 0 60px rgba(249,115,22,.18);
+      --card-border: rgba(255,255,255,.07);
+      --card-border-hover: rgba(249,115,22,.28);
+      --shadow-card: 0 4px 32px rgba(0,0,0,.4);
+      --shadow-glow: 0 0 80px rgba(249,115,22,.15);
     }
 
-    /* ─── RESET ─── */
+    /* ══════════════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -50,569 +58,768 @@
     }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
 
-    /* ─── UTILITIES ─── */
+    /* ══════════════════════════════════════════════════
+       LOADER
+    ══════════════════════════════════════════════════ */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .5s ease, visibility .5s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-inner { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .loader-logo {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-d));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 28px; font-weight: 900;
+      animation: loader-pulse 1s ease-in-out infinite;
+    }
+    @keyframes loader-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+    .loader-bar-track {
+      width: 120px; height: 2px; background: rgba(255,255,255,.1); border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; background: var(--orange); border-radius: 2px;
+      animation: loader-fill 1.2s ease-in-out forwards;
+    }
+    @keyframes loader-fill { from{width:0} to{width:100%} }
+
+    /* ══════════════════════════════════════════════════
+       SCROLL PROGRESS
+    ══════════════════════════════════════════════════ */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 200;
+      background: linear-gradient(90deg, var(--orange), var(--orange-l));
+      width: 0%; transition: width .1s linear;
+    }
+
+    /* ══════════════════════════════════════════════════
+       UTILITIES
+    ══════════════════════════════════════════════════ */
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 100px 0; }
+    .section    { padding: 100px 0; }
     .section-sm { padding: 60px 0; }
 
     .tag {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--orange); background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.25);
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--orange); background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.22);
       padding: 6px 14px; border-radius: 100px;
     }
-    .tag::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+    .tag::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
 
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex; align-items: center; gap: 8px;
       background: var(--orange); color: var(--white);
       font-weight: 700; font-size: 15px; padding: 14px 28px;
-      border-radius: var(--radius-sm); transition: all .25s ease;
-      box-shadow: 0 4px 20px rgba(249,115,22,.35);
+      border-radius: var(--r-sm); transition: all .25s ease;
+      box-shadow: 0 4px 20px rgba(249,115,22,.3);
+      white-space: nowrap;
     }
-    .btn-primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249,115,22,.45); }
+    .btn-primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(249,115,22,.45); }
 
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,.06); color: var(--white); border: 1px solid rgba(255,255,255,.12);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.05); color: var(--white); border: 1px solid rgba(255,255,255,.12);
       font-weight: 600; font-size: 15px; padding: 14px 28px;
-      border-radius: var(--radius-sm); transition: all .25s ease;
+      border-radius: var(--r-sm); transition: all .25s ease;
+      white-space: nowrap;
     }
-    .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
+    .btn-ghost:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
 
     .headline {
       font-family: var(--font-head);
-      font-size: clamp(36px, 5vw, 64px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -.02em;
+      font-size: clamp(34px, 4.5vw, 60px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -.025em;
     }
     .headline span { color: var(--orange); }
 
     .sub-headline {
-      font-size: clamp(16px, 2vw, 20px);
-      color: var(--grey-3);
-      line-height: 1.7;
-      max-width: 620px;
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--grey-3); line-height: 1.75; max-width: 600px;
     }
 
-    .divider {
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--orange), transparent);
-      border-radius: 2px; margin-bottom: 16px;
+    .section-header { display: flex; flex-direction: column; gap: 14px; margin-bottom: 60px; }
+    .section-header.center { align-items: center; text-align: center; }
+    .section-header.center .sub-headline { margin: 0 auto; }
+
+    /* Gradient border card wrapper */
+    .gcard {
+      position: relative; border-radius: var(--r-md); padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      transition: background .3s;
+    }
+    .gcard:hover { background: linear-gradient(135deg, rgba(249,115,22,.35), rgba(249,115,22,.05)); }
+    .gcard-inner {
+      background: var(--navy-2); border-radius: calc(var(--r-md) - 1px);
+      width: 100%; height: 100%;
     }
 
-    /* ─── NAV ─── */
+    /* ══════════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 18px 0;
-      background: rgba(15,22,41,.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      transition: all .3s ease;
+      background: rgba(11,17,32,.7);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: padding .3s, background .3s;
     }
-    nav.scrolled { padding: 12px 0; background: rgba(15,22,41,.95); }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    nav.scrolled { padding: 12px 0; background: rgba(11,17,32,.92); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
       font-family: var(--font-head); font-weight: 700; font-size: 20px;
+      z-index: 1;
     }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--orange) 40%, var(--navy-4));
-      border-radius: 8px;
+    .logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-d) 100%);
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900; color: white;
+      font-size: 19px; font-weight: 900; color: white; line-height: 1;
+      box-shadow: 0 4px 12px rgba(249,115,22,.35);
     }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-links a {
       font-size: 14px; font-weight: 500; color: var(--grey-3);
-      transition: color .2s;
+      transition: color .2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
+      background: var(--orange); transform: scaleX(0); transition: transform .25s;
     }
     .nav-links a:hover { color: var(--white); }
-    .nav-cta { display: flex; align-items: center; gap: 12px; }
-    .nav-burger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
-    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
 
-    /* ─── HERO ─── */
+    /* Burger */
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      padding: 6px; cursor: pointer; z-index: 1;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px; transition: all .3s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-drawer {
+      position: fixed; inset: 0; z-index: 90;
+      background: rgba(11,17,32,.98); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; visibility: hidden; transition: all .35s ease;
+    }
+    .mobile-drawer.open { opacity: 1; visibility: visible; }
+    .mobile-drawer a {
+      font-family: var(--font-head); font-size: 28px; font-weight: 700;
+      color: var(--grey-3); transition: color .2s;
+    }
+    .mobile-drawer a:hover { color: var(--white); }
+    .mobile-drawer .btn-primary { font-size: 16px; padding: 16px 40px; }
+
+    /* ══════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════ */
     #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding-top: 80px;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      padding-top: 80px; position: relative; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,115,22,.12) 0%, transparent 70%),
-                  radial-gradient(ellipse 60% 50% at 10% 80%, rgba(6,182,212,.06) 0%, transparent 60%);
+      background:
+        radial-gradient(ellipse 90% 60% at 65% 40%, rgba(249,115,22,.11) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 5% 85%, rgba(6,182,212,.06) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 95% 10%, rgba(168,85,247,.05) 0%, transparent 50%);
     }
     .hero-grid {
-      position: absolute; inset: 0; z-index: 0; opacity: .04;
+      position: absolute; inset: 0; z-index: 0; opacity: .03;
       background-image:
         linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background-size: 64px 64px;
     }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-inner {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
+    .hero-content { position: relative; z-index: 2; width: 100%; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
     .hero-left { display: flex; flex-direction: column; gap: 28px; }
+
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.2);
+      background: rgba(249,115,22,.07); border: 1px solid rgba(249,115,22,.18);
       padding: 8px 16px; border-radius: 100px; width: fit-content;
       font-size: 13px; color: var(--orange-l); font-weight: 500;
     }
-    .hero-badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+    .hero-badge-dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pdot 2s infinite; }
+    @keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+
     .hero-title {
       font-family: var(--font-head);
       font-size: clamp(40px, 5.5vw, 72px);
       font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
     }
-    .hero-title .line-orange { color: var(--orange); }
-    .hero-title .line-dim { color: var(--grey-3); }
-    .hero-desc { font-size: 17px; color: var(--grey-3); line-height: 1.75; max-width: 520px; }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-proof {
-      display: flex; align-items: center; gap: 16px;
-      padding-top: 8px;
-    }
-    .hero-proof-avatars { display: flex; }
-    .hero-proof-avatars span {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 2px solid var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700;
-      margin-left: -8px;
-    }
-    .hero-proof-avatars span:first-child { margin-left: 0; }
-    .hero-proof-text { font-size: 13px; color: var(--grey-3); }
-    .hero-proof-text strong { color: var(--white); }
+    .hero-title .accent { color: var(--orange); }
+    .hero-title .dim { color: rgba(255,255,255,.35); }
 
-    /* Hero right — dashboard mockup */
+    .hero-desc { font-size: 17px; color: var(--grey-3); line-height: 1.8; max-width: 500px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .hero-proof { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+    .proof-avatars { display: flex; }
+    .proof-avatars span {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+      margin-left: -8px; flex-shrink: 0;
+    }
+    .proof-avatars span:first-child { margin-left: 0; }
+    .proof-text { font-size: 13px; color: var(--grey-4); }
+    .proof-text strong { color: var(--grey-3); }
+
+    /* ── Dashboard Mockup ── */
     .hero-right { position: relative; }
+    .dash-wrap { position: relative; }
     .hero-dashboard {
       background: var(--navy-2);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-lg);
-      padding: 24px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--r-lg); padding: 24px;
       box-shadow: var(--shadow-card), var(--shadow-glow);
-      animation: float 6s ease-in-out infinite;
+      animation: float 7s ease-in-out infinite;
     }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    .dash-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .dash-title { font-size: 13px; font-weight: 600; color: var(--grey-3); }
-    .dash-badge {
-      font-size: 11px; font-weight: 700; color: var(--success);
-      background: rgba(34,197,94,.1); padding: 4px 10px; border-radius: 100px;
-      border: 1px solid rgba(34,197,94,.2);
-    }
-    .dash-metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-    .dash-metric {
-      background: var(--navy-3); border-radius: var(--radius-sm); padding: 14px;
-      border: 1px solid rgba(255,255,255,.05);
-    }
-    .dash-metric-val { font-family: var(--font-head); font-size: 22px; font-weight: 700; margin-bottom: 2px; }
-    .dash-metric-val.orange { color: var(--orange); }
-    .dash-metric-val.green { color: var(--success); }
-    .dash-metric-val.cyan { color: var(--cyan); }
-    .dash-metric-label { font-size: 11px; color: var(--grey-4); font-weight: 500; }
-    .dash-metric-change { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 4px; }
-    .dash-chart { background: var(--navy-3); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,.05); }
-    .dash-chart-label { font-size: 11px; color: var(--grey-4); margin-bottom: 12px; font-weight: 500; }
-    .chart-bars { display: flex; align-items: flex-end; gap: 6px; height: 60px; }
-    .chart-bar {
-      flex: 1; border-radius: 4px 4px 0 0;
-      background: var(--navy-4);
-      transition: background .3s;
-    }
-    .chart-bar.active { background: linear-gradient(180deg, var(--orange), var(--orange-d)); }
-    .chart-bar.mid { background: rgba(249,115,22,.4); }
-    .dash-list { display: flex; flex-direction: column; gap: 8px; }
-    .dash-list-item {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--navy-3); border-radius: var(--radius-sm); padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,.04); font-size: 12px;
-    }
-    .dash-list-name { color: var(--grey-3); font-weight: 500; }
-    .dash-list-val { color: var(--success); font-weight: 700; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
 
-    /* Floating cards */
-    .hero-float-card {
+    .dash-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dash-window-btns { display: flex; gap: 6px; }
+    .dash-window-btns span { width: 11px; height: 11px; border-radius: 50%; }
+    .dash-window-btns span:nth-child(1) { background: #FF5F57; }
+    .dash-window-btns span:nth-child(2) { background: #FEBC2E; }
+    .dash-window-btns span:nth-child(3) { background: #28C840; }
+    .dash-top-label { font-size: 12px; color: var(--grey-4); font-weight: 500; }
+    .dash-top-badge {
+      font-size: 11px; font-weight: 700; color: var(--success);
+      background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2);
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .dash-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+    .kpi {
+      background: var(--navy-3); border-radius: var(--r-sm); padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,.04);
+    }
+    .kpi-val {
+      font-family: var(--font-head); font-size: 21px; font-weight: 800; line-height: 1;
+      margin-bottom: 2px;
+    }
+    .kpi-val.o { color: var(--orange); }
+    .kpi-val.g { color: var(--success); }
+    .kpi-val.c { color: var(--cyan); }
+    .kpi-label { font-size: 10px; color: var(--grey-4); font-weight: 500; margin-bottom: 3px; }
+    .kpi-delta { font-size: 10px; color: var(--success); font-weight: 600; }
+
+    /* SVG Chart */
+    .dash-chart-box {
+      background: var(--navy-3); border-radius: var(--r-sm); padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.04); margin-bottom: 12px;
+    }
+    .dash-chart-lbl { font-size: 10px; color: var(--grey-4); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
+    .area-chart { width: 100%; height: 64px; overflow: visible; }
+
+    .dash-rows { display: flex; flex-direction: column; gap: 7px; }
+    .dash-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--navy-3); border-radius: var(--r-sm); padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.04); font-size: 11px;
+    }
+    .dash-row-name { color: var(--grey-3); font-weight: 500; }
+    .dash-row-val { font-weight: 700; }
+    .dash-row-val.pos { color: var(--success); }
+    .dash-row-val.neg { color: var(--cyan); }
+
+    /* Float cards */
+    .fcard {
       position: absolute;
       background: var(--navy-2); border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-md); padding: 14px 18px;
-      box-shadow: var(--shadow-card);
-      font-size: 13px; font-weight: 600;
+      border-radius: var(--r-md); padding: 12px 16px;
+      box-shadow: var(--shadow-card), 0 0 20px rgba(249,115,22,.1);
       display: flex; align-items: center; gap: 10px;
     }
-    .hero-float-card.card-1 { bottom: -24px; left: -32px; animation: float 5s 1s ease-in-out infinite; }
-    .hero-float-card.card-2 { top: -20px; right: -20px; animation: float 4s .5s ease-in-out infinite; }
-    .float-icon { font-size: 20px; }
-    .float-text { display: flex; flex-direction: column; }
-    .float-val { font-size: 18px; font-weight: 800; color: var(--orange); line-height: 1; }
-    .float-label { font-size: 11px; color: var(--grey-4); font-weight: 500; }
+    .fcard.f1 { bottom: -28px; left: -36px; animation: float 5.5s 1.2s ease-in-out infinite; }
+    .fcard.f2 { top: -24px; right: -24px; animation: float 4.5s .6s ease-in-out infinite; }
+    .fcard-icon { font-size: 22px; flex-shrink: 0; }
+    .fcard-text { display: flex; flex-direction: column; }
+    .fcard-val { font-family: var(--font-head); font-size: 18px; font-weight: 800; color: var(--orange); line-height: 1; }
+    .fcard-lbl { font-size: 10px; color: var(--grey-4); font-weight: 500; margin-top: 1px; }
 
-    /* ─── STATS BAR ─── */
+    /* ══════════════════════════════════════════════════
+       STATS
+    ══════════════════════════════════════════════════ */
     #stats {
-      padding: 40px 0;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 44px 0;
       background: var(--navy-2);
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
     .stats-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
     .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .stat-num {
-      font-family: var(--font-head); font-size: 42px; font-weight: 800; line-height: 1;
-      background: linear-gradient(135deg, var(--orange), var(--orange-l));
+      font-family: var(--font-head); font-size: 44px; font-weight: 800; line-height: 1;
+      background: linear-gradient(135deg, var(--orange-l), var(--orange-d));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat-label { font-size: 13px; color: var(--grey-4); font-weight: 500; margin-top: 4px; }
-    .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,.08); }
+    .stat-label { font-size: 12px; color: var(--grey-4); font-weight: 500; margin-top: 4px; max-width: 140px; text-align: center; }
+    .stat-div { width: 1px; height: 40px; background: rgba(255,255,255,.07); }
 
-    /* ─── SERVICES ─── */
-    #services { background: var(--navy); }
-    .section-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
-    .section-header.center { align-items: center; text-align: center; }
-    .section-header.center .sub-headline { margin: 0 auto; }
+    /* ══════════════════════════════════════════════════
+       WHY ECOMLAB (differentiators)
+    ══════════════════════════════════════════════════ */
+    #why { background: var(--navy); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .why-left { display: flex; flex-direction: column; gap: 24px; }
+    .why-title { font-family: var(--font-head); font-size: clamp(28px,3.5vw,48px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+    .why-desc { font-size: 16px; color: var(--grey-3); line-height: 1.8; }
+    .why-points { display: flex; flex-direction: column; gap: 16px; }
+    .why-point { display: flex; align-items: flex-start; gap: 14px; }
+    .why-point-icon {
+      width: 40px; height: 40px; border-radius: var(--r-sm); flex-shrink: 0;
+      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .why-point-text { display: flex; flex-direction: column; gap: 3px; }
+    .why-point-title { font-weight: 700; font-size: 15px; }
+    .why-point-desc { font-size: 13px; color: var(--grey-4); line-height: 1.6; }
+
+    /* Comparison table */
+    .why-right { }
+    .compare-table { border-radius: var(--r-lg); overflow: hidden; border: 1px solid rgba(255,255,255,.07); }
+    .compare-header { display: grid; grid-template-columns: 2fr 1fr 1fr; }
+    .compare-col {
+      padding: 14px 18px; font-size: 13px; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase; color: var(--grey-4);
+      background: var(--navy-3); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .compare-col.highlight { background: rgba(249,115,22,.1); color: var(--orange); text-align: center; }
+    .compare-col:last-child { text-align: center; }
+    .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-cell { padding: 13px 18px; font-size: 14px; background: var(--navy-2); display: flex; align-items: center; }
+    .compare-cell.hl { background: rgba(249,115,22,.04); justify-content: center; }
+    .compare-cell.other { background: var(--navy-2); justify-content: center; }
+    .compare-cell-label { color: var(--grey-3); font-weight: 500; }
+    .check { color: var(--success); font-size: 16px; font-weight: 700; }
+    .cross { color: var(--grey-4); font-size: 16px; }
+
+    /* ══════════════════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════════════════ */
+    #services { background: var(--navy-2); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
     .service-card {
-      background: var(--navy-2);
-      padding: 36px 32px;
+      background: var(--navy-2); padding: 36px 30px;
       border: 1px solid rgba(255,255,255,.06);
-      transition: all .3s ease;
-      position: relative; overflow: hidden;
-      cursor: default;
+      transition: all .3s ease; position: relative; overflow: hidden;
     }
-    .service-card::before {
+    .service-card::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(249,115,22,.06) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(249,115,22,.07) 0%, transparent 55%);
       opacity: 0; transition: opacity .3s;
     }
-    .service-card:hover::before { opacity: 1; }
-    .service-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-    .service-icon {
-      width: 52px; height: 52px; border-radius: var(--radius-sm);
-      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2);
+    .service-card:hover::after { opacity: 1; }
+    .service-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.45); }
+    .svc-icon {
+      width: 52px; height: 52px; border-radius: var(--r-sm);
+      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.18);
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 20px;
+      font-size: 24px; margin-bottom: 20px; position: relative; z-index: 1;
     }
-    .service-title { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-    .service-desc { font-size: 14px; color: var(--grey-4); line-height: 1.7; margin-bottom: 20px; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .service-tag {
+    .svc-title { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; }
+    .svc-desc { font-size: 14px; color: var(--grey-4); line-height: 1.72; margin-bottom: 18px; position: relative; z-index: 1; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
+    .svc-tag {
       font-size: 11px; font-weight: 600; color: var(--grey-4);
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-      padding: 4px 10px; border-radius: 100px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      padding: 3px 10px; border-radius: 100px;
     }
 
-    /* ─── PROCESS ─── */
-    #process { background: var(--navy-2); }
+    /* ══════════════════════════════════════════════════
+       PROCESS
+    ══════════════════════════════════════════════════ */
+    #process { background: var(--navy); }
     .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
     .process-steps::before {
-      content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+      content: ''; position: absolute;
+      top: 27px; left: calc(12.5%) ; right: calc(12.5%);
+      height: 1px;
       background: linear-gradient(90deg, transparent, var(--orange), var(--orange), transparent);
-      opacity: .3; z-index: 0;
+      opacity: .25; z-index: 0;
     }
-    .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
     .step-num {
       width: 56px; height: 56px; border-radius: 50%;
-      background: var(--navy); border: 2px solid var(--orange);
+      background: var(--navy-2); border: 2px solid var(--orange);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--orange);
-      margin-bottom: 20px; position: relative;
-    }
-    .step-num::after {
-      content: ''; position: absolute; inset: -4px;
-      border-radius: 50%; border: 1px solid rgba(249,115,22,.2);
+      font-family: var(--font-head); font-size: 19px; font-weight: 800; color: var(--orange);
+      margin-bottom: 20px;
+      box-shadow: 0 0 0 4px rgba(249,115,22,.1), 0 0 20px rgba(249,115,22,.15);
     }
     .step-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
     .step-desc { font-size: 13px; color: var(--grey-4); line-height: 1.65; }
 
-    /* ─── CASES (SUCCESS STORIES) ─── */
-    #cases { background: var(--navy); }
-    .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    /* ══════════════════════════════════════════════════
+       CASES
+    ══════════════════════════════════════════════════ */
+    #cases { background: var(--navy-2); }
+    .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
     .case-card {
-      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
-      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--navy-3); border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,.06); overflow: hidden;
       transition: all .35s ease;
     }
-    .case-card:hover { border-color: rgba(249,115,22,.25); transform: translateY(-6px); box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 40px rgba(249,115,22,.08); }
-    .case-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; }
+    .case-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 32px 80px rgba(0,0,0,.5), 0 0 40px rgba(249,115,22,.07); }
+    .case-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+
     .case-visual {
-      background: var(--navy-3); padding: 28px;
-      min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;
+      background: var(--navy-2); padding: 28px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
       position: relative; overflow: hidden;
     }
     .case-visual::before {
-      content: ''; position: absolute; top: -40px; right: -40px;
-      width: 180px; height: 180px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(249,115,22,.15) 0%, transparent 70%);
+      content: ''; position: absolute; top: -50px; right: -50px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,.12) 0%, transparent 70%);
     }
     .case-industry {
-      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--orange); background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2);
-      padding: 4px 10px; border-radius: 100px; width: fit-content;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--orange); background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.18);
+      padding: 4px 12px; border-radius: 100px; width: fit-content; position: relative; z-index: 1;
     }
-    .case-chart-mini { display: flex; flex-direction: column; gap: 8px; }
-    .case-bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-    .case-bar-label { color: var(--grey-4); font-weight: 500; width: 50px; flex-shrink: 0; }
-    .case-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; }
-    .case-bar-fill { height: 100%; border-radius: 4px; }
-    .case-bar-fill.before { background: var(--grey-4); }
-    .case-bar-fill.after { background: linear-gradient(90deg, var(--orange), var(--orange-l)); }
-    .case-bar-val { color: var(--white); font-weight: 700; width: 40px; text-align: right; font-size: 11px; }
+    .sparkline-wrap { position: relative; z-index: 1; }
+    .sparkline { width: 100%; height: 52px; }
 
-    .case-info { padding: 28px; display: flex; flex-direction: column; gap: 16px; }
-    .case-client { font-size: 13px; color: var(--grey-4); font-weight: 500; }
+    .bar-chart { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
+    .bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+    .bar-lbl { color: var(--grey-4); font-weight: 500; width: 52px; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,.05); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.4s cubic-bezier(.25,1,.5,1); }
+    .bar-fill.before { background: rgba(100,116,139,.6); }
+    .bar-fill.after  { background: linear-gradient(90deg, var(--orange), var(--orange-l)); }
+    .bar-val { color: var(--white); font-weight: 700; font-size: 12px; width: 44px; text-align: right; }
+
+    .case-info { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .case-client { font-size: 12px; color: var(--grey-4); font-weight: 600; letter-spacing: .04em; }
     .case-title { font-family: var(--font-head); font-size: 22px; font-weight: 700; line-height: 1.3; }
-    .case-desc { font-size: 14px; color: var(--grey-4); line-height: 1.65; }
-    .case-metrics { display: flex; gap: 20px; flex-wrap: wrap; }
+    .case-desc { font-size: 14px; color: var(--grey-4); line-height: 1.7; }
+    .case-metrics { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 4px; }
     .case-metric { display: flex; flex-direction: column; }
-    .case-metric-val {
-      font-family: var(--font-head); font-size: 28px; font-weight: 800;
-      color: var(--orange); line-height: 1;
-    }
-    .case-metric-val.green { color: var(--success); }
-    .case-metric-val.cyan { color: var(--cyan); }
-    .case-metric-label { font-size: 12px; color: var(--grey-4); font-weight: 500; margin-top: 2px; }
+    .case-metric-val { font-family: var(--font-head); font-size: 30px; font-weight: 800; line-height: 1; }
+    .case-metric-val.o { color: var(--orange); }
+    .case-metric-val.g { color: var(--success); }
+    .case-metric-val.c { color: var(--cyan); }
+    .case-metric-lbl { font-size: 11px; color: var(--grey-4); font-weight: 500; margin-top: 3px; }
     .case-link {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 600; color: var(--orange);
-      transition: gap .2s;
+      font-size: 13px; font-weight: 700; color: var(--orange);
+      transition: gap .2s; margin-top: 4px; width: fit-content;
     }
     .case-link:hover { gap: 10px; }
 
-    /* Sparkline SVG */
-    .case-sparkline { width: 100%; height: 48px; }
+    /* ══════════════════════════════════════════════════
+       TRUSTED BY
+    ══════════════════════════════════════════════════ */
+    #trusted { background: var(--navy); padding: 64px 0; }
+    .trusted-head { text-align: center; margin-bottom: 48px; }
+    .trusted-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--grey-4); margin-bottom: 12px; }
+    .trusted-title { font-family: var(--font-head); font-size: clamp(22px,3vw,36px); font-weight: 700; }
+    .trusted-marquee-wrap { position: relative; overflow: hidden; }
+    .trusted-marquee-wrap::before,
+    .trusted-marquee-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
+    }
+    .trusted-marquee-wrap::before { left:0; background: linear-gradient(90deg, var(--navy), transparent); }
+    .trusted-marquee-wrap::after  { right:0; background: linear-gradient(270deg, var(--navy), transparent); }
+    .trusted-marquee {
+      display: flex; gap: 40px; align-items: center;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+    }
+    .trusted-marquee:hover { animation-play-state: paused; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .logo-pill {
+      display: flex; align-items: center; gap: 8px; padding: 10px 20px;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 100px; white-space: nowrap;
+      font-family: var(--font-head); font-weight: 700; font-size: 14px;
+      color: rgba(255,255,255,.35); letter-spacing: -.01em;
+      transition: all .3s;
+    }
+    .logo-pill:hover { color: rgba(255,255,255,.75); border-color: rgba(249,115,22,.22); }
+    .logo-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); opacity: .6; flex-shrink: 0; }
 
-    /* ─── TRUSTED BY ─── */
-    #trusted { background: var(--navy-2); overflow: hidden; }
-    .trusted-track-wrap { position: relative; overflow: hidden; }
-    .trusted-track-wrap::before,
-    .trusted-track-wrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+    /* ══════════════════════════════════════════════════
+       PORTFOLIO
+    ══════════════════════════════════════════════════ */
+    #portfolio { background: var(--navy-2); }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 3px;
     }
-    .trusted-track-wrap::before { left: 0; background: linear-gradient(90deg, var(--navy-2), transparent); }
-    .trusted-track-wrap::after { right: 0; background: linear-gradient(270deg, var(--navy-2), transparent); }
-    .trusted-track {
-      display: flex; gap: 48px; align-items: center;
-      animation: scroll-left 30s linear infinite;
-      width: max-content; padding: 8px 0;
-    }
-    .trusted-track:hover { animation-play-state: paused; }
-    @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .logo-item {
-      display: flex; align-items: center; gap: 10px;
-      opacity: .4; transition: opacity .3s; white-space: nowrap;
-      font-family: var(--font-head); font-weight: 700; font-size: 16px;
-      letter-spacing: -.01em;
-    }
-    .logo-item:hover { opacity: .85; }
-    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
-
-    /* ─── PORTFOLIO ─── */
-    #portfolio { background: var(--navy); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .portfolio-item {
-      position: relative; overflow: hidden;
+    .port-item {
+      position: relative; overflow: hidden; cursor: pointer;
       aspect-ratio: 4/3;
-      background: var(--navy-3);
-      cursor: pointer;
     }
-    .portfolio-item.tall { aspect-ratio: 4/5; }
-    .portfolio-bg {
+    .port-item.tall { aspect-ratio: 3/4; grid-row: span 2; }
+    .port-bg {
       position: absolute; inset: 0;
+      transition: transform .5s ease;
       display: flex; align-items: center; justify-content: center;
-      font-size: 60px; opacity: .08;
-      transition: all .4s ease;
     }
-    .portfolio-item:hover .portfolio-bg { opacity: .15; transform: scale(1.1); }
-    .portfolio-gradient {
+    .port-item:hover .port-bg { transform: scale(1.05); }
+    .port-bg-emoji { font-size: 72px; opacity: .07; transition: opacity .4s; }
+    .port-item:hover .port-bg-emoji { opacity: .14; }
+    .port-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 30%, rgba(15,22,41,.95) 100%);
+      background: linear-gradient(180deg, transparent 20%, rgba(11,17,32,.96) 100%);
     }
-    .portfolio-content {
-      position: absolute; bottom: 0; left: 0; right: 0; padding: 24px;
-      transform: translateY(20px); opacity: 0; transition: all .35s ease;
+    .port-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
     }
-    .portfolio-item:hover .portfolio-content { transform: translateY(0); opacity: 1; }
-    .portfolio-tag {
-      font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 6px;
+    .port-num { font-size: 10px; font-weight: 700; letter-spacing: .12em; color: rgba(255,255,255,.3); }
+    .port-chip {
+      font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+      background: rgba(249,115,22,.12); color: var(--orange); border: 1px solid rgba(249,115,22,.22);
     }
-    .portfolio-name { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-    .portfolio-meta { font-size: 12px; color: var(--grey-3); }
-    .portfolio-overlay-top {
-      position: absolute; top: 0; left: 0; right: 0; padding: 16px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .portfolio-num {
-      font-family: var(--font-head); font-size: 11px; font-weight: 700; color: var(--grey-4);
-      letter-spacing: .1em;
-    }
-    .portfolio-chip {
-      font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 100px;
-      background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.25);
-    }
-    .portfolio-color-1 { background: linear-gradient(135deg, #1a1040 0%, #0F1629 100%); }
-    .portfolio-color-2 { background: linear-gradient(135deg, #0d2035 0%, #0F1629 100%); }
-    .portfolio-color-3 { background: linear-gradient(135deg, #1a0d20 0%, #0F1629 100%); }
-    .portfolio-color-4 { background: linear-gradient(135deg, #0d1a20 0%, #0F1629 100%); }
-    .portfolio-color-5 { background: linear-gradient(135deg, #201a0d 0%, #0F1629 100%); }
-    .portfolio-color-6 { background: linear-gradient(135deg, #0d2020 0%, #0F1629 100%); }
-    .port-metrics-preview {
+    .port-metrics {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      display: flex; gap: 16px; opacity: 0; transition: opacity .35s;
+      display: flex; gap: 10px; opacity: 0;
+      transition: opacity .3s ease;
     }
-    .portfolio-item:hover .port-metrics-preview { opacity: 1; }
-    .port-metric-chip {
-      background: rgba(15,22,41,.85); backdrop-filter: blur(10px);
-      border: 1px solid rgba(249,115,22,.3); border-radius: var(--radius-sm);
-      padding: 10px 16px; text-align: center; min-width: 80px;
+    .port-item:hover .port-metrics { opacity: 1; }
+    .port-metric-pill {
+      background: rgba(11,17,32,.9); backdrop-filter: blur(12px);
+      border: 1px solid rgba(249,115,22,.3); border-radius: var(--r-sm);
+      padding: 10px 16px; text-align: center;
     }
-    .port-metric-chip .val { font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--orange); }
-    .port-metric-chip .lbl { font-size: 10px; color: var(--grey-4); font-weight: 500; }
+    .port-metric-pill .v { font-family: var(--font-head); font-size: 19px; font-weight: 800; color: var(--orange); line-height: 1; }
+    .port-metric-pill .l { font-size: 9px; color: var(--grey-4); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+    .port-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+      transform: translateY(8px); opacity: 0; transition: all .35s ease;
+    }
+    .port-item:hover .port-bottom { transform: translateY(0); opacity: 1; }
+    .port-tag { font-size: 11px; font-weight: 700; color: var(--orange); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .07em; }
+    .port-name { font-family: var(--font-head); font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+    .port-tech { font-size: 11px; color: var(--grey-4); }
 
-    /* ─── TESTIMONIALS ─── */
-    #testimonials { background: var(--navy-2); }
-    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    /* color schemes */
+    .pc-1 { background: linear-gradient(145deg, #1a0f2e 0%, var(--navy) 100%); }
+    .pc-2 { background: linear-gradient(145deg, #0d2035 0%, var(--navy) 100%); }
+    .pc-3 { background: linear-gradient(145deg, #1a1a0d 0%, var(--navy) 100%); }
+    .pc-4 { background: linear-gradient(145deg, #0d1a1a 0%, var(--navy) 100%); }
+    .pc-5 { background: linear-gradient(145deg, #1a0d0d 0%, var(--navy) 100%); }
+    .pc-6 { background: linear-gradient(145deg, #0d0d1a 0%, var(--navy) 100%); }
+
+    /* ══════════════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════════════ */
+    #testimonials { background: var(--navy); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .testi-card {
-      background: var(--navy-3); border: 1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius-md); padding: 28px;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-md); padding: 28px;
       transition: all .3s ease;
     }
-    .testi-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
-    .testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
-    .testi-star { color: var(--orange); font-size: 14px; }
-    .testi-text { font-size: 15px; color: var(--grey-3); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+    .testi-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+    .testi-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .testi-star { color: var(--orange); font-size: 13px; }
+    .testi-text { font-size: 14px; color: var(--grey-3); line-height: 1.78; margin-bottom: 20px; font-style: italic; }
     .testi-author { display: flex; align-items: center; gap: 12px; }
     .testi-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 15px; flex-shrink: 0;
+      font-weight: 800; font-size: 14px;
     }
     .testi-name { font-weight: 700; font-size: 14px; }
     .testi-role { font-size: 12px; color: var(--grey-4); margin-top: 1px; }
 
-    /* ─── CTA ─── */
-    #cta {
-      background: var(--navy);
-      position: relative; overflow: hidden;
+    /* ══════════════════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════════════════ */
+    #faq { background: var(--navy-2); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .faq-item {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.05);
+      border-radius: var(--r-md); overflow: hidden;
+      transition: border-color .3s;
     }
-    .cta-inner {
-      background: linear-gradient(135deg, var(--navy-2) 0%, var(--navy-3) 100%);
-      border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-xl);
-      padding: 80px 60px; text-align: center;
-      position: relative; overflow: hidden;
+    .faq-item.open { border-color: rgba(249,115,22,.2); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 22px; cursor: pointer; gap: 12px;
+      font-size: 15px; font-weight: 600; line-height: 1.4;
     }
-    .cta-inner::before {
-      content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-      width: 500px; height: 200px;
-      background: radial-gradient(ellipse, rgba(249,115,22,.2) 0%, transparent 70%);
+    .faq-chevron {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--orange);
+      transition: transform .3s, background .3s;
     }
-    .cta-inner::after {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(circle at 10% 80%, rgba(6,182,212,.06) 0%, transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(249,115,22,.08) 0%, transparent 40%);
+    .faq-item.open .faq-chevron { transform: rotate(180deg); background: rgba(249,115,22,.2); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s ease;
+      font-size: 14px; color: var(--grey-4); line-height: 1.75; padding: 0 22px;
     }
-    .cta-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-    .cta-title { font-family: var(--font-head); font-size: clamp(32px, 4vw, 54px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
-    .cta-desc { font-size: 17px; color: var(--grey-3); max-width: 520px; line-height: 1.7; }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .cta-note { font-size: 13px; color: var(--grey-4); }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 22px; }
 
-    /* ─── FOOTER ─── */
-    footer { background: var(--navy-2); border-top: 1px solid rgba(255,255,255,.06); padding: 64px 0 32px; }
-    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    /* ══════════════════════════════════════════════════
+       CTA
+    ══════════════════════════════════════════════════ */
+    #cta { background: var(--navy); }
+    .cta-box {
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--r-xl); padding: 80px 60px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 250px;
+      background: radial-gradient(ellipse, rgba(249,115,22,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-box::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 5% 90%, rgba(6,182,212,.05) 0%, transparent 40%),
+        radial-gradient(circle at 95% 10%, rgba(168,85,247,.04) 0%, transparent 40%);
+    }
+    .cta-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .cta-title { font-family: var(--font-head); font-size: clamp(28px,4vw,52px); font-weight: 800; line-height: 1.1; letter-spacing: -.025em; }
+    .cta-desc { font-size: 17px; color: var(--grey-3); max-width: 500px; line-height: 1.75; }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .cta-note { font-size: 13px; color: var(--grey-4); }
+    .cta-guarantees { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+    .cta-guarantee { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--grey-4); }
+    .cta-guarantee-icon { color: var(--success); font-size: 15px; }
+
+    /* ══════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════ */
+    footer { background: var(--navy-2); border-top: 1px solid rgba(255,255,255,.05); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand { display: flex; flex-direction: column; gap: 16px; }
     .footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 700; font-size: 18px; }
-    .footer-tagline { font-size: 14px; color: var(--grey-4); line-height: 1.65; max-width: 280px; }
-    .footer-social { display: flex; gap: 10px; }
-    .footer-social-icon {
-      width: 36px; height: 36px; border-radius: var(--radius-sm);
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    .footer-tagline { font-size: 14px; color: var(--grey-4); line-height: 1.65; max-width: 270px; }
+    .footer-socials { display: flex; gap: 8px; }
+    .footer-social {
+      width: 36px; height: 36px; border-radius: var(--r-sm);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
       display: flex; align-items: center; justify-content: center;
-      font-size: 15px; transition: all .2s;
+      font-size: 14px; font-weight: 700;
+      transition: all .2s;
     }
-    .footer-social-icon:hover { background: rgba(249,115,22,.1); border-color: rgba(249,115,22,.25); }
-    .footer-col-title { font-weight: 700; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; color: var(--grey-3); margin-bottom: 16px; }
+    .footer-social:hover { background: rgba(249,115,22,.1); border-color: rgba(249,115,22,.25); }
+    .footer-col-title { font-weight: 700; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--grey-3); margin-bottom: 16px; }
     .footer-links { display: flex; flex-direction: column; gap: 10px; }
     .footer-links a { font-size: 14px; color: var(--grey-4); transition: color .2s; }
     .footer-links a:hover { color: var(--white); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.05); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
     .footer-bottom-text { font-size: 13px; color: var(--grey-4); }
 
-    /* ─── ANIMATIONS ─── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    /* ══════════════════════════════════════════════════
+       ANIMATIONS / REVEAL
+    ══════════════════════════════════════════════════ */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; }
 
-    /* ─── COUNTER ─── */
-    .count-up { display: inline-block; }
-
-    /* ─── MOBILE ─── */
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .hero-right { display: none; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .cases-grid { grid-template-columns: 1fr; }
-      .case-card.featured { grid-column: 1; display: flex; flex-direction: column; }
+      .case-card.featured { grid-column: auto; display: flex; flex-direction: column; }
+      .why-grid { grid-template-columns: 1fr; }
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .port-item.tall { grid-row: span 1; aspect-ratio: 4/3; }
       .testi-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
-
     @media (max-width: 768px) {
       .section { padding: 64px 0; }
-      .nav-links, .nav-cta .btn-primary { display: none; }
+      .nav-links, .nav-right .btn-primary { display: none; }
       .nav-burger { display: flex; }
       .services-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 36px; }
       .process-steps::before { display: none; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-box { padding: 48px 24px; }
       .stats-row { justify-content: center; }
-      .stat-divider { display: none; }
-      .cta-inner { padding: 48px 24px; }
-      .dash-metric-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-div { display: none; }
+      .compare-header, .compare-row { grid-template-columns: 1.6fr 1fr 1fr; }
+      .kpi { padding: 11px 10px; }
+      .kpi-val { font-size: 17px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 36px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+      .compare-header, .compare-row { grid-template-columns: 1fr 1fr; }
+      .compare-cell.other, .compare-col:last-child { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<!-- ═══════════════════════ LOADER ═══════════════════════ -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">e</div>
+    <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PROGRESS ═══════════════════════ -->
+<div id="progress-bar"></div>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
 <nav id="navbar">
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">e</div>
+        <div class="logo-icon">e</div>
         EcomLab
       </a>
       <div class="nav-links">
+        <a href="#why">Por qué EcomLab</a>
         <a href="#services">Servicios</a>
         <a href="#cases">Casos de Éxito</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#process">Proceso</a>
+        <a href="#faq">FAQ</a>
       </div>
-      <div class="nav-cta">
-        <a href="#cta" class="btn-primary">Agendar Llamada →</a>
-        <button class="nav-burger" id="burger" aria-label="Menú">
+      <div class="nav-right">
+        <a href="#cta" class="btn-primary">Agendar llamada →</a>
+        <button class="nav-burger" id="burger" aria-label="Abrir menú">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -620,12 +827,23 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#why" class="drawer-link">Por qué EcomLab</a>
+  <a href="#services" class="drawer-link">Servicios</a>
+  <a href="#cases" class="drawer-link">Casos de Éxito</a>
+  <a href="#portfolio" class="drawer-link">Portfolio</a>
+  <a href="#faq" class="drawer-link">FAQ</a>
+  <a href="#cta" class="btn-primary">Agendar llamada →</a>
+</div>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="container hero-content">
     <div class="hero-inner">
+
       <div class="hero-left">
         <div class="hero-badge">
           <div class="hero-badge-dot"></div>
@@ -634,102 +852,122 @@
         <h1 class="hero-title">
           Sistemas digitales<br>
           para negocios que<br>
-          <span class="line-orange">quieren crecer.</span>
+          <span class="accent">quieren crecer.</span>
         </h1>
         <p class="hero-desc">
           Construimos la infraestructura tecnológica, los procesos y la estrategia digital que tu negocio necesita para escalar de forma ordenada, medible y sostenible.
         </p>
         <div class="hero-actions">
           <a href="#cta" class="btn-primary">Diagnosticar mi negocio →</a>
-          <a href="#cases" class="btn-ghost">Ver resultados</a>
+          <a href="#cases" class="btn-ghost">Ver resultados reales</a>
         </div>
         <div class="hero-proof">
-          <div class="hero-proof-avatars">
+          <div class="proof-avatars">
             <span style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</span>
-            <span style="background:linear-gradient(135deg,#0F1629,#263354)">RS</span>
+            <span style="background:linear-gradient(135deg,#1A2540,#243058)">RS</span>
             <span style="background:linear-gradient(135deg,#06B6D4,#0284C7)">LG</span>
             <span style="background:linear-gradient(135deg,#22C55E,#16A34A)">PV</span>
+            <span style="background:linear-gradient(135deg,#A855F7,#7C3AED)">MR</span>
           </div>
-          <p class="hero-proof-text">
-            <strong>+40 negocios</strong> han escalado con EcomLab
-          </p>
+          <p class="proof-text"><strong>+40 negocios</strong> han escalado con EcomLab en Latinoamérica y España</p>
         </div>
       </div>
 
-      <!-- Dashboard mockup -->
+      <!-- Dashboard -->
       <div class="hero-right">
-        <div style="position:relative">
+        <div class="dash-wrap">
           <div class="hero-dashboard">
-            <div class="dash-header">
-              <span class="dash-title">Revenue Dashboard — Q4 2024</span>
-              <span class="dash-badge">↑ +127% vs. año anterior</span>
+            <div class="dash-top">
+              <div class="dash-window-btns">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="dash-top-label">Revenue Dashboard — Q4 2024</span>
+              <span class="dash-top-badge">↑ +127% anual</span>
             </div>
-            <div class="dash-metric-row">
-              <div class="dash-metric">
-                <div class="dash-metric-val orange">€84K</div>
-                <div class="dash-metric-label">Facturación mes</div>
-                <div class="dash-metric-change">↑ +62%</div>
+
+            <div class="dash-kpis">
+              <div class="kpi">
+                <div class="kpi-label">Facturación mes</div>
+                <div class="kpi-val o">€84K</div>
+                <div class="kpi-delta">↑ +62%</div>
               </div>
-              <div class="dash-metric">
-                <div class="dash-metric-val green">4.8x</div>
-                <div class="dash-metric-label">ROAS promedio</div>
-                <div class="dash-metric-change">↑ Óptimo</div>
+              <div class="kpi">
+                <div class="kpi-label">ROAS promedio</div>
+                <div class="kpi-val g">4.8x</div>
+                <div class="kpi-delta">↑ Óptimo</div>
               </div>
-              <div class="dash-metric">
-                <div class="dash-metric-val cyan">2.3K</div>
-                <div class="dash-metric-label">Leads generados</div>
-                <div class="dash-metric-change">↑ +89%</div>
-              </div>
-            </div>
-            <div class="dash-chart">
-              <div class="dash-chart-label">Facturación mensual — últimos 8 meses</div>
-              <div class="chart-bars">
-                <div class="chart-bar" style="height:30%"></div>
-                <div class="chart-bar" style="height:38%"></div>
-                <div class="chart-bar mid" style="height:45%"></div>
-                <div class="chart-bar mid" style="height:55%"></div>
-                <div class="chart-bar mid" style="height:65%"></div>
-                <div class="chart-bar active" style="height:78%"></div>
-                <div class="chart-bar active" style="height:88%"></div>
-                <div class="chart-bar active" style="height:100%"></div>
+              <div class="kpi">
+                <div class="kpi-label">Leads / mes</div>
+                <div class="kpi-val c">2.3K</div>
+                <div class="kpi-delta">↑ +89%</div>
               </div>
             </div>
-            <div class="dash-list">
-              <div class="dash-list-item">
-                <span class="dash-list-name">Conversiones ecommerce</span>
-                <span class="dash-list-val">+94%</span>
+
+            <div class="dash-chart-box">
+              <div class="dash-chart-lbl">Facturación — últimos 8 meses</div>
+              <svg class="area-chart" viewBox="0 0 280 64" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F97316" stop-opacity=".25"/>
+                    <stop offset="100%" stop-color="#F97316" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,55 C20,52 35,50 70,44 C95,40 115,35 140,28 C165,21 195,14 210,9 C225,5 255,3 280,1 L280,64 L0,64 Z"
+                  fill="url(#areaGrad)"/>
+                <path d="M0,55 C20,52 35,50 70,44 C95,40 115,35 140,28 C165,21 195,14 210,9 C225,5 255,3 280,1"
+                  fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#F97316" stop-opacity=".4"/>
+                    <stop offset="100%" stop-color="#FB923C"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="280" cy="1" r="4" fill="#F97316">
+                  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
+
+            <div class="dash-rows">
+              <div class="dash-row">
+                <span class="dash-row-name">Conversiones ecommerce</span>
+                <span class="dash-row-val pos">+94%</span>
               </div>
-              <div class="dash-list-item">
-                <span class="dash-list-name">Coste por adquisición</span>
-                <span class="dash-list-val" style="color:var(--cyan)">-38%</span>
+              <div class="dash-row">
+                <span class="dash-row-name">Coste por adquisición</span>
+                <span class="dash-row-val neg">−38%</span>
               </div>
-              <div class="dash-list-item">
-                <span class="dash-list-name">Tasa de retención</span>
-                <span class="dash-list-val">+71%</span>
+              <div class="dash-row">
+                <span class="dash-row-name">Retención de clientes</span>
+                <span class="dash-row-val pos">+71%</span>
               </div>
             </div>
           </div>
-          <div class="hero-float-card card-1">
-            <div class="float-icon">⚡</div>
-            <div class="float-text">
-              <div class="float-val">90 días</div>
-              <div class="float-label">Primer resultado visible</div>
+
+          <!-- Floating cards -->
+          <div class="fcard f1">
+            <div class="fcard-icon">⚡</div>
+            <div class="fcard-text">
+              <div class="fcard-val">90 días</div>
+              <div class="fcard-lbl">Primer resultado visible</div>
             </div>
           </div>
-          <div class="hero-float-card card-2">
-            <div class="float-icon">🚀</div>
-            <div class="float-text">
-              <div class="float-val">2.1x</div>
-              <div class="float-label">Facturación media</div>
+          <div class="fcard f2">
+            <div class="fcard-icon">🚀</div>
+            <div class="fcard-text">
+              <div class="fcard-val">×2.1</div>
+              <div class="fcard-lbl">Facturación promedio</div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ STATS ══════════════════════════ -->
+<!-- ═══════════════════════ STATS ═══════════════════════ -->
 <section id="stats">
   <div class="container">
     <div class="stats-row">
@@ -737,31 +975,120 @@
         <div class="stat-num"><span class="count-up" data-target="40">0</span>+</div>
         <div class="stat-label">Negocios escalados</div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-div"></div>
+      <div class="stat-item reveal d1">
         <div class="stat-num"><span class="count-up" data-target="127">0</span>%</div>
         <div class="stat-label">Crecimiento promedio en facturación</div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-div"></div>
+      <div class="stat-item reveal d2">
         <div class="stat-num"><span class="count-up" data-target="90">0</span></div>
-        <div class="stat-label">Días al primer resultado</div>
+        <div class="stat-label">Días al primer resultado medible</div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-div"></div>
+      <div class="stat-item reveal d3">
         <div class="stat-num"><span class="count-up" data-target="4">0</span>.8x</div>
         <div class="stat-label">ROAS promedio conseguido</div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item reveal reveal-delay-4">
+      <div class="stat-div"></div>
+      <div class="stat-item reveal d4">
         <div class="stat-num"><span class="count-up" data-target="98">0</span>%</div>
-        <div class="stat-label">Clientes que repiten</div>
+        <div class="stat-label">Clientes que repiten con nosotros</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ SERVICES ══════════════════════════ -->
+<!-- ═══════════════════════ WHY ═══════════════════════ -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="tag reveal">Por qué EcomLab</div>
+        <h2 class="why-title reveal">No somos una agencia.<br><span style="color:var(--orange)">Somos el sistema.</span></h2>
+        <p class="why-desc reveal">La mayoría de agencias entregan entregables. Nosotros construimos sistemas que generan resultados. Hay una diferencia enorme entre los dos.</p>
+        <div class="why-points reveal">
+          <div class="why-point">
+            <div class="why-point-icon">📐</div>
+            <div class="why-point-text">
+              <div class="why-point-title">Diagnóstico antes que soluciones</div>
+              <div class="why-point-desc">No asumimos. Auditamos tu negocio, identificamos los cuellos de botella reales y diseñamos el plan con base en datos.</div>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon">📊</div>
+            <div class="why-point-text">
+              <div class="why-point-title">Métricas, no promesas</div>
+              <div class="why-point-desc">Cada acción tiene un KPI asignado. Medimos, reportamos y ajustamos. Accountability total desde el día uno.</div>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon">⚙️</div>
+            <div class="why-point-text">
+              <div class="why-point-title">Sistemas que trabajan sin ti</div>
+              <div class="why-point-desc">Automatizamos la captación, el nurturing y el cierre para que tu negocio genere ingresos sin depender de tu tiempo constante.</div>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point-icon">🎯</div>
+            <div class="why-point-text">
+              <div class="why-point-title">Foco en el negocio, no en el producto</div>
+              <div class="why-point-desc">No vendemos páginas web ni campañas sueltas. Construimos el ecosistema completo que hace crecer tu facturación.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="why-right reveal d1">
+        <div class="compare-table">
+          <div class="compare-header">
+            <div class="compare-col">Aspecto</div>
+            <div class="compare-col highlight">EcomLab</div>
+            <div class="compare-col">Agencia típica</div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Diagnóstico inicial</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Estrategia basada en datos</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">KPIs de negocio definidos</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Automatización de procesos</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Reporte mensual con ROI</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Sistema escalable entregado</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="cross">—</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell"><span class="compare-cell-label">Equipo dedicado al cliente</span></div>
+            <div class="compare-cell hl"><span class="check">✓</span></div>
+            <div class="compare-cell other"><span class="check" style="color:var(--grey-4)">✓</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SERVICES ═══════════════════════ -->
 <section id="services" class="section">
   <div class="container">
     <div class="section-header reveal">
@@ -771,74 +1098,74 @@
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon">🛒</div>
-        <div class="service-title">Ecommerce & Ventas</div>
-        <div class="service-desc">Construimos y optimizamos tiendas online diseñadas para convertir. Arquitectura de producto, UX de compra y estrategia de checkout.</div>
-        <div class="service-tags">
-          <span class="service-tag">Shopify</span>
-          <span class="service-tag">WooCommerce</span>
-          <span class="service-tag">CRO</span>
-          <span class="service-tag">A/B Testing</span>
+        <div class="svc-icon">🛒</div>
+        <div class="svc-title">Ecommerce & Ventas</div>
+        <div class="svc-desc">Construimos y optimizamos tiendas online diseñadas para convertir. Arquitectura de producto, UX de compra y estrategia de checkout que elimina fricción.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">Shopify</span>
+          <span class="svc-tag">WooCommerce</span>
+          <span class="svc-tag">CRO</span>
+          <span class="svc-tag">A/B Testing</span>
         </div>
       </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">⚙️</div>
-        <div class="service-title">Automatización y CRM</div>
-        <div class="service-desc">Eliminamos el trabajo manual implementando flujos automáticos de captación, nurturing y cierre que trabajan 24/7 por tu negocio.</div>
-        <div class="service-tags">
-          <span class="service-tag">HubSpot</span>
-          <span class="service-tag">ActiveCampaign</span>
-          <span class="service-tag">Zapier</span>
-          <span class="service-tag">n8n</span>
+      <div class="service-card reveal d1">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Automatización y CRM</div>
+        <div class="svc-desc">Eliminamos el trabajo manual implementando flujos automáticos de captación, nurturing y cierre. Tu negocio trabaja 24/7, tú no tienes que hacerlo.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">HubSpot</span>
+          <span class="svc-tag">ActiveCampaign</span>
+          <span class="svc-tag">n8n</span>
+          <span class="svc-tag">Zapier</span>
         </div>
       </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">📊</div>
-        <div class="service-title">Estrategia Digital</div>
-        <div class="service-desc">Diseñamos el sistema de adquisición completo: canales, funnel, budget y métricas. Sin humo, con números reales y accountability.</div>
-        <div class="service-tags">
-          <span class="service-tag">Google Ads</span>
-          <span class="service-tag">Meta Ads</span>
-          <span class="service-tag">SEO</span>
-          <span class="service-tag">Analytics</span>
+      <div class="service-card reveal d2">
+        <div class="svc-icon">📊</div>
+        <div class="svc-title">Estrategia Digital</div>
+        <div class="svc-desc">Diseñamos el sistema de adquisición completo: canales, funnel, budget y métricas. Sin humo, con números reales y total accountability desde el día uno.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">Google Ads</span>
+          <span class="svc-tag">Meta Ads</span>
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Analytics</span>
         </div>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🎨</div>
-        <div class="service-title">Branding & Posicionamiento</div>
-        <div class="service-desc">Creamos la identidad visual y el mensaje de marca que genera autoridad, diferenciación y percepción premium en tu mercado.</div>
-        <div class="service-tags">
-          <span class="service-tag">Brand Strategy</span>
-          <span class="service-tag">Visual Identity</span>
-          <span class="service-tag">Copywriting</span>
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">Branding & Posicionamiento</div>
+        <div class="svc-desc">Creamos la identidad visual y el mensaje de marca que genera autoridad, diferenciación y percepción premium. Que tu marca hable antes que tú abras la boca.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">Brand Strategy</span>
+          <span class="svc-tag">Visual Identity</span>
+          <span class="svc-tag">Copywriting</span>
         </div>
       </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">📱</div>
-        <div class="service-title">Desarrollo Web & Apps</div>
-        <div class="service-desc">Desarrollamos plataformas digitales a medida: landing pages, webs corporativas, portales y aplicaciones web orientadas a resultados.</div>
-        <div class="service-tags">
-          <span class="service-tag">React</span>
-          <span class="service-tag">Next.js</span>
-          <span class="service-tag">Webflow</span>
-          <span class="service-tag">Framer</span>
+      <div class="service-card reveal d1">
+        <div class="svc-icon">📱</div>
+        <div class="svc-title">Desarrollo Web & Apps</div>
+        <div class="svc-desc">Desarrollamos plataformas digitales a medida: landing pages, webs corporativas, portales y aplicaciones web. Cada píxel con un objetivo comercial detrás.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">React</span>
+          <span class="svc-tag">Next.js</span>
+          <span class="svc-tag">Webflow</span>
+          <span class="svc-tag">Framer</span>
         </div>
       </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">🤖</div>
-        <div class="service-title">IA & Tecnología</div>
-        <div class="service-desc">Implementamos inteligencia artificial para automatizar atención al cliente, generar contenido y optimizar procesos comerciales de tu negocio.</div>
-        <div class="service-tags">
-          <span class="service-tag">ChatGPT API</span>
-          <span class="service-tag">Chatbots</span>
-          <span class="service-tag">IA Generativa</span>
+      <div class="service-card reveal d2">
+        <div class="svc-icon">🤖</div>
+        <div class="svc-title">IA & Tecnología</div>
+        <div class="svc-desc">Implementamos inteligencia artificial para automatizar la atención al cliente, generar contenido y optimizar procesos comerciales. El futuro, hoy, en tu negocio.</div>
+        <div class="svc-tags">
+          <span class="svc-tag">ChatGPT API</span>
+          <span class="svc-tag">Chatbots</span>
+          <span class="svc-tag">IA Generativa</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ PROCESS ══════════════════════════ -->
+<!-- ═══════════════════════ PROCESS ═══════════════════════ -->
 <section id="process" class="section">
   <div class="container">
     <div class="section-header center reveal">
@@ -850,19 +1177,19 @@
       <div class="process-step reveal">
         <div class="step-num">01</div>
         <div class="step-title">Diagnóstico</div>
-        <div class="step-desc">Auditamos tu negocio, tus números y tus sistemas. Identificamos exactamente dónde se pierde dinero y qué hay que construir primero.</div>
+        <div class="step-desc">Auditamos tu negocio, tus números y tus sistemas actuales. Identificamos exactamente dónde se pierde dinero y qué hay que construir primero.</div>
       </div>
-      <div class="process-step reveal reveal-delay-1">
+      <div class="process-step reveal d1">
         <div class="step-num">02</div>
         <div class="step-title">Estrategia</div>
-        <div class="step-desc">Diseñamos el roadmap completo: qué sistemas implementar, en qué orden y con qué métricas medir el éxito. Sin intuición, con datos.</div>
+        <div class="step-desc">Diseñamos el roadmap completo: qué sistemas implementar, en qué orden y con qué métricas medir el éxito. Sin intuición, solo datos.</div>
       </div>
-      <div class="process-step reveal reveal-delay-2">
+      <div class="process-step reveal d2">
         <div class="step-num">03</div>
         <div class="step-title">Implementación</div>
-        <div class="step-desc">Ejecutamos con velocidad y precisión. Cada pieza del sistema —tecnología, copy, campañas— se construye con obsesión por el detalle.</div>
+        <div class="step-desc">Ejecutamos con velocidad y precisión. Tecnología, copy, campañas — cada pieza del sistema se construye con obsesión por el detalle.</div>
       </div>
-      <div class="process-step reveal reveal-delay-3">
+      <div class="process-step reveal d3">
         <div class="step-num">04</div>
         <div class="step-title">Escala</div>
         <div class="step-desc">Con el sistema probado, escalamos lo que funciona. Más presupuesto, más canales, más automatización. Crecimiento ordenado y sostenible.</div>
@@ -871,139 +1198,139 @@
   </div>
 </section>
 
-<!-- ══════════════════════════ CASES ══════════════════════════ -->
+<!-- ═══════════════════════ CASES ═══════════════════════ -->
 <section id="cases" class="section">
   <div class="container">
     <div class="section-header reveal">
       <div class="tag">Casos de éxito</div>
       <h2 class="headline">Resultados reales.<br><span>Negocios reales.</span></h2>
-      <p class="sub-headline">Métricas verificables de negocios que han implementado nuestros sistemas. Sin retoque, sin exageración.</p>
+      <p class="sub-headline">Métricas verificables de negocios que han implementado nuestros sistemas. Sin retoque, sin promesas vacías.</p>
     </div>
     <div class="cases-grid">
 
-      <!-- Featured case -->
+      <!-- Featured -->
       <div class="case-card featured reveal">
         <div class="case-visual">
-          <span class="case-industry">Ecommerce · Moda</span>
-          <div>
-            <div style="margin-bottom:12px">
-              <svg class="case-sparkline" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="0,40 30,36 60,32 90,28 120,22 150,16 180,10 210,6 240,2"
-                  stroke="rgba(249,115,22,0.3)" stroke-width="2" fill="none"/>
-                <polyline points="0,40 30,36 60,32 90,28 120,22 150,16 180,10 210,6 240,2"
-                  stroke="url(#grad1)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs>
-                  <linearGradient id="grad1" x1="0" y1="0" x2="240" y2="0">
-                    <stop offset="0%" stop-color="#F97316" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#F97316"/>
-                  </linearGradient>
-                </defs>
-                <circle cx="240" cy="2" r="4" fill="#F97316"/>
-              </svg>
+          <span class="case-industry">Ecommerce · Moda · España</span>
+          <div class="sparkline-wrap">
+            <svg class="sparkline" viewBox="0 0 260 52" fill="none">
+              <defs>
+                <linearGradient id="sl1" x1="0" y1="0" x2="260" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#F97316" stop-opacity=".3"/>
+                  <stop offset="1" stop-color="#F97316"/>
+                </linearGradient>
+                <linearGradient id="sl1a" x1="0" y1="0" x2="0" y2="1">
+                  <stop stop-color="#F97316" stop-opacity=".2"/>
+                  <stop offset="1" stop-color="#F97316" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,46 L30,42 L60,38 L90,32 L120,25 L150,18 L190,10 L230,6 L260,2 L260,52 L0,52 Z" fill="url(#sl1a)"/>
+              <path d="M0,46 L30,42 L60,38 L90,32 L120,25 L150,18 L190,10 L230,6 L260,2" stroke="url(#sl1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="260" cy="2" r="4.5" fill="#F97316"/>
+            </svg>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-lbl">Antes</span>
+              <div class="bar-track"><div class="bar-fill before" data-width="30"></div></div>
+              <span class="bar-val">€22K</span>
             </div>
-            <div class="case-chart-mini">
-              <div class="case-bar-row">
-                <span class="case-bar-label">Antes</span>
-                <div class="case-bar-track"><div class="case-bar-fill before" style="width:30%"></div></div>
-                <span class="case-bar-val">€22K</span>
-              </div>
-              <div class="case-bar-row">
-                <span class="case-bar-label">Después</span>
-                <div class="case-bar-track"><div class="case-bar-fill after" style="width:100%"></div></div>
-                <span class="case-bar-val">€84K</span>
-              </div>
+            <div class="bar-row">
+              <span class="bar-lbl">Después</span>
+              <div class="bar-track"><div class="bar-fill after" data-width="100"></div></div>
+              <span class="bar-val">€84K</span>
             </div>
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">Cliente confidencial · España</span>
-          <h3 class="case-title">De 22K€ a 84K€ de facturación mensual en 4 meses</h3>
-          <p class="case-desc">Rediseñamos por completo el sistema de adquisición y el funnel de conversión. Implementamos automatización de email marketing y optimizamos el checkout. El resultado fue inmediato y escalable.</p>
+          <span class="case-client">Cliente confidencial · España · 4 meses</span>
+          <h3 class="case-title">De €22K a €84K de facturación mensual</h3>
+          <p class="case-desc">Rediseñamos por completo el sistema de adquisición y el funnel de conversión. Email marketing automatizado, checkout optimizado y paid media con estructura de campañas TOFU/MOFU/BOFU. El resultado fue inmediato y predecible.</p>
           <div class="case-metrics">
             <div class="case-metric">
-              <div class="case-metric-val">+282%</div>
-              <div class="case-metric-label">Facturación</div>
+              <div class="case-metric-val o">+282%</div>
+              <div class="case-metric-lbl">Facturación</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val green">4.8x</div>
-              <div class="case-metric-label">ROAS</div>
+              <div class="case-metric-val g">4.8x</div>
+              <div class="case-metric-lbl">ROAS</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val cyan">-41%</div>
-              <div class="case-metric-label">CPA</div>
+              <div class="case-metric-val c">−41%</div>
+              <div class="case-metric-lbl">CPA</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Ver cómo lo logramos <span>→</span></a>
+          <a href="#cta" class="case-link">Quiero estos resultados →</a>
         </div>
       </div>
 
       <!-- Case 2 -->
       <div class="case-card reveal">
-        <div class="case-visual" style="min-height:180px">
-          <span class="case-industry">B2B · Servicios</span>
-          <div class="case-chart-mini">
-            <div class="case-bar-row">
-              <span class="case-bar-label">Leads</span>
-              <div class="case-bar-track"><div class="case-bar-fill before" style="width:20%"></div></div>
-              <span class="case-bar-val">12/mes</span>
+        <div class="case-visual">
+          <span class="case-industry">B2B · Consultoría · México</span>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-lbl">Antes</span>
+              <div class="bar-track"><div class="bar-fill before" data-width="8"></div></div>
+              <span class="bar-val">12/mes</span>
             </div>
-            <div class="case-bar-row">
-              <span class="case-bar-label">Leads</span>
-              <div class="case-bar-track"><div class="case-bar-fill after" style="width:95%"></div></div>
-              <span class="case-bar-val">148/mes</span>
+            <div class="bar-row">
+              <span class="bar-lbl">Después</span>
+              <div class="bar-track"><div class="bar-fill after" data-width="100"></div></div>
+              <span class="bar-val">148/mes</span>
             </div>
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">Consultoría · México</span>
-          <h3 class="case-title">12 leads al mes → 148 leads calificados</h3>
-          <p class="case-desc">Sistema de captación digital con LinkedIn Ads, landing pages optimizadas y CRM automatizado. La agenda comercial pasó de vacía a llena en 60 días.</p>
+          <span class="case-client">ConsultPro · México · 60 días</span>
+          <h3 class="case-title">12 leads → 148 leads calificados por mes</h3>
+          <p class="case-desc">Sistema de captación digital con LinkedIn Ads, landing pages y CRM automatizado. La agenda comercial pasó de vacía a llena en dos meses.</p>
           <div class="case-metrics">
             <div class="case-metric">
-              <div class="case-metric-val">+1,133%</div>
-              <div class="case-metric-label">Leads generados</div>
+              <div class="case-metric-val o">+1,133%</div>
+              <div class="case-metric-lbl">Leads generados</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val green">60</div>
-              <div class="case-metric-label">Días al resultado</div>
+              <div class="case-metric-val g">60</div>
+              <div class="case-metric-lbl">Días al resultado</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Hablar con un experto <span>→</span></a>
+          <a href="#cta" class="case-link">Hablar con un experto →</a>
         </div>
       </div>
 
       <!-- Case 3 -->
-      <div class="case-card reveal reveal-delay-1">
-        <div class="case-visual" style="min-height:180px">
-          <span class="case-industry">Retail · Alimentación</span>
-          <div class="case-chart-mini">
-            <div class="case-bar-row">
-              <span class="case-bar-label">Conv.</span>
-              <div class="case-bar-track"><div class="case-bar-fill before" style="width:15%"></div></div>
-              <span class="case-bar-val">0.8%</span>
+      <div class="case-card reveal d1">
+        <div class="case-visual">
+          <span class="case-industry">Retail · Alimentación · Colombia</span>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-lbl">Antes</span>
+              <div class="bar-track"><div class="bar-fill before" data-width="15"></div></div>
+              <span class="bar-val">0.8%</span>
             </div>
-            <div class="case-bar-row">
-              <span class="case-bar-label">Conv.</span>
-              <div class="case-bar-track"><div class="case-bar-fill after" style="width:90%"></div></div>
-              <span class="case-bar-val">3.9%</span>
+            <div class="bar-row">
+              <span class="bar-lbl">Después</span>
+              <div class="bar-track"><div class="bar-fill after" data-width="95"></div></div>
+              <span class="bar-val">3.9%</span>
             </div>
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">Ecommerce · Colombia</span>
-          <h3 class="case-title">Tasa de conversión ×5 con rediseño de UX</h3>
-          <p class="case-desc">Rediseño completo del checkout, fichas de producto y flujos de email post-compra. El mismo tráfico, multiplicado por cinco en ventas.</p>
+          <span class="case-client">FreshMarket · Colombia · 45 días</span>
+          <h3 class="case-title">Tasa de conversión ×5 sin aumentar tráfico</h3>
+          <p class="case-desc">Rediseño de checkout, fichas de producto y flujos de email post-compra. El mismo tráfico, multiplicado por cinco en ingresos.</p>
           <div class="case-metrics">
             <div class="case-metric">
-              <div class="case-metric-val">×4.9</div>
-              <div class="case-metric-label">Conversión</div>
+              <div class="case-metric-val o">×4.9</div>
+              <div class="case-metric-lbl">Conversión</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val green">+218%</div>
-              <div class="case-metric-label">Revenue</div>
+              <div class="case-metric-val g">+218%</div>
+              <div class="case-metric-lbl">Revenue</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Quiero estos resultados <span>→</span></a>
+          <a href="#cta" class="case-link">Diagnosticar mi tienda →</a>
         </div>
       </div>
 
@@ -1011,42 +1338,44 @@
   </div>
 </section>
 
-<!-- ══════════════════════════ TRUSTED ══════════════════════════ -->
-<section id="trusted" class="section-sm">
-  <div class="container" style="margin-bottom:40px">
-    <div class="section-header center reveal">
-      <div class="tag">Confianza</div>
-      <h2 class="headline" style="font-size:clamp(24px,3vw,38px)">Empresas que han confiado en EcomLab</h2>
-    </div>
+<!-- ═══════════════════════ TRUSTED ═══════════════════════ -->
+<section id="trusted">
+  <div class="trusted-head reveal">
+    <div class="trusted-eyebrow">Empresas que confían en EcomLab</div>
+    <h2 class="trusted-title">Negocios reales. Resultados reales.</h2>
   </div>
-  <div class="trusted-track-wrap">
-    <div class="trusted-track" id="logoTrack">
-      <!-- Logos duplicados para el loop infinito -->
-      <div class="logo-item"><div class="logo-dot"></div>NovaModa</div>
-      <div class="logo-item"><div class="logo-dot"></div>UrbanBrand</div>
-      <div class="logo-item"><div class="logo-dot"></div>FreshMarket</div>
-      <div class="logo-item"><div class="logo-dot"></div>TechSupply</div>
-      <div class="logo-item"><div class="logo-dot"></div>ClínicaVital</div>
-      <div class="logo-item"><div class="logo-dot"></div>ZeroGravity</div>
-      <div class="logo-item"><div class="logo-dot"></div>LogisticaPro</div>
-      <div class="logo-item"><div class="logo-dot"></div>InmoElite</div>
-      <div class="logo-item"><div class="logo-dot"></div>CaféOrigin</div>
-      <div class="logo-item"><div class="logo-dot"></div>SportXcel</div>
-      <div class="logo-item"><div class="logo-dot"></div>NovaModa</div>
-      <div class="logo-item"><div class="logo-dot"></div>UrbanBrand</div>
-      <div class="logo-item"><div class="logo-dot"></div>FreshMarket</div>
-      <div class="logo-item"><div class="logo-dot"></div>TechSupply</div>
-      <div class="logo-item"><div class="logo-dot"></div>ClínicaVital</div>
-      <div class="logo-item"><div class="logo-dot"></div>ZeroGravity</div>
-      <div class="logo-item"><div class="logo-dot"></div>LogisticaPro</div>
-      <div class="logo-item"><div class="logo-dot"></div>InmoElite</div>
-      <div class="logo-item"><div class="logo-dot"></div>CaféOrigin</div>
-      <div class="logo-item"><div class="logo-dot"></div>SportXcel</div>
+  <div class="trusted-marquee-wrap">
+    <div class="trusted-marquee">
+      <div class="logo-pill"><div class="logo-pill-dot"></div>NovaModa</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>UrbanBrand</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>FreshMarket</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>TechSupply</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>Clínica Vital</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>ZeroGravity</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>LogísticaPro</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>InmoElite</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>Café Origin</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>SportXcel</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>ConsultPro</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>DigitalHub</div>
+      <!-- duplicated for seamless loop -->
+      <div class="logo-pill"><div class="logo-pill-dot"></div>NovaModa</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>UrbanBrand</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>FreshMarket</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>TechSupply</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>Clínica Vital</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>ZeroGravity</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>LogísticaPro</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>InmoElite</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>Café Origin</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>SportXcel</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>ConsultPro</div>
+      <div class="logo-pill"><div class="logo-pill-dot"></div>DigitalHub</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ PORTFOLIO ══════════════════════════ -->
+<!-- ═══════════════════════ PORTFOLIO ═══════════════════════ -->
 <section id="portfolio" class="section">
   <div class="container">
     <div class="section-header reveal">
@@ -1057,114 +1386,114 @@
   </div>
   <div class="portfolio-grid">
 
-    <div class="portfolio-item portfolio-color-1">
-      <div class="portfolio-bg">🛒</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">001</span>
-        <span class="portfolio-chip">Ecommerce</span>
+    <div class="port-item pc-1">
+      <div class="port-bg"><div class="port-bg-emoji">🛒</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">001</span>
+        <span class="port-chip">Ecommerce</span>
       </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">+282%</div><div class="lbl">Revenue</div></div>
-        <div class="port-metric-chip"><div class="val">4.8x</div><div class="lbl">ROAS</div></div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">+282%</div><div class="l">Revenue</div></div>
+        <div class="port-metric-pill"><div class="v">4.8x</div><div class="l">ROAS</div></div>
       </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">Moda · España</div>
-        <div class="portfolio-name">NovaModa Store</div>
-        <div class="portfolio-meta">Shopify · Email Marketing · Google Ads</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-color-2">
-      <div class="portfolio-bg">⚡</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">002</span>
-        <span class="portfolio-chip">Automatización</span>
-      </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">+1,133%</div><div class="lbl">Leads</div></div>
-      </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">B2B · México</div>
-        <div class="portfolio-name">ConsultPro CRM</div>
-        <div class="portfolio-meta">HubSpot · LinkedIn Ads · n8n</div>
+      <div class="port-bottom">
+        <div class="port-tag">Moda · España</div>
+        <div class="port-name">NovaModa Store</div>
+        <div class="port-tech">Shopify · Email Marketing · Google Ads</div>
       </div>
     </div>
 
-    <div class="portfolio-item portfolio-color-3 tall">
-      <div class="portfolio-bg">📱</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">003</span>
-        <span class="portfolio-chip">Web App</span>
+    <div class="port-item pc-2">
+      <div class="port-bg"><div class="port-bg-emoji">⚡</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">002</span>
+        <span class="port-chip">Automatización</span>
       </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">×5</div><div class="lbl">Conversión</div></div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">+1,133%</div><div class="l">Leads</div></div>
       </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">SaaS · Colombia</div>
-        <div class="portfolio-name">FreshMarket Portal</div>
-        <div class="portfolio-meta">React · Next.js · Analytics</div>
-      </div>
-    </div>
-
-    <div class="portfolio-item portfolio-color-4">
-      <div class="portfolio-bg">🤖</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">004</span>
-        <span class="portfolio-chip">IA</span>
-      </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">-60%</div><div class="lbl">Tiempo resp.</div></div>
-      </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">Clínica · España</div>
-        <div class="portfolio-name">VitalBot Assistant</div>
-        <div class="portfolio-meta">ChatGPT API · Zapier · CRM</div>
+      <div class="port-bottom">
+        <div class="port-tag">B2B · México</div>
+        <div class="port-name">ConsultPro CRM</div>
+        <div class="port-tech">HubSpot · LinkedIn Ads · n8n</div>
       </div>
     </div>
 
-    <div class="portfolio-item portfolio-color-5">
-      <div class="portfolio-bg">📊</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">005</span>
-        <span class="portfolio-chip">Estrategia</span>
+    <div class="port-item pc-3 tall">
+      <div class="port-bg"><div class="port-bg-emoji">📱</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">003</span>
+        <span class="port-chip">Web App</span>
       </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">+340%</div><div class="lbl">Tráfico</div></div>
-        <div class="port-metric-chip"><div class="val">×3.2</div><div class="lbl">Revenue</div></div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">×4.9</div><div class="l">Conversión</div></div>
       </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">Retail · Argentina</div>
-        <div class="portfolio-name">SportXcel Brand</div>
-        <div class="portfolio-meta">SEO · Meta Ads · Branding</div>
+      <div class="port-bottom">
+        <div class="port-tag">Retail · Colombia</div>
+        <div class="port-name">FreshMarket Portal</div>
+        <div class="port-tech">React · Next.js · Analytics</div>
       </div>
     </div>
 
-    <div class="portfolio-item portfolio-color-6">
-      <div class="portfolio-bg">🏗️</div>
-      <div class="portfolio-gradient"></div>
-      <div class="portfolio-overlay-top">
-        <span class="portfolio-num">006</span>
-        <span class="portfolio-chip">Inmobiliaria</span>
+    <div class="port-item pc-4">
+      <div class="port-bg"><div class="port-bg-emoji">🤖</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">004</span>
+        <span class="port-chip">IA</span>
       </div>
-      <div class="port-metrics-preview">
-        <div class="port-metric-chip"><div class="val">+89</div><div class="lbl">Leads/mes</div></div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">−60%</div><div class="l">Resp. time</div></div>
       </div>
-      <div class="portfolio-content">
-        <div class="portfolio-tag">Real Estate · España</div>
-        <div class="portfolio-name">InmoElite Digital</div>
-        <div class="portfolio-meta">Landing Pages · Google Ads · CRM</div>
+      <div class="port-bottom">
+        <div class="port-tag">Salud · España</div>
+        <div class="port-name">VitalBot Assistant</div>
+        <div class="port-tech">ChatGPT API · Zapier · CRM</div>
+      </div>
+    </div>
+
+    <div class="port-item pc-5">
+      <div class="port-bg"><div class="port-bg-emoji">📊</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">005</span>
+        <span class="port-chip">Estrategia</span>
+      </div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">+340%</div><div class="l">Tráfico</div></div>
+        <div class="port-metric-pill"><div class="v">×3.2</div><div class="l">Revenue</div></div>
+      </div>
+      <div class="port-bottom">
+        <div class="port-tag">Retail · Argentina</div>
+        <div class="port-name">SportXcel Brand</div>
+        <div class="port-tech">SEO · Meta Ads · Branding</div>
+      </div>
+    </div>
+
+    <div class="port-item pc-6">
+      <div class="port-bg"><div class="port-bg-emoji">🏗️</div></div>
+      <div class="port-overlay"></div>
+      <div class="port-top">
+        <span class="port-num">006</span>
+        <span class="port-chip">Inmobiliaria</span>
+      </div>
+      <div class="port-metrics">
+        <div class="port-metric-pill"><div class="v">+89</div><div class="l">Leads/mes</div></div>
+      </div>
+      <div class="port-bottom">
+        <div class="port-tag">Real Estate · España</div>
+        <div class="port-name">InmoElite Digital</div>
+        <div class="port-tech">Landing Pages · Google Ads · CRM</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══════════════════════════ TESTIMONIALS ══════════════════════════ -->
+<!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
 <section id="testimonials" class="section">
   <div class="container">
     <div class="section-header center reveal">
@@ -1172,12 +1501,9 @@
       <h2 class="headline">Lo que dicen<br><span>nuestros clientes.</span></h2>
     </div>
     <div class="testi-grid">
-
       <div class="testi-card reveal">
-        <div class="testi-stars">
-          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-        </div>
-        <p class="testi-text">"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tenemos procesos y datos para tomar decisiones."</p>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tomamos decisiones con datos."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</div>
           <div>
@@ -1186,12 +1512,9 @@
           </div>
         </div>
       </div>
-
-      <div class="testi-card reveal reveal-delay-1">
-        <div class="testi-stars">
-          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-        </div>
-        <p class="testi-text">"Pasamos de 12 leads al mes a más de 140. Lo más valioso no fueron los números, sino entender que el problema era estructural. EcomLab nos dio orden y claridad."</p>
+      <div class="testi-card reveal d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Pasamos de 12 leads al mes a más de 140. Lo más valioso fue entender que el problema era estructural. EcomLab nos dio orden, claridad y resultados."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:linear-gradient(135deg,#06B6D4,#0284C7)">RS</div>
           <div>
@@ -1200,12 +1523,9 @@
           </div>
         </div>
       </div>
-
-      <div class="testi-card reveal reveal-delay-2">
-        <div class="testi-stars">
-          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-        </div>
-        <p class="testi-text">"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta. Ejecutaron todo. Los resultados hablan solos."</p>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta, y ejecutaron todo. Los números hablan solos."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:linear-gradient(135deg,#22C55E,#16A34A)">LG</div>
           <div>
@@ -1214,43 +1534,108 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FAQ ═══════════════════════ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="tag">Preguntas frecuentes</div>
+      <h2 class="headline">Todo lo que<br><span>necesitas saber.</span></h2>
+    </div>
+    <div class="faq-grid" id="faqGrid">
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Cuánto tiempo tarda en verse el primer resultado?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Depende del proyecto, pero el 80% de nuestros clientes ven resultados medibles en los primeros 30-60 días. El sistema completo suele estar optimizado y escalando entre el día 60 y el 90.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Para qué tipo de negocios trabajan?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Trabajamos con ecommerce, negocios de servicios B2B y B2C, clínicas, consultorías, inmobiliarias y retail, principalmente en España y Latinoamérica. El requisito común: querer crecer de manera ordenada y con datos.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Cuál es la inversión mínima para trabajar con EcomLab?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Cada proyecto es diferente. Agendamos una llamada de diagnóstico gratuita para entender tu situación y presentarte una propuesta personalizada. No tenemos paquetes estándar porque cada negocio tiene necesidades distintas.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Qué pasa si no veo resultados?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Definimos KPIs y métricas de éxito antes de empezar. Si los resultados no se alinean con lo acordado, revisamos la estrategia y ajustamos sin coste adicional. Trabajamos con un modelo de partnership, no de entrega de proyectos.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Trabajan con negocios que están empezando?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Preferimos trabajar con negocios que ya tienen tracción y quieren escalar. Idealmente, negocios con al menos 6 meses de actividad y facturación existente, aunque evaluamos caso por caso en la llamada de diagnóstico.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          ¿Cómo es el proceso de trabajo y comunicación?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-answer">Cada cliente tiene un gestor de proyecto dedicado. Usamos Notion para gestión del proyecto, reuniones quincenales de seguimiento y un dashboard en tiempo real con todas las métricas. Transparencia total durante todo el proceso.</div>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ CTA ══════════════════════════ -->
+<!-- ═══════════════════════ CTA ═══════════════════════ -->
 <section id="cta" class="section">
   <div class="container">
-    <div class="cta-inner reveal">
+    <div class="cta-box reveal">
       <div class="cta-content">
         <div class="tag">Próximo paso</div>
-        <h2 class="cta-title">¿Tu negocio puede crecer más?<br><span style="color:var(--orange)">Descubrámoslo juntos.</span></h2>
+        <h2 class="cta-title">¿Tu negocio puede<br>crecer más?<br><span style="color:var(--orange)">Descubrámoslo juntos.</span></h2>
         <p class="cta-desc">Una llamada de diagnóstico de 30 minutos para entender dónde estás, qué está frenando tu crecimiento y qué sistema necesitas para escalar.</p>
         <div class="cta-actions">
           <a href="mailto:hola@ecomlab.es" class="btn-primary" style="font-size:16px;padding:16px 32px">Agendar diagnóstico gratuito →</a>
-          <a href="https://wa.me/34000000000" class="btn-ghost">💬 WhatsApp directo</a>
+          <a href="https://wa.me/34000000000" class="btn-ghost" style="font-size:16px;padding:16px 32px">💬 WhatsApp directo</a>
         </div>
-        <p class="cta-note">Sin compromiso. Sin ventas agresivas. Solo claridad sobre tu situación real.</p>
+        <div class="cta-guarantees">
+          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Sin compromiso</div>
+          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Sin venta agresiva</div>
+          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Diagnóstico honesto</div>
+          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Plan concreto de acción</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
+    <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <div class="nav-logo-icon">e</div>
+          <div class="logo-icon">e</div>
           EcomLab
         </div>
         <p class="footer-tagline">Sistemas digitales para negocios que quieren crecer de verdad. Tecnología, automatización y estrategia con resultados medibles.</p>
-        <div class="footer-social">
-          <a href="#" class="footer-social-icon" aria-label="LinkedIn">in</a>
-          <a href="#" class="footer-social-icon" aria-label="Instagram">ig</a>
-          <a href="#" class="footer-social-icon" aria-label="Twitter">𝕏</a>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="LinkedIn">in</a>
+          <a href="#" class="footer-social" aria-label="Instagram">ig</a>
+          <a href="#" class="footer-social" aria-label="Twitter/X">𝕏</a>
         </div>
       </div>
       <div>
@@ -1267,69 +1652,116 @@
       <div>
         <div class="footer-col-title">Empresa</div>
         <div class="footer-links">
-          <a href="#cases">Casos de éxito</a>
+          <a href="#why">Por qué EcomLab</a>
+          <a href="#cases">Casos de Éxito</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#process">Proceso</a>
-          <a href="#testimonials">Testimonios</a>
-          <a href="#cta">Contacto</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Contacto</div>
         <div class="footer-links">
           <a href="mailto:hola@ecomlab.es">hola@ecomlab.es</a>
+          <a href="#cta">Agendar llamada</a>
+          <a href="https://wa.me/34000000000">WhatsApp</a>
           <a href="#">LinkedIn</a>
-          <a href="#">Instagram</a>
-          <a href="#">WhatsApp</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span class="footer-bottom-text">© 2024 EcomLab. Todos los derechos reservados.</span>
-      <span class="footer-bottom-text">Construido con obsesión por los detalles.</span>
+      <span class="footer-bottom-text">Construido con obsesión por los resultados.</span>
     </div>
   </div>
 </footer>
 
-<!-- ══════════════════════════ JS ══════════════════════════ -->
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
 <script>
-  /* ─── Scroll reveal ─── */
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
+  /* ── Loader ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1200);
+  });
 
-  /* ─── Navbar scroll ─── */
+  /* ── Progress bar ── */
+  const pbar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    pbar.style.width = pct + '%';
+  });
+
+  /* ── Navbar scroll ── */
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  /* ─── Counter animation ─── */
+  /* ── Mobile drawer ── */
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('mobileDrawer');
+  let drawerOpen = false;
+  function toggleDrawer(force) {
+    drawerOpen = force !== undefined ? force : !drawerOpen;
+    burger.classList.toggle('open', drawerOpen);
+    drawer.classList.toggle('open', drawerOpen);
+    document.body.style.overflow = drawerOpen ? 'hidden' : '';
+  }
+  burger.addEventListener('click', () => toggleDrawer());
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleDrawer(false)));
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── Counter animation ── */
   const counters = document.querySelectorAll('.count-up');
-  const counterObserver = new IntersectionObserver((entries) => {
+  const cntObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseFloat(el.dataset.target);
-      const isDecimal = target % 1 !== 0;
-      const duration = 1800;
+      const isFloat = target % 1 !== 0;
+      const dur = 1800;
       const start = performance.now();
-      function update(now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const current = target * ease;
-        el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
-        if (progress < 1) requestAnimationFrame(update);
-        else el.textContent = isDecimal ? target.toFixed(1) : target;
+      function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = isFloat ? (target * ease).toFixed(1) : Math.floor(target * ease);
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = isFloat ? target.toFixed(1) : target;
       }
-      requestAnimationFrame(update);
-      counterObserver.unobserve(el);
+      requestAnimationFrame(tick);
+      cntObs.unobserve(el);
     });
   }, { threshold: 0.5 });
-  counters.forEach(el => counterObserver.observe(el));
+  counters.forEach(el => cntObs.observe(el));
 
-  /* ─── Smooth scroll ─── */
+  /* ── Bar chart animations ── */
+  const barFills = document.querySelectorAll('.bar-fill[data-width]');
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const w = el.dataset.width;
+      requestAnimationFrame(() => { el.style.width = w + '%'; });
+      barObs.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  barFills.forEach(el => barObs.observe(el));
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── Smooth scroll ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -1337,40 +1769,11 @@
     });
   });
 
-  /* ─── Bar animations on scroll ─── */
-  const barFills = document.querySelectorAll('.case-bar-fill');
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const el = e.target;
-        const targetWidth = el.style.width;
-        el.style.width = '0%';
-        requestAnimationFrame(() => {
-          el.style.transition = 'width 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
-          el.style.width = targetWidth;
-        });
-        barObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-  barFills.forEach(el => barObserver.observe(el));
-
-  /* ─── Hero chart bars entrance ─── */
-  document.querySelectorAll('.chart-bar').forEach((bar, i) => {
-    const h = bar.style.height;
-    bar.style.height = '0';
-    bar.style.transition = `height 0.8s cubic-bezier(0.25, 1, 0.5, 1) ${i * 80}ms`;
-    setTimeout(() => { bar.style.height = h; }, 400);
-  });
-
-  /* ─── Mobile menu (basic) ─── */
-  const burger = document.getElementById('burger');
-  let mobileOpen = false;
-  burger.addEventListener('click', () => {
-    mobileOpen = !mobileOpen;
-    burger.querySelectorAll('span')[0].style.transform = mobileOpen ? 'translateY(7px) rotate(45deg)' : '';
-    burger.querySelectorAll('span')[1].style.opacity = mobileOpen ? '0' : '1';
-    burger.querySelectorAll('span')[2].style.transform = mobileOpen ? 'translateY(-7px) rotate(-45deg)' : '';
+  /* ── Hero dashboard chart entrance ── */
+  document.querySelectorAll('.kpi').forEach((kpi, i) => {
+    kpi.style.opacity = '0'; kpi.style.transform = 'translateY(8px)';
+    kpi.style.transition = `opacity .5s ${0.4 + i * 0.12}s ease, transform .5s ${0.4 + i * 0.12}s ease`;
+    setTimeout(() => { kpi.style.opacity = '1'; kpi.style.transform = 'translateY(0)'; }, 1300);
   });
 </script>
 </body>
