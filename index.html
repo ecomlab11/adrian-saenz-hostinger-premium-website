@@ -8,11 +8,11 @@
   <meta property="og:title" content="EcomLab — Sistemas Digitales para Negocios que Crecen" />
   <meta property="og:description" content="Construimos la infraestructura digital que tu negocio necesita para escalar. Tecnología, automatización y estrategia con resultados medibles." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="theme-color" content="#080808" />
   <meta name="robots" content="index, follow" />
   <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23F97316'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-size='20' font-weight='900' fill='white'>e</text></svg>" />
-  <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;EcomLab&quot;,&quot;short_name&quot;:&quot;EcomLab&quot;,&quot;description&quot;:&quot;Sistemas digitales para negocios que crecen&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%23FFFFFF&quot;,&quot;theme_color&quot;:&quot;%23F97316&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;/icon-192.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}" />
+  <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;EcomLab&quot;,&quot;short_name&quot;:&quot;EcomLab&quot;,&quot;description&quot;:&quot;Sistemas digitales para negocios que crecen&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%23080808&quot;,&quot;theme_color&quot;:&quot;%23F97316&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;/icon-192.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}" />
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
@@ -20,9 +20,9 @@
     "@type": "ProfessionalService",
     "name": "EcomLab",
     "description": "Sistemas digitales para negocios que quieren crecer. Tecnología, automatización y estrategia digital con resultados medibles en 90 días.",
-    "url": "https://ecomlab.es",
-    "email": "hola@ecomlab.es",
-    "areaServed": ["ES", "MX", "CO", "AR"],
+    "url": "https://ecomlab.ar",
+    "email": "hola@ecomlab.ar",
+    "areaServed": ["AR"],
     "serviceType": ["Ecommerce Development", "Digital Marketing", "CRM Automation", "Brand Strategy"],
     "sameAs": ["https://linkedin.com/company/ecomlab"],
     "offers": {
@@ -42,12 +42,12 @@
       --orange:    #F97316;
       --orange-d:  #EA580C;
       --orange-l:  #FB923C;
-      --navy:      #FFFFFF;
-      --navy-2:    #F8FAFC;
-      --navy-3:    #F1F5F9;
-      --navy-4:    #E2E8F0;
-      --white:     #0F172A;
-      --grey-3:    #334155;
+      --navy:      #080808;
+      --navy-2:    #0F0F0F;
+      --navy-3:    #181818;
+      --navy-4:    #232323;
+      --white:     #F0F0F0;
+      --grey-3:    #9E9E9E;
       --grey-4:    #64748B;
       --success:   #22C55E;
       --cyan:      #06B6D4;
@@ -56,15 +56,15 @@
       --font-body: 'Montserrat', sans-serif;
       --font-head: 'Montserrat', sans-serif;
 
-      --r-sm: 8px;
-      --r-md: 16px;
-      --r-lg: 24px;
-      --r-xl: 32px;
+      --r-sm: 4px;
+      --r-md: 8px;
+      --r-lg: 12px;
+      --r-xl: 16px;
 
-      --card-border: rgba(0,0,0,.08);
+      --card-border: rgba(255,255,255,.07);
       --card-border-hover: rgba(249,115,22,.28);
-      --shadow-card: 0 4px 32px rgba(0,0,0,.07);
-      --shadow-glow: 0 0 80px rgba(249,115,22,.12);
+      --shadow-card: 0 4px 32px rgba(255,255,255,.07);
+      --shadow-glow: 0 0 80px rgba(249,115,22,.15);
     }
 
     /* ══════════════════════════════════════════════════
@@ -104,7 +104,7 @@
     }
     @keyframes loader-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
     .loader-bar-track {
-      width: 120px; height: 2px; background: rgba(0,0,0,.09); border-radius: 2px; overflow: hidden;
+      width: 120px; height: 2px; background: rgba(255,255,255,.09); border-radius: 2px; overflow: hidden;
     }
     .loader-bar-fill {
       height: 100%; background: var(--orange); border-radius: 2px;
@@ -128,37 +128,45 @@
     .section    { padding: 100px 0; }
     .section-sm { padding: 60px 0; }
 
+    /* ── Tag: angular, left-border accent ── */
     .tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--orange); background: rgba(249,115,22,.08); border: 1px solid rgba(249,115,22,.22);
-      padding: 6px 14px; border-radius: 100px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--orange);
+      padding: 0 0 0 12px;
+      border-left: 2px solid var(--orange);
+      border-radius: 0;
+      background: none;
+      line-height: 1.6;
     }
-    .tag::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+    .tag::before { display: none; }
 
+    /* ── Buttons ── */
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--orange); color: var(--white);
-      font-weight: 700; font-size: 15px; padding: 14px 28px;
-      border-radius: var(--r-sm); transition: all .25s ease;
-      box-shadow: 0 4px 20px rgba(249,115,22,.3);
+      background: var(--orange); color: #fff;
+      font-weight: 800; font-size: 14px; padding: 14px 30px;
+      border-radius: 4px; transition: all .22s ease;
+      box-shadow: none; letter-spacing: .01em;
       white-space: nowrap;
     }
-    .btn-primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(249,115,22,.45); }
+    .btn-primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(249,115,22,.4); }
 
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,0,0,.04); color: var(--white); border: 1px solid rgba(0,0,0,.10);
-      font-weight: 600; font-size: 15px; padding: 14px 28px;
-      border-radius: var(--r-sm); transition: all .25s ease;
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,.14);
+      font-weight: 700; font-size: 14px; padding: 14px 30px;
+      border-radius: 4px; transition: all .22s ease;
       white-space: nowrap;
     }
-    .btn-ghost:hover { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.13); transform: translateY(-2px); }
+    .btn-ghost:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.24); transform: translateY(-2px); }
 
+    /* ── Headlines ── */
     .headline {
       font-family: var(--font-head);
-      font-size: clamp(34px, 4.5vw, 60px);
-      font-weight: 700; line-height: 1.1; letter-spacing: -.025em;
+      font-size: clamp(32px, 4.2vw, 56px);
+      font-weight: 800; line-height: 1.08; letter-spacing: -.03em;
     }
     .headline span { color: var(--orange); }
 
@@ -174,7 +182,7 @@
     /* Gradient border card wrapper */
     .gcard {
       position: relative; border-radius: var(--r-md); padding: 1px;
-      background: linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+      background: linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       transition: background .3s;
     }
     .gcard:hover { background: linear-gradient(135deg, rgba(249,115,22,.35), rgba(249,115,22,.05)); }
@@ -191,7 +199,7 @@
       padding: 18px 0;
       background: rgba(11,17,32,.7);
       backdrop-filter: blur(24px) saturate(180%);
-      border-bottom: 1px solid rgba(0,0,0,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
       transition: padding .3s, background .3s;
     }
     nav.scrolled { padding: 12px 0; background: rgba(11,17,32,.92); }
@@ -266,8 +274,8 @@
     .hero-grid {
       position: absolute; inset: 0; z-index: 0; opacity: .03;
       background-image:
-        linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
       background-size: 64px 64px;
     }
     .hero-content { position: relative; z-index: 2; width: 100%; }
@@ -289,7 +297,7 @@
       font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
     }
     .hero-title .accent { color: var(--orange); }
-    .hero-title .dim { color: rgba(0,0,0,.18); }
+    .hero-title .dim { color: rgba(255,255,255,.14); }
 
     .hero-desc { font-size: 17px; color: var(--grey-3); line-height: 1.8; max-width: 500px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -311,7 +319,7 @@
     .dash-wrap { position: relative; }
     .hero-dashboard {
       background: var(--navy-2);
-      border: 1px solid rgba(0,0,0,.07);
+      border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-lg); padding: 24px;
       box-shadow: var(--shadow-card), var(--shadow-glow);
       animation: float 7s ease-in-out infinite;
@@ -333,7 +341,7 @@
     .dash-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
     .kpi {
       background: var(--navy-3); border-radius: var(--r-sm); padding: 13px 14px;
-      border: 1px solid rgba(0,0,0,.03);
+      border: 1px solid rgba(255,255,255,.03);
     }
     .kpi-val {
       font-family: var(--font-head); font-size: 21px; font-weight: 800; line-height: 1;
@@ -348,7 +356,7 @@
     /* SVG Chart */
     .dash-chart-box {
       background: var(--navy-3); border-radius: var(--r-sm); padding: 14px 16px;
-      border: 1px solid rgba(0,0,0,.03); margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,.03); margin-bottom: 12px;
     }
     .dash-chart-lbl { font-size: 10px; color: var(--grey-4); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
     .area-chart { width: 100%; height: 64px; overflow: visible; }
@@ -357,7 +365,7 @@
     .dash-row {
       display: flex; align-items: center; justify-content: space-between;
       background: var(--navy-3); border-radius: var(--r-sm); padding: 9px 12px;
-      border: 1px solid rgba(0,0,0,.03); font-size: 11px;
+      border: 1px solid rgba(255,255,255,.03); font-size: 11px;
     }
     .dash-row-name { color: var(--grey-3); font-weight: 500; }
     .dash-row-val { font-weight: 700; }
@@ -367,7 +375,7 @@
     /* Float cards */
     .fcard {
       position: absolute;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.09);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.09);
       border-radius: var(--r-md); padding: 12px 16px;
       box-shadow: var(--shadow-card), 0 0 20px rgba(249,115,22,.1);
       display: flex; align-items: center; gap: 10px;
@@ -385,8 +393,8 @@
     #stats {
       padding: 44px 0;
       background: var(--navy-2);
-      border-top: 1px solid rgba(0,0,0,.04);
-      border-bottom: 1px solid rgba(0,0,0,.04);
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .stats-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
     .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -396,7 +404,7 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .stat-label { font-size: 12px; color: var(--grey-4); font-weight: 500; margin-top: 4px; max-width: 140px; text-align: center; }
-    .stat-div { width: 1px; height: 40px; background: rgba(0,0,0,.07); }
+    .stat-div { width: 1px; height: 40px; background: rgba(255,255,255,.07); }
 
     /* ══════════════════════════════════════════════════
        WHY ECOMLAB (differentiators)
@@ -419,16 +427,16 @@
 
     /* Comparison table */
     .why-right { }
-    .compare-table { border-radius: var(--r-lg); overflow: hidden; border: 1px solid rgba(0,0,0,.07); }
+    .compare-table { border-radius: var(--r-lg); overflow: hidden; border: 1px solid rgba(255,255,255,.07); }
     .compare-header { display: grid; grid-template-columns: 2fr 1fr 1fr; }
     .compare-col {
       padding: 14px 18px; font-size: 13px; font-weight: 700;
       letter-spacing: .05em; text-transform: uppercase; color: var(--grey-4);
-      background: var(--navy-3); border-bottom: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-3); border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .compare-col.highlight { background: rgba(249,115,22,.1); color: var(--orange); text-align: center; }
     .compare-col:last-child { text-align: center; }
-    .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.03); }
+    .compare-row { display: grid; grid-template-columns: 2fr 1fr 1fr; border-bottom: 1px solid rgba(255,255,255,.03); }
     .compare-row:last-child { border-bottom: none; }
     .compare-cell { padding: 13px 18px; font-size: 14px; background: var(--navy-2); display: flex; align-items: center; }
     .compare-cell.hl { background: rgba(249,115,22,.04); justify-content: center; }
@@ -440,34 +448,43 @@
     /* ══════════════════════════════════════════════════
        SERVICES
     ══════════════════════════════════════════════════ */
-    #services { background: var(--navy-2); }
+    #services { background: var(--navy); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    /* 2-col numbered variant */
+    .svc-2col { grid-template-columns: repeat(2, 1fr); gap: 1px; }
     .service-card {
       background: var(--navy-2); padding: 36px 30px;
-      border: 1px solid rgba(0,0,0,.05);
+      border: 1px solid rgba(255,255,255,.04);
       transition: all .3s ease; position: relative; overflow: hidden;
     }
+    /* Numbered card layout */
+    .svc-numbered { display: flex; gap: 24px; padding: 40px 36px; border: none; border-bottom: 1px solid rgba(255,255,255,.06); border-right: 1px solid rgba(255,255,255,.06); }
+    .svc-numbered:hover { background: rgba(249,115,22,.04); }
+    .svc-numbered:hover .svc-num { color: var(--orange); }
+    .svc-num { font-family: var(--font-head); font-size: 13px; font-weight: 800; color: rgba(255,255,255,.18); letter-spacing: .06em; flex-shrink: 0; padding-top: 3px; min-width: 28px; transition: color .25s; }
+    .svc-body { flex: 1; }
     .service-card::after {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(249,115,22,.07) 0%, transparent 55%);
       opacity: 0; transition: opacity .3s;
     }
-    .service-card:hover::after { opacity: 1; }
-    .service-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.45); }
+    .service-card:not(.svc-numbered):hover::after { opacity: 1; }
+    .service-card:not(.svc-numbered):hover { border-color: rgba(249,115,22,.22); transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.45); }
     .svc-icon {
       width: 52px; height: 52px; border-radius: var(--r-sm);
       background: rgba(249,115,22,.1); border: 1px solid rgba(249,115,22,.18);
       display: flex; align-items: center; justify-content: center;
       font-size: 24px; margin-bottom: 20px; position: relative; z-index: 1;
     }
-    .svc-title { font-family: var(--font-head); font-size: 19px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; }
-    .svc-desc { font-size: 14px; color: var(--grey-4); line-height: 1.72; margin-bottom: 18px; position: relative; z-index: 1; }
+    .svc-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; }
+    .svc-desc { font-size: 14px; color: var(--grey-4); line-height: 1.78; margin-bottom: 18px; position: relative; z-index: 1; }
     .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
     .svc-tag {
       font-size: 11px; font-weight: 600; color: var(--grey-4);
-      background: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.07);
-      padding: 3px 10px; border-radius: 100px;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      padding: 3px 10px; border-radius: 4px;
     }
+    @media (max-width: 768px) { .svc-2col { grid-template-columns: 1fr; } }
 
     /* ══════════════════════════════════════════════════
        PROCESS
@@ -501,7 +518,7 @@
 
     .case-card {
       background: var(--navy-3); border-radius: var(--r-lg);
-      border: 1px solid rgba(0,0,0,.05); overflow: hidden;
+      border: 1px solid rgba(255,255,255,.04); overflow: hidden;
       transition: all .35s ease;
     }
     .case-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 32px 80px rgba(0,0,0,.5), 0 0 40px rgba(249,115,22,.07); }
@@ -528,7 +545,7 @@
     .bar-chart { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
     .bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
     .bar-lbl { color: var(--grey-4); font-weight: 500; width: 52px; flex-shrink: 0; }
-    .bar-track { flex: 1; height: 8px; background: rgba(0,0,0,.04); border-radius: 4px; overflow: hidden; }
+    .bar-track { flex: 1; height: 8px; background: rgba(255,255,255,.04); border-radius: 4px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.4s cubic-bezier(.25,1,.5,1); }
     .bar-fill.before { background: rgba(100,116,139,.6); }
     .bar-fill.after  { background: linear-gradient(90deg, var(--orange), var(--orange-l)); }
@@ -575,10 +592,10 @@
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     .logo-pill {
       display: flex; align-items: center; gap: 8px; padding: 10px 20px;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.04);
       border-radius: 100px; white-space: nowrap;
       font-family: var(--font-head); font-weight: 700; font-size: 14px;
-      color: rgba(0,0,0,.18); letter-spacing: -.01em;
+      color: rgba(255,255,255,.14); letter-spacing: -.01em;
       transition: all .3s;
     }
     .logo-pill:hover { color: rgba(255,255,255,.75); border-color: rgba(249,115,22,.22); }
@@ -656,11 +673,11 @@
     #testimonials { background: var(--navy); }
     .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .testi-card {
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-md); padding: 28px;
       transition: all .3s ease;
     }
-    .testi-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.08); }
+    .testi-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-5px); box-shadow: 0 24px 60px rgba(255,255,255,.07); }
     .testi-stars { display: flex; gap: 2px; margin-bottom: 16px; }
     .testi-star { color: var(--orange); font-size: 13px; }
     .testi-text { font-size: 14px; color: var(--grey-3); line-height: 1.78; margin-bottom: 20px; font-style: italic; }
@@ -679,7 +696,7 @@
     #faq { background: var(--navy-2); }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .faq-item {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.04);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-md); overflow: hidden;
       transition: border-color .3s;
     }
@@ -708,7 +725,7 @@
     ══════════════════════════════════════════════════ */
     #cta { background: var(--navy); }
     .cta-box {
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-xl); padding: 80px 60px; text-align: center;
       position: relative; overflow: hidden;
     }
@@ -736,7 +753,7 @@
     /* ══════════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════════ */
-    footer { background: var(--navy-2); border-top: 1px solid rgba(0,0,0,.04); padding: 64px 0 32px; }
+    footer { background: var(--navy-2); border-top: 1px solid rgba(255,255,255,.04); padding: 64px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand { display: flex; flex-direction: column; gap: 16px; }
     .footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 700; font-size: 18px; }
@@ -744,7 +761,7 @@
     .footer-socials { display: flex; gap: 8px; }
     .footer-social {
       width: 36px; height: 36px; border-radius: var(--r-sm);
-      background: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.07);
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
       display: flex; align-items: center; justify-content: center;
       font-size: 14px; font-weight: 700;
       transition: all .2s;
@@ -755,7 +772,7 @@
     .footer-links a { font-size: 14px; color: var(--grey-4); transition: color .2s; }
     .footer-links a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid rgba(0,0,0,.04); padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.04); padding-top: 24px;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
     }
     .footer-bottom-text { font-size: 13px; color: var(--grey-4); }
@@ -790,11 +807,11 @@
     }
     .port-filter-btn {
       font-size: 13px; font-weight: 600; padding: 8px 18px;
-      border-radius: 100px; border: 1px solid rgba(0,0,0,.09);
-      background: rgba(0,0,0,.03); color: var(--grey-4);
+      border-radius: 100px; border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.03); color: var(--grey-4);
       cursor: pointer; transition: all .22s ease;
     }
-    .port-filter-btn:hover { color: var(--white); border-color: rgba(0,0,0,.12); }
+    .port-filter-btn:hover { color: var(--white); border-color: rgba(255,255,255,.12); }
     .port-filter-btn.active {
       background: var(--orange); color: var(--white);
       border-color: var(--orange); box-shadow: 0 4px 16px rgba(249,115,22,.35);
@@ -814,7 +831,7 @@
     .calc-field { display: flex; flex-direction: column; gap: 8px; }
     .calc-label { font-size: 13px; font-weight: 600; color: var(--grey-3); }
     .calc-input {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.06);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.05);
       border-radius: var(--r-sm); padding: 13px 16px;
       color: var(--white); font-size: 16px; font-family: var(--font-head); font-weight: 700;
       transition: border-color .2s;
@@ -823,7 +840,7 @@
     .calc-input:focus { outline: none; border-color: var(--orange); }
     .calc-input::placeholder { color: var(--grey-4); font-weight: 400; font-size: 14px; font-family: var(--font-body); }
     .calc-select {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.06);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.05);
       border-radius: var(--r-sm); padding: 13px 16px;
       color: var(--white); font-size: 14px; font-family: var(--font-body);
       transition: border-color .2s; width: 100%; cursor: pointer;
@@ -844,7 +861,7 @@
 
     .calc-right { display: flex; flex-direction: column; gap: 16px; }
     .calc-result-card {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-md); padding: 24px;
     }
     .calc-result-card.highlight { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.05); }
@@ -861,7 +878,7 @@
     .calc-bar-group { display: flex; flex-direction: column; gap: 8px; }
     .calc-bar-row { display: flex; align-items: center; gap: 10px; }
     .calc-bar-name { font-size: 12px; color: var(--grey-3); width: 80px; flex-shrink: 0; }
-    .calc-bar-track { flex: 1; height: 10px; background: rgba(0,0,0,.04); border-radius: 5px; overflow: hidden; }
+    .calc-bar-track { flex: 1; height: 10px; background: rgba(255,255,255,.04); border-radius: 5px; overflow: hidden; }
     .calc-bar-fill-el { height: 100%; border-radius: 5px; transition: width 1.2s cubic-bezier(.25,1,.5,1); }
     .calc-bar-amt { font-size: 12px; font-weight: 700; color: var(--white); width: 70px; text-align: right; }
     .calc-initial-msg {
@@ -892,14 +909,14 @@
     #wa-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.55); }
     #wa-btn .wa-tooltip {
       position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.09);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.09);
       border-radius: var(--r-sm); padding: 8px 14px;
       font-size: 13px; font-weight: 600; color: var(--white);
       white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s;
     }
     #wa-btn .wa-tooltip::after {
       content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
-      border: 6px solid transparent; border-left-color: rgba(0,0,0,.09);
+      border: 6px solid transparent; border-left-color: rgba(255,255,255,.09);
     }
     #wa-btn:hover .wa-tooltip { opacity: 1; }
 
@@ -907,7 +924,7 @@
     #back-top {
       position: fixed; bottom: 90px; right: 24px; z-index: 80;
       width: 44px; height: 44px; border-radius: 50%;
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.09);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.09);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; cursor: pointer; color: var(--grey-3);
       opacity: 0; transform: translateY(12px);
@@ -942,10 +959,10 @@
     /* Social proof toast */
     #sp-toast {
       position: fixed; bottom: 90px; left: 24px; z-index: 79;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.09);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.09);
       border-radius: var(--r-md); padding: 14px 18px;
       display: flex; align-items: center; gap: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.09);
+      box-shadow: 0 8px 32px rgba(255,255,255,.09);
       max-width: 300px;
       transform: translateX(-120%); opacity: 0;
       transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
@@ -964,7 +981,7 @@
     /* Cookie banner */
     #cookie-banner {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
-      background: var(--navy-3); border-top: 1px solid rgba(0,0,0,.06);
+      background: var(--navy-3); border-top: 1px solid rgba(255,255,255,.05);
       padding: 16px 24px;
       display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
       transform: translateY(0); transition: transform .4s ease;
@@ -980,11 +997,11 @@
     }
     .cookie-accept:hover { background: var(--orange-d); }
     .cookie-decline {
-      background: transparent; border: 1px solid rgba(0,0,0,.10); color: var(--grey-4);
+      background: transparent; border: 1px solid rgba(255,255,255,.1); color: var(--grey-4);
       font-size: 13px; font-weight: 600; padding: 9px 16px;
       border-radius: var(--r-sm); cursor: pointer; transition: all .2s;
     }
-    .cookie-decline:hover { border-color: rgba(0,0,0,.14); color: var(--white); }
+    .cookie-decline:hover { border-color: rgba(255,255,255,.12); color: var(--white); }
 
     /* ══════════════════════════════════════════════════
        RESPONSIVE
@@ -1086,14 +1103,14 @@
     }
     .sdot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(0,0,0,.12); border: 1px solid rgba(0,0,0,.11);
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.1);
       cursor: pointer; transition: all .3s ease; position: relative;
     }
     .sdot:hover { background: rgba(0,0,0,.15); transform: scale(1.3); }
     .sdot.active { background: var(--orange); border-color: var(--orange); box-shadow: 0 0 8px rgba(249,115,22,.5); }
     .sdot-label {
       position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.06);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.05);
       border-radius: 6px; padding: 4px 10px;
       font-size: 11px; font-weight: 600; color: var(--grey-3); white-space: nowrap;
       opacity: 0; pointer-events: none; transition: opacity .2s;
@@ -1104,7 +1121,7 @@
     /* ══════════════════════════════════════════════════
        TECH STACK SECTION
     ══════════════════════════════════════════════════ */
-    #stack { background: var(--navy); border-top: 1px solid rgba(0,0,0,.03); border-bottom: 1px solid rgba(0,0,0,.03); padding: 64px 0; }
+    #stack { background: var(--navy); border-top: 1px solid rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.03); padding: 64px 0; }
     .stack-head { text-align: center; margin-bottom: 40px; }
     .stack-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey-4); margin-bottom: 10px; }
     .stack-title { font-family: var(--font-head); font-size: clamp(22px,2.5vw,32px); font-weight: 700; }
@@ -1113,7 +1130,7 @@
     }
     .stack-pill {
       display: flex; align-items: center; gap: 8px;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
       border-radius: 100px; padding: 10px 18px;
       font-size: 13px; font-weight: 600; color: var(--grey-3);
       transition: all .25s ease;
@@ -1149,16 +1166,16 @@
     .browser-mock {
       position: absolute; inset: 16px;
       background: var(--navy-2); border-radius: 10px;
-      border: 1px solid rgba(0,0,0,.09);
+      border: 1px solid rgba(255,255,255,.09);
       overflow: hidden; display: flex; flex-direction: column;
-      box-shadow: 0 8px 32px rgba(0,0,0,.09);
+      box-shadow: 0 8px 32px rgba(255,255,255,.09);
       transition: transform .5s ease, box-shadow .5s ease;
     }
-    .port-item:hover .browser-mock { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 60px rgba(0,0,0,.12); }
+    .port-item:hover .browser-mock { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 60px rgba(255,255,255,.12); }
     .brow-top {
-      background: rgba(0,0,0,.03); padding: 8px 12px;
+      background: rgba(255,255,255,.03); padding: 8px 12px;
       display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-      border-bottom: 1px solid rgba(0,0,0,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .brow-dots { display: flex; gap: 5px; }
     .brow-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -1166,7 +1183,7 @@
     .brow-dot:nth-child(2) { background: rgba(254,188,46,.6); }
     .brow-dot:nth-child(3) { background: rgba(40,200,64,.6); }
     .brow-bar {
-      flex: 1; height: 18px; background: rgba(0,0,0,.05); border-radius: 4px;
+      flex: 1; height: 18px; background: rgba(255,255,255,.04); border-radius: 4px;
       display: flex; align-items: center; padding: 0 8px;
     }
     .brow-url { font-size: 9px; color: rgba(255,255,255,.3); font-family: monospace; }
@@ -1178,13 +1195,13 @@
       background: linear-gradient(135deg, rgba(249,115,22,.25), rgba(249,115,22,.05));
       margin-bottom: 4px;
     }
-    .brow-line { height: 6px; border-radius: 3px; background: rgba(0,0,0,.07); }
+    .brow-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,.07); }
     .brow-line.w80 { width: 80%; }
     .brow-line.w60 { width: 60%; }
     .brow-line.w90 { width: 90%; }
     .brow-line.w40 { width: 40%; }
     .brow-cards { display: flex; gap: 6px; margin-top: 4px; }
-    .brow-card { flex: 1; height: 28px; border-radius: 4px; background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.05); }
+    .brow-card { flex: 1; height: 28px; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.04); }
     .brow-card:first-child { background: rgba(249,115,22,.12); border-color: rgba(249,115,22,.2); }
 
     /* ══════════════════════════════════════════════════
@@ -1251,7 +1268,7 @@
       aspect-ratio: 16/9; border-radius: var(--r-lg);
       overflow: hidden; cursor: pointer;
       background: linear-gradient(135deg, #0d1b30 0%, #0B1120 100%);
-      border: 1px solid rgba(0,0,0,.07);
+      border: 1px solid rgba(255,255,255,.07);
       box-shadow: 0 40px 120px rgba(0,0,0,.6), var(--shadow-glow);
     }
     .showreel-frame:hover .play-ring { transform: translate(-50%,-50%) scale(1.1); }
@@ -1283,7 +1300,7 @@
     .sr-time { position: absolute; bottom: 20px; right: 24px; font-size: 11px; color: rgba(255,255,255,.3); font-family: monospace; }
     .sr-progress {
       position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: rgba(0,0,0,.06);
+      background: rgba(255,255,255,.05);
     }
     .sr-progress-fill { width: 0; height: 100%; background: var(--orange); transition: width 40s linear; }
     /* Play button */
@@ -1338,17 +1355,17 @@
     .vm-inner { position: relative; width: 90%; max-width: 900px; }
     .vm-close {
       position: absolute; top: -44px; right: 0;
-      background: rgba(0,0,0,.09); border: 1px solid rgba(0,0,0,.11);
+      background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.1);
       color: var(--white); width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; cursor: pointer; transition: background .2s;
     }
-    .vm-close:hover { background: rgba(0,0,0,.12); }
+    .vm-close:hover { background: rgba(255,255,255,.12); }
     .vm-frame {
       aspect-ratio: 16/9; background: var(--navy-2);
       border-radius: var(--r-md); overflow: hidden;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--grey-4); border: 1px solid rgba(0,0,0,.06);
+      font-size: 14px; color: var(--grey-4); border: 1px solid rgba(255,255,255,.05);
     }
 
     /* ══════════════════════════════════════════════════
@@ -1367,7 +1384,7 @@
     .guarantee-desc { font-size: 15px; color: var(--grey-4); line-height: 1.75; }
     .guarantee-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .guarantee-card {
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-md); padding: 24px 20px;
       transition: all .3s ease;
     }
@@ -1387,11 +1404,11 @@
     #recursos { background: var(--navy-2); }
     .recursos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .recurso-card {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-md); overflow: hidden;
       transition: all .3s ease; display: flex; flex-direction: column;
     }
-    .recurso-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,.08); }
+    .recurso-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(255,255,255,.07); }
     .recurso-thumb {
       aspect-ratio: 16/9; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
@@ -1469,7 +1486,7 @@
     .pricing-toggle-label.active { color: var(--white); }
     .ptoggle {
       width: 48px; height: 26px; border-radius: 13px;
-      background: var(--navy-4); border: 1px solid rgba(0,0,0,.09);
+      background: var(--navy-4); border: 1px solid rgba(255,255,255,.09);
       position: relative; cursor: pointer; transition: background .3s;
     }
     .ptoggle.on { background: var(--orange); }
@@ -1486,11 +1503,11 @@
     }
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
     .pricing-card {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-lg); padding: 32px 28px;
       position: relative; transition: all .35s ease;
     }
-    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(0,0,0,.09); }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(255,255,255,.09); }
     .pricing-card.popular {
       border-color: rgba(249,115,22,.35);
       background: linear-gradient(180deg, rgba(249,115,22,.06) 0%, var(--navy-3) 60%);
@@ -1536,10 +1553,10 @@
     }
     .pricing-cta.primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.45); }
     .pricing-cta.ghost {
-      background: rgba(0,0,0,.04); color: var(--white);
-      border: 1px solid rgba(0,0,0,.09);
+      background: rgba(255,255,255,.04); color: var(--white);
+      border: 1px solid rgba(255,255,255,.09);
     }
-    .pricing-cta.ghost:hover { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.12); transform: translateY(-2px); }
+    .pricing-cta.ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); transform: translateY(-2px); }
     .pricing-note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--grey-4); }
     @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } .pricing-card.popular { transform: none; } }
 
@@ -1550,7 +1567,7 @@
     .testi-slides { overflow: hidden; border-radius: var(--r-xl); }
     .testi-slide {
       display: none;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-xl); padding: 48px 52px;
       animation: fadeSlide .5s ease;
     }
@@ -1579,7 +1596,7 @@
     }
     .testi-arr {
       width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(0,0,0,.05); border: 1px solid rgba(0,0,0,.09);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; cursor: pointer; transition: all .2s; color: var(--white);
     }
@@ -1587,7 +1604,7 @@
     .testi-dots { display: flex; gap: 8px; }
     .testi-dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(0,0,0,.12); cursor: pointer; transition: all .3s;
+      background: rgba(255,255,255,.12); cursor: pointer; transition: all .3s;
     }
     .testi-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
     @media (max-width: 600px) { .testi-slide { padding: 32px 24px; } .testi-slide-metric { display: none; } }
@@ -1605,7 +1622,7 @@
     #portfolioModal.open { opacity: 1; pointer-events: all; }
     .pm-box {
       position: relative;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-xl); width: 92%; max-width: 860px;
       max-height: 88vh; overflow-y: auto;
       transform: translateY(24px) scale(.97);
@@ -1617,8 +1634,8 @@
       position: sticky; top: 0; left: 100%; z-index: 2;
       float: right; margin: 16px 16px 0 0;
       width: 36px; height: 36px; border-radius: 50%;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(0,0,0,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
       color: var(--grey-3); font-size: 18px; line-height: 1;
       cursor: pointer; transition: all .2s;
       display: flex; align-items: center; justify-content: center;
@@ -1626,7 +1643,7 @@
     .pm-close:hover { background: rgba(249,115,22,.15); border-color: var(--orange); color: var(--white); }
     .pm-header {
       padding: 40px 44px 28px;
-      border-bottom: 1px solid rgba(0,0,0,.05);
+      border-bottom: 1px solid rgba(255,255,255,.04);
     }
     .pm-num { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--grey-4); text-transform: uppercase; margin-bottom: 6px; }
     .pm-title { font-family: var(--font-head); font-size: clamp(24px,4vw,36px); font-weight: 800; margin-bottom: 6px; }
@@ -1641,7 +1658,7 @@
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px;
     }
     .pm-result-card {
-      background: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.07);
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-md); padding: 16px 14px; text-align: center;
     }
     .pm-result-val { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--orange); }
@@ -1653,7 +1670,7 @@
       font-size: 12px; font-weight: 600; color: var(--orange-l);
     }
     .pm-quote {
-      background: rgba(0,0,0,.02); border-left: 3px solid var(--orange);
+      background: rgba(255,255,255,.02); border-left: 3px solid var(--orange);
       border-radius: 0 var(--r-sm) var(--r-sm) 0;
       padding: 18px 22px; margin-bottom: 28px;
     }
@@ -1688,7 +1705,7 @@
     #exitPopup.open { opacity: 1; pointer-events: all; }
     .ep-box {
       position: relative;
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.07);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
       border-radius: var(--r-xl); padding: 48px 44px;
       width: 92%; max-width: 520px; text-align: center;
       transform: scale(.92) translateY(20px);
@@ -1698,7 +1715,7 @@
     .ep-close {
       position: absolute; top: 14px; right: 14px;
       width: 32px; height: 32px; border-radius: 50%;
-      background: rgba(0,0,0,.05); border: 1px solid rgba(0,0,0,.09);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
       color: var(--grey-4); font-size: 16px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: all .2s;
@@ -1709,7 +1726,7 @@
     .ep-sub { font-size: 15px; color: var(--grey-3); line-height: 1.65; margin-bottom: 28px; }
     .ep-form { display: flex; gap: 10px; margin-bottom: 14px; }
     .ep-input {
-      flex: 1; background: rgba(0,0,0,.05); border: 1px solid rgba(0,0,0,.09);
+      flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
       border-radius: var(--r-sm); padding: 12px 16px;
       color: var(--white); font-size: 14px; font-family: var(--font-body);
       transition: border-color .2s;
@@ -1767,127 +1784,8 @@
       }
     }
 
-    /* ══════════════════════════════════════════════════
-       LIGHT THEME TUNING
-       Fine-tunes elements that can't be solved via
-       CSS variables alone (named bg, specific borders)
-    ══════════════════════════════════════════════════ */
 
-    /* Navbar */
-    #navbar { background: rgba(255,255,255,.92); border-bottom: 1px solid rgba(0,0,0,.07); }
-    .nav-logo-text, .nav-links a { color: var(--white); }
-    .nav-links a:hover { color: var(--orange); }
-    .hamburger span { background: var(--white); }
-
-    /* Mobile drawer */
-    .mobile-drawer { background: #FFFFFF; }
-    .drawer-link { color: var(--white); }
-
-    /* Ghost button — dark border on white */
-    .btn-ghost { background: rgba(0,0,0,.04); color: var(--white); border: 1px solid rgba(0,0,0,.13); }
-    .btn-ghost:hover { background: rgba(0,0,0,.07); border-color: rgba(0,0,0,.2); }
-
-    /* Hero */
-    .hero-badge { background: rgba(249,115,22,.07); border-color: rgba(249,115,22,.2); }
-    .hero-orb-1 { background: radial-gradient(circle, rgba(249,115,22,.18) 0%, transparent 70%); }
-    .hero-orb-2 { background: radial-gradient(circle, rgba(6,182,212,.14) 0%, transparent 70%); }
-    .hero-orb-3 { background: radial-gradient(circle, rgba(168,85,247,.12) 0%, transparent 70%); }
-    .hero-grid { opacity: .04; }
-    .hero-desc { color: var(--grey-3); }
-
-    /* Stats bar */
-    #stats { background: var(--navy-2); border-top: 1px solid rgba(0,0,0,.06); border-bottom: 1px solid rgba(0,0,0,.06); }
-    .stat-divider { background: rgba(0,0,0,.08); }
-
-    /* Sections alternate */
-    #why, #cases, #trusted, #portfolio, #team, #testimonials, #faq, #recursos { background: var(--navy-2); }
-    #services, #stack, #process, #showreel, #calculator, #guarantee, #pricing { background: var(--navy); }
-
-    /* Cards */
-    .service-card, .case-card, .testi-slide, .testi-card,
-    .team-card, .guarantee-card, .faq-item, .calc-inner,
-    .pricing-card, .pm-box, .ep-box, .recurso-card { background: #FFFFFF; }
-    .service-card:hover, .case-card:hover, .testi-card:hover,
-    .team-card:hover, .pricing-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,.10); }
-
-    /* Why section */
-    .why-grid-item { background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); }
-
-    /* Stack logos */
-    .stack-logo-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); color: var(--grey-3); }
-    .stack-logo-card:hover { border-color: rgba(249,115,22,.3); color: var(--white); }
-
-    /* Process */
-    .process-step { background: #FFFFFF; border: 1px solid rgba(0,0,0,.07); }
-
-    /* Section headers */
-    .section-header .headline span, .why-title span, .cta-title span { color: var(--orange); }
-
-    /* Section dots */
-    #section-dots { background: rgba(255,255,255,.85); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,.07); }
-    .sdot { background: rgba(0,0,0,.12); }
-    .sdot.active { background: var(--orange); }
-    .sdot-label { background: #FFFFFF; color: var(--white); border: 1px solid rgba(0,0,0,.08); box-shadow: 0 4px 12px rgba(0,0,0,.08); }
-
-    /* Portfolio overlay (stays dark) */
-    .port-overlay { background: linear-gradient(to top, rgba(10,15,30,.92) 0%, rgba(10,15,30,.4) 50%, transparent 100%); }
-
-    /* Trusted logos */
-    .logo-pill { background: #FFFFFF; border: 1px solid rgba(0,0,0,.08); color: var(--grey-3); }
-
-    /* CTA section */
-    #cta { background: var(--navy-2); }
-    .cta-box { background: #FFFFFF; border: 1px solid rgba(0,0,0,.09); }
-    .cta-box::before { background: conic-gradient(from var(--angle,0deg), transparent 0deg, rgba(249,115,22,.35) 60deg, transparent 120deg); }
-
-    /* FAQ */
-    .faq-item { border: 1px solid rgba(0,0,0,.07); }
-    .faq-question { color: var(--white); }
-    .faq-answer { color: var(--grey-3); }
-
-    /* Forms (contact + calc) */
-    .form-input, .calc-input, .calc-select { background: var(--navy-3); border: 1px solid rgba(0,0,0,.1); color: var(--white); }
-    .form-input:focus, .calc-input:focus, .calc-select:focus { border-color: var(--orange); }
-
-    /* Footer */
-    footer { background: var(--navy-2); border-top: 1px solid rgba(0,0,0,.07); }
-    .footer-bottom { border-top: 1px solid rgba(0,0,0,.07); }
-    .footer-links a { color: var(--grey-4); }
-    .footer-links a:hover { color: var(--white); }
-    .footer-social { background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.08); }
-
-    /* WhatsApp & back-top */
-    #back-top { background: rgba(0,0,0,.08); border: 1px solid rgba(0,0,0,.1); color: var(--white); }
-    #back-top:hover { background: var(--orange); color: #fff; }
-
-    /* Sticky bar */
-    #sticky-bar { background: rgba(255,255,255,.95); border-top: 1px solid rgba(0,0,0,.08); color: var(--white); }
-
-    /* Cookie banner */
-    #cookie-banner { background: #FFFFFF; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
-
-    /* Loader */
-    #loader { background: #FFFFFF; }
-
-    /* Social proof toast */
-    #sp-toast { background: #FFFFFF; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 8px 24px rgba(0,0,0,.09); }
-    .sp-toast-title { color: var(--white); }
-    .sp-toast-sub { color: var(--grey-4); }
-
-    /* Portfolio modal + exit popup overlay */
-    #portfolioModal, #videoModal, #exitPopup { background: rgba(15,23,42,.75); }
-
-    /* Calc results */
-    .calc-result-card { background: var(--navy-2); border: 1px solid rgba(0,0,0,.08); }
-    .calc-result-card.highlight { background: #FFFFFF; border: 1px solid rgba(249,115,22,.2); }
-
-    /* Recursos */
-    .recurso-thumb { background: var(--navy-3); }
-
-    /* Guarantee section */
-    #guarantee { background: var(--navy-2); }
-
-    /* ══════════════════════════════════════════════════
+        /* ══════════════════════════════════════════════════
        ACCESSIBILITY
     ══════════════════════════════════════════════════ */
     .skip-link {
@@ -1945,7 +1843,7 @@
     #team { background: var(--navy); }
     .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .team-card {
-      background: var(--navy-2); border: 1px solid rgba(0,0,0,.05);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.04);
       border-radius: var(--r-lg); padding: 32px 28px;
       transition: all .35s ease; position: relative; overflow: hidden;
     }
@@ -1955,7 +1853,7 @@
       background: radial-gradient(circle, rgba(249,115,22,.1) 0%, transparent 70%);
       transition: opacity .3s;
     }
-    .team-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 28px 70px rgba(0,0,0,.09); }
+    .team-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 28px 70px rgba(255,255,255,.09); }
     .team-avatar {
       width: 72px; height: 72px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
@@ -1969,7 +1867,7 @@
     .team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .team-tag {
       font-size: 11px; font-weight: 600; color: var(--grey-4);
-      background: rgba(0,0,0,.03); border: 1px solid rgba(0,0,0,.07);
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
       padding: 3px 10px; border-radius: 100px;
     }
     @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
@@ -1996,7 +1894,7 @@
     .form-field.full { grid-column: 1 / -1; }
     .form-label { font-size: 12px; font-weight: 600; color: var(--grey-3); letter-spacing: .04em; }
     .form-input, .form-select, .form-textarea {
-      background: var(--navy-3); border: 1px solid rgba(0,0,0,.06);
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.05);
       border-radius: var(--r-sm); padding: 12px 14px;
       color: var(--white); font-size: 14px; font-family: var(--font-body);
       transition: border-color .2s, box-shadow .2s; width: 100%;
@@ -2123,7 +2021,7 @@
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-right">
-        <a href="#cta" class="btn-primary">Agendar llamada →</a>
+        <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn-primary">Agendar asesoría gratuita →</a>
         <button class="nav-burger" id="burger" aria-label="Abrir menú">
           <span></span><span></span><span></span>
         </button>
@@ -2140,7 +2038,7 @@
   <a href="#portfolio" class="drawer-link">Portfolio</a>
   <a href="#calculator" class="drawer-link">Calculadora</a>
   <a href="#faq" class="drawer-link">FAQ</a>
-  <a href="#cta" class="btn-primary">Agendar llamada →</a>
+  <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn-primary">Agendar asesoría gratuita →</a>
 </div>
 
 <main id="main">
@@ -2173,7 +2071,7 @@
           Construimos la infraestructura tecnológica, los procesos y la estrategia digital que tu negocio necesita para escalar de forma ordenada, medible y sostenible.
         </p>
         <div class="hero-actions">
-          <a href="#cta" class="btn-primary">Diagnosticar mi negocio →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn-primary">Agendar asesoría gratuita →</a>
           <a href="#cases" class="btn-ghost">Ver resultados reales</a>
         </div>
         <div class="hero-proof">
@@ -2184,7 +2082,7 @@
             <span style="background:linear-gradient(135deg,#22C55E,#16A34A)">PV</span>
             <span style="background:linear-gradient(135deg,#A855F7,#7C3AED)">MR</span>
           </div>
-          <p class="proof-text"><strong>+40 negocios</strong> han escalado con EcomLab en Latinoamérica y España</p>
+          <p class="proof-text"><strong>+40 negocios</strong> han escalado con EcomLab en Argentina</p>
         </div>
       </div>
 
@@ -2203,11 +2101,11 @@
             <div class="dash-kpis">
               <div class="kpi">
                 <div class="kpi-label">Facturación mes</div>
-                <div class="kpi-val o">€84K</div>
+                <div class="kpi-val o">$84K</div>
                 <div class="kpi-delta">↑ +62%</div>
               </div>
               <div class="kpi">
-                <div class="kpi-label">ROAS promedio</div>
+                <div class="kpi-label">Clientes activos</div>
                 <div class="kpi-val g">4.8x</div>
                 <div class="kpi-delta">↑ Óptimo</div>
               </div>
@@ -2303,7 +2201,7 @@
       <div class="stat-div"></div>
       <div class="stat-item reveal d3">
         <div class="stat-num"><span class="count-up" data-target="4">0</span>.8x</div>
-        <div class="stat-label">ROAS promedio conseguido</div>
+        <div class="stat-label">Negocios con sistema activo</div>
       </div>
       <div class="stat-div"></div>
       <div class="stat-item reveal d4">
@@ -2320,8 +2218,8 @@
     <div class="why-grid">
       <div class="why-left">
         <div class="tag reveal">Por qué EcomLab</div>
-        <h2 class="why-title reveal">No somos una agencia.<br><span style="color:var(--orange)">Somos el sistema.</span></h2>
-        <p class="why-desc reveal">La mayoría de agencias entregan entregables. Nosotros construimos sistemas que generan resultados. Hay una diferencia enorme entre los dos.</p>
+        <h2 class="why-title reveal">Somos el sistema.<br><span style="color:var(--orange)">No el intermediario.</span></h2>
+        <p class="why-desc reveal">Construimos la infraestructura digital que hace crecer tu negocio. No hay intermediarios, no hay cuentas de agencia — solo estrategia, tecnología y resultados medibles.</p>
         <div class="why-points reveal">
           <div class="why-point">
             <div class="why-point-icon">📐</div>
@@ -2411,71 +2309,64 @@
       <h2 class="headline">No hacemos páginas web.<br><span>Construimos sistemas.</span></h2>
       <p class="sub-headline">Cada servicio está diseñado para generar un resultado comercial medible. Tecnología y estrategia al servicio del crecimiento.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="svc-icon">🛒</div>
-        <div class="svc-title">Ecommerce & Ventas</div>
-        <div class="svc-desc">Construimos y optimizamos tiendas online diseñadas para convertir. Arquitectura de producto, UX de compra y estrategia de checkout que elimina fricción.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">Shopify</span>
-          <span class="svc-tag">WooCommerce</span>
-          <span class="svc-tag">CRO</span>
-          <span class="svc-tag">A/B Testing</span>
+    <div class="services-grid svc-2col">
+
+      <div class="service-card svc-numbered reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-body">
+          <div class="svc-title">Ecommerce & Ventas</div>
+          <div class="svc-desc">Construimos y optimizamos tiendas online diseñadas para convertir. Arquitectura de producto, UX de compra y estrategia de checkout que elimina fricción y maximiza el ticket promedio.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Shopify</span>
+            <span class="svc-tag">WooCommerce</span>
+            <span class="svc-tag">CRO</span>
+            <span class="svc-tag">A/B Testing</span>
+          </div>
         </div>
       </div>
-      <div class="service-card reveal d1">
-        <div class="svc-icon">⚙️</div>
-        <div class="svc-title">Automatización y CRM</div>
-        <div class="svc-desc">Eliminamos el trabajo manual implementando flujos automáticos de captación, nurturing y cierre. Tu negocio trabaja 24/7, tú no tienes que hacerlo.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">HubSpot</span>
-          <span class="svc-tag">ActiveCampaign</span>
-          <span class="svc-tag">n8n</span>
-          <span class="svc-tag">Zapier</span>
+
+      <div class="service-card svc-numbered reveal d1">
+        <div class="svc-num">02</div>
+        <div class="svc-body">
+          <div class="svc-title">Estrategia & Adquisición</div>
+          <div class="svc-desc">Diseñamos el sistema de adquisición completo: canales, funnel, presupuesto y métricas. Sin humo — solo números reales y accountability total desde el primer día.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Google Ads</span>
+            <span class="svc-tag">Meta Ads</span>
+            <span class="svc-tag">SEO</span>
+            <span class="svc-tag">Analytics</span>
+          </div>
         </div>
       </div>
-      <div class="service-card reveal d2">
-        <div class="svc-icon">📊</div>
-        <div class="svc-title">Estrategia Digital</div>
-        <div class="svc-desc">Diseñamos el sistema de adquisición completo: canales, funnel, budget y métricas. Sin humo, con números reales y total accountability desde el día uno.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">Google Ads</span>
-          <span class="svc-tag">Meta Ads</span>
-          <span class="svc-tag">SEO</span>
-          <span class="svc-tag">Analytics</span>
+
+      <div class="service-card svc-numbered reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-body">
+          <div class="svc-title">Desarrollo Web & Apps</div>
+          <div class="svc-desc">Plataformas digitales a medida: landing pages de alta conversión, webs corporativas y portales. Cada elemento construido con un objetivo comercial concreto detrás.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">React</span>
+            <span class="svc-tag">Next.js</span>
+            <span class="svc-tag">Webflow</span>
+            <span class="svc-tag">Framer</span>
+          </div>
         </div>
       </div>
-      <div class="service-card reveal">
-        <div class="svc-icon">🎨</div>
-        <div class="svc-title">Branding & Posicionamiento</div>
-        <div class="svc-desc">Creamos la identidad visual y el mensaje de marca que genera autoridad, diferenciación y percepción premium. Que tu marca hable antes que tú abras la boca.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">Brand Strategy</span>
-          <span class="svc-tag">Visual Identity</span>
-          <span class="svc-tag">Copywriting</span>
+
+      <div class="service-card svc-numbered reveal d1">
+        <div class="svc-num">04</div>
+        <div class="svc-body">
+          <div class="svc-title">Paid Media</div>
+          <div class="svc-desc">Gestión de campañas pagas con estructura profesional, segmentación por intención y optimización continua. Presupuesto controlado, resultados auditables semana a semana.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Meta Ads</span>
+            <span class="svc-tag">Google Ads</span>
+            <span class="svc-tag">TikTok Ads</span>
+            <span class="svc-tag">Remarketing</span>
+          </div>
         </div>
       </div>
-      <div class="service-card reveal d1">
-        <div class="svc-icon">📱</div>
-        <div class="svc-title">Desarrollo Web & Apps</div>
-        <div class="svc-desc">Desarrollamos plataformas digitales a medida: landing pages, webs corporativas, portales y aplicaciones web. Cada píxel con un objetivo comercial detrás.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">React</span>
-          <span class="svc-tag">Next.js</span>
-          <span class="svc-tag">Webflow</span>
-          <span class="svc-tag">Framer</span>
-        </div>
-      </div>
-      <div class="service-card reveal d2">
-        <div class="svc-icon">🤖</div>
-        <div class="svc-title">IA & Tecnología</div>
-        <div class="svc-desc">Implementamos inteligencia artificial para automatizar la atención al cliente, generar contenido y optimizar procesos comerciales. El futuro, hoy, en tu negocio.</div>
-        <div class="svc-tags">
-          <span class="svc-tag">ChatGPT API</span>
-          <span class="svc-tag">Chatbots</span>
-          <span class="svc-tag">IA Generativa</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -2565,7 +2456,7 @@
       <!-- Featured -->
       <div class="case-card featured reveal">
         <div class="case-visual">
-          <span class="case-industry">Ecommerce · Moda · España</span>
+          <span class="case-industry">Ecommerce · Moda · Argentina</span>
           <div class="sparkline-wrap">
             <svg class="sparkline" viewBox="0 0 260 52" fill="none">
               <defs>
@@ -2587,18 +2478,18 @@
             <div class="bar-row">
               <span class="bar-lbl">Antes</span>
               <div class="bar-track"><div class="bar-fill before" data-width="30"></div></div>
-              <span class="bar-val">€22K</span>
+              <span class="bar-val">$2.8M ARS</span>
             </div>
             <div class="bar-row">
               <span class="bar-lbl">Después</span>
               <div class="bar-track"><div class="bar-fill after" data-width="100"></div></div>
-              <span class="bar-val">€84K</span>
+              <span class="bar-val">$84K</span>
             </div>
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">Cliente confidencial · España · 4 meses</span>
-          <h3 class="case-title">De €22K a €84K de facturación mensual</h3>
+          <span class="case-client">Cliente confidencial · Argentina · 4 meses</span>
+          <h3 class="case-title">De $2.8M ARS a $84K de facturación mensual</h3>
           <p class="case-desc">Rediseñamos por completo el sistema de adquisición y el funnel de conversión. Email marketing automatizado, checkout optimizado y paid media con estructura TOFU/MOFU/BOFU. El resultado fue inmediato y predecible.</p>
 
           <!-- Before / After toggle -->
@@ -2612,22 +2503,22 @@
               <div class="case-metric-lbl" id="baLbl1">Facturación</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val g" id="baMet2">4.8x</div>
-              <div class="case-metric-lbl" id="baLbl2">ROAS</div>
+              <div class="case-metric-val g" id="baMet2">×4.9</div>
+              <div class="case-metric-lbl" id="baLbl2">Conv. rate</div>
             </div>
             <div class="case-metric">
               <div class="case-metric-val c" id="baMet3">−41%</div>
               <div class="case-metric-lbl" id="baLbl3">CPA</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Quiero estos resultados →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="case-link">Quiero estos resultados →</a>
         </div>
       </div>
 
       <!-- Case 2 -->
       <div class="case-card reveal">
         <div class="case-visual">
-          <span class="case-industry">B2B · Consultoría · México</span>
+          <span class="case-industry">B2B · Consultoría · Argentina</span>
           <div class="bar-chart">
             <div class="bar-row">
               <span class="bar-lbl">Antes</span>
@@ -2642,7 +2533,7 @@
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">ConsultPro · México · 60 días</span>
+          <span class="case-client">ConsultPro · Argentina · 60 días</span>
           <h3 class="case-title">12 leads → 148 leads calificados por mes</h3>
           <p class="case-desc">Sistema de captación digital con LinkedIn Ads, landing pages y CRM automatizado. La agenda comercial pasó de vacía a llena en dos meses.</p>
           <div class="case-metrics">
@@ -2655,14 +2546,14 @@
               <div class="case-metric-lbl">Días al resultado</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Hablar con un experto →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="case-link">Hablar con un experto →</a>
         </div>
       </div>
 
       <!-- Case 3 -->
       <div class="case-card reveal d1">
         <div class="case-visual">
-          <span class="case-industry">Retail · Alimentación · Colombia</span>
+          <span class="case-industry">Retail · Alimentación · Argentina</span>
           <div class="bar-chart">
             <div class="bar-row">
               <span class="bar-lbl">Antes</span>
@@ -2677,7 +2568,7 @@
           </div>
         </div>
         <div class="case-info">
-          <span class="case-client">FreshMarket · Colombia · 45 días</span>
+          <span class="case-client">FreshMarket · Argentina · 45 días</span>
           <h3 class="case-title">Tasa de conversión ×5 sin aumentar tráfico</h3>
           <p class="case-desc">Rediseño de checkout, fichas de producto y flujos de email post-compra. El mismo tráfico, multiplicado por cinco en ingresos.</p>
           <div class="case-metrics">
@@ -2690,7 +2581,7 @@
               <div class="case-metric-lbl">Revenue</div>
             </div>
           </div>
-          <a href="#cta" class="case-link">Diagnosticar mi tienda →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="case-link">Diagnosticar mi tienda →</a>
         </div>
       </div>
 
@@ -2735,41 +2626,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ SHOWREEL ═══════════════════════ -->
-<section id="showreel">
-  <div class="container">
-    <div class="showreel-inner">
-      <div class="section-header center reveal" style="margin-bottom:0">
-        <div class="tag">Cómo trabajamos</div>
-        <h2 class="headline">Mira cómo construimos<br><span>sistemas que crecen.</span></h2>
-      </div>
-      <div class="showreel-frame reveal" id="showreelFrame">
-        <div class="sr-bg"></div>
-        <div class="sr-scan"></div>
-        <div class="sr-label"><div class="sr-rec"></div>EcomLab — Showreel 2024</div>
-        <div class="sr-time" id="srTime">00:00 / 01:47</div>
-        <div class="sr-content">
-          <div class="sr-stat"><div class="sr-stat-val">+282%</div><div class="sr-stat-lbl">Revenue</div></div>
-          <div class="sr-stat"><div class="sr-stat-val">4.8x</div><div class="sr-stat-lbl">ROAS</div></div>
-          <div class="sr-stat"><div class="sr-stat-val">90d</div><div class="sr-stat-lbl">Al resultado</div></div>
-        </div>
-        <div class="play-btn" id="playBtn">
-          <div class="play-ripple"></div>
-          <div class="play-ripple"></div>
-          <div class="play-ripple"></div>
-          <div class="play-ring"><span class="play-icon">▶</span></div>
-        </div>
-        <div class="sr-progress"><div class="sr-progress-fill" id="srFill"></div></div>
-      </div>
-      <div class="showreel-metrics reveal">
-        <div class="sr-metric"><div class="sr-metric-val">40+</div><div class="sr-metric-lbl">Negocios escalados</div></div>
-        <div class="sr-metric"><div class="sr-metric-val">€2.1M+</div><div class="sr-metric-lbl">Revenue generado para clientes</div></div>
-        <div class="sr-metric"><div class="sr-metric-val">4.9★</div><div class="sr-metric-lbl">Valoración media</div></div>
-        <div class="sr-metric"><div class="sr-metric-val">98%</div><div class="sr-metric-lbl">Clientes que repiten</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- showreel removed — no video content yet -->
 
 <!-- ═══════════════════════ PORTFOLIO ═══════════════════════ -->
 <section id="portfolio" class="section">
@@ -2794,7 +2651,7 @@
     <div class="port-item pc-1 tilt-card" data-cat="ecommerce" data-modal="project-001">
       <div class="port-bg">
         <div class="browser-mock">
-          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">novamoda.es/shop</span></div></div>
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">novamoda.com.ar/shop</span></div></div>
           <div class="brow-body"><div class="brow-content"><div class="brow-hero-block"></div><div class="brow-line w80"></div><div class="brow-line w60"></div><div class="brow-cards"><div class="brow-card"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
         </div>
       </div>
@@ -2805,10 +2662,10 @@
       </div>
       <div class="port-metrics">
         <div class="port-metric-pill"><div class="v">+282%</div><div class="l">Revenue</div></div>
-        <div class="port-metric-pill"><div class="v">4.8x</div><div class="l">ROAS</div></div>
+        <div class="port-metric-pill"><div class="v">×4.9</div><div class="l">Conversión</div></div>
       </div>
       <div class="port-bottom">
-        <div class="port-tag">Moda · España</div>
+        <div class="port-tag">Moda · Argentina</div>
         <div class="port-name">NovaModa Store</div>
         <div class="port-tech">Shopify · Email Marketing · Google Ads</div>
         <button class="port-case-btn">Ver caso completo →</button>
@@ -2818,7 +2675,7 @@
     <div class="port-item pc-2 tilt-card" data-cat="automatizacion" data-modal="project-002">
       <div class="port-bg">
         <div class="browser-mock">
-          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">app.consultpro.mx/crm</span></div></div>
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">app.consultpro.com.ar/crm</span></div></div>
           <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(6,182,212,.25),rgba(6,182,212,.05))"></div><div class="brow-line w90"></div><div class="brow-line w40"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.25)"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
         </div>
       </div>
@@ -2831,7 +2688,7 @@
         <div class="port-metric-pill"><div class="v">+1,133%</div><div class="l">Leads</div></div>
       </div>
       <div class="port-bottom">
-        <div class="port-tag">B2B · México</div>
+        <div class="port-tag">B2B · Argentina</div>
         <div class="port-name">ConsultPro CRM</div>
         <div class="port-tech">HubSpot · LinkedIn Ads · n8n</div>
         <button class="port-case-btn">Ver caso completo →</button>
@@ -2841,7 +2698,7 @@
     <div class="port-item pc-3 tall tilt-card" data-cat="ecommerce" data-modal="project-003">
       <div class="port-bg">
         <div class="browser-mock">
-          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">freshmarket.co/tienda</span></div></div>
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">freshmarket.com.ar/tienda</span></div></div>
           <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(34,197,94,.04))"></div><div class="brow-line w80"></div><div class="brow-line w60"></div><div class="brow-line w90"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.2)"></div><div class="brow-card"></div></div></div></div>
         </div>
       </div>
@@ -2854,7 +2711,7 @@
         <div class="port-metric-pill"><div class="v">×4.9</div><div class="l">Conversión</div></div>
       </div>
       <div class="port-bottom">
-        <div class="port-tag">Retail · Colombia</div>
+        <div class="port-tag">Retail · Argentina</div>
         <div class="port-name">FreshMarket Portal</div>
         <div class="port-tech">React · Next.js · Analytics</div>
         <button class="port-case-btn">Ver caso completo →</button>
@@ -2864,7 +2721,7 @@
     <div class="port-item pc-4 tilt-card" data-cat="ia" data-modal="project-004">
       <div class="port-bg">
         <div class="browser-mock">
-          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">clinicavital.es/bot</span></div></div>
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">clinicavital.com.ar/bot</span></div></div>
           <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.04))"></div><div class="brow-line w60"></div><div class="brow-line w80"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.2)"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
         </div>
       </div>
@@ -2877,7 +2734,7 @@
         <div class="port-metric-pill"><div class="v">−60%</div><div class="l">Resp. time</div></div>
       </div>
       <div class="port-bottom">
-        <div class="port-tag">Salud · España</div>
+        <div class="port-tag">Salud · Argentina</div>
         <div class="port-name">VitalBot Assistant</div>
         <div class="port-tech">ChatGPT API · Zapier · CRM</div>
         <button class="port-case-btn">Ver caso completo →</button>
@@ -2911,7 +2768,7 @@
     <div class="port-item pc-6 tilt-card" data-cat="estrategia" data-modal="project-006">
       <div class="port-bg">
         <div class="browser-mock">
-          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">inmoelite.es/propiedades</span></div></div>
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">inmoelite.com.ar/propiedades</span></div></div>
           <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(6,182,212,.03))"></div><div class="brow-line w80"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(6,182,212,.08);border-color:rgba(6,182,212,.2)"></div><div class="brow-card"></div></div></div></div>
         </div>
       </div>
@@ -2924,7 +2781,7 @@
         <div class="port-metric-pill"><div class="v">+89</div><div class="l">Leads/mes</div></div>
       </div>
       <div class="port-bottom">
-        <div class="port-tag">Real Estate · España</div>
+        <div class="port-tag">Real Estate · Argentina</div>
         <div class="port-name">InmoElite Digital</div>
         <div class="port-tech">Landing Pages · Google Ads · CRM</div>
         <button class="port-case-btn">Ver caso completo →</button>
@@ -3019,7 +2876,7 @@
         <div class="pricing-name">Diagnóstico</div>
         <div class="pricing-desc">Una sesión estratégica de 90 minutos para mapear los cuellos de botella de tu negocio y definir la hoja de ruta de crecimiento.</div>
         <div class="pricing-price">
-          <span class="pricing-currency">€</span>
+          <span class="pricing-currency"></span>
           <span class="pricing-amount" data-monthly="0" data-annual="0">Gratis</span>
         </div>
         <ul class="pricing-features">
@@ -3030,7 +2887,7 @@
           <li class="pricing-feature exc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#64748B" stroke-width="2" stroke-linecap="round"/></svg>Implementación incluida</li>
           <li class="pricing-feature exc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#64748B" stroke-width="2" stroke-linecap="round"/></svg>Seguimiento mensual</li>
         </ul>
-        <a href="#cta" class="pricing-cta ghost">Agendar diagnóstico →</a>
+        <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="pricing-cta ghost">Agendar asesoría gratuita →</a>
       </div>
 
       <!-- Sistema (popular) -->
@@ -3040,9 +2897,9 @@
         <div class="pricing-name">Sistema</div>
         <div class="pricing-desc">Construimos e implementamos la infraestructura digital completa — tecnología, procesos, automatización y estrategia de adquisición.</div>
         <div class="pricing-price">
-          <span class="pricing-currency">€</span>
+          <span class="pricing-currency">$</span>
           <span class="pricing-amount" data-monthly="2.500" data-annual="2.000">2.500</span>
-          <span class="pricing-period">/mes</span>
+          <span class="pricing-period">USD/mes</span>
         </div>
         <ul class="pricing-features">
           <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Todo lo del Diagnóstico</li>
@@ -3052,7 +2909,7 @@
           <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dashboard de métricas</li>
           <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Seguimiento semanal</li>
         </ul>
-        <a href="#cta" class="pricing-cta primary">Empezar ahora →</a>
+        <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="pricing-cta primary">Empezar ahora →</a>
       </div>
 
       <!-- Escala -->
@@ -3072,7 +2929,7 @@
           <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Acceso directo vía Slack</li>
           <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA de respuesta 2h</li>
         </ul>
-        <a href="#cta" class="pricing-cta ghost">Hablar con el equipo →</a>
+        <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="pricing-cta ghost">Hablar con el equipo →</a>
       </div>
 
     </div>
@@ -3098,7 +2955,7 @@
             <div class="testi-avatar" style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</div>
             <div>
               <div class="testi-name">Alejandra Morales</div>
-              <div class="testi-role">CEO · NovaModa — España</div>
+              <div class="testi-role">CEO · NovaModa — Argentina</div>
             </div>
           </div>
         </div>
@@ -3110,7 +2967,7 @@
             <div class="testi-avatar" style="background:linear-gradient(135deg,#06B6D4,#0284C7)">RS</div>
             <div>
               <div class="testi-name">Roberto Salcedo</div>
-              <div class="testi-role">Director Comercial · ConsultPro — México</div>
+              <div class="testi-role">Director Comercial · ConsultPro — Argentina</div>
             </div>
           </div>
         </div>
@@ -3122,7 +2979,7 @@
             <div class="testi-avatar" style="background:linear-gradient(135deg,#22C55E,#16A34A)">LG</div>
             <div>
               <div class="testi-name">Laura González</div>
-              <div class="testi-role">Fundadora · FreshMarket — Colombia</div>
+              <div class="testi-role">Fundadora · FreshMarket — Argentina</div>
             </div>
           </div>
         </div>
@@ -3146,7 +3003,7 @@
             <div class="testi-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">MC</div>
             <div>
               <div class="testi-name">María Castillo</div>
-              <div class="testi-role">Directora · InmoElite — Colombia</div>
+              <div class="testi-role">Directora · InmoElite — Argentina</div>
             </div>
           </div>
         </div>
@@ -3250,7 +3107,7 @@
           ¿Para qué tipo de negocios trabajan?
           <div class="faq-chevron">▾</div>
         </div>
-        <div class="faq-answer">Trabajamos con ecommerce, negocios de servicios B2B y B2C, clínicas, consultorías, inmobiliarias y retail, principalmente en España y Latinoamérica. El requisito común: querer crecer de manera ordenada y con datos.</div>
+        <div class="faq-answer">Trabajamos con ecommerce, negocios de servicios B2B y B2C, clínicas, consultorías, inmobiliarias y retail, en Argentina. El requisito común: querer crecer de manera ordenada y con datos.</div>
       </div>
 
       <div class="faq-item">
@@ -3331,7 +3188,7 @@
 
       <div class="recurso-card reveal">
         <div class="recurso-thumb">
-          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(168,85,247,.04))"></div>
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.06))"></div>
           <div class="recurso-thumb-emoji">📈</div>
         </div>
         <div class="recurso-body">
@@ -3341,13 +3198,13 @@
           </div>
           <div class="recurso-title">El framework de las 5 palancas para duplicar el revenue de tu tienda online</div>
           <p class="recurso-desc">Las 5 métricas que determinan el 90% de la facturación de cualquier ecommerce y cómo optimizar cada una de forma sistemática.</p>
-          <a href="#cta" class="recurso-link">Leer guía →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="recurso-link">Leer guía →</a>
         </div>
       </div>
 
       <div class="recurso-card reveal d1">
         <div class="recurso-thumb">
-          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(6,182,212,.12),rgba(6,182,212,.04))"></div>
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(6,182,212,.06))"></div>
           <div class="recurso-thumb-emoji">⚙️</div>
         </div>
         <div class="recurso-body">
@@ -3357,13 +3214,13 @@
           </div>
           <div class="recurso-title">Cómo automatizar el 80% de tu proceso comercial sin necesitar un equipo grande</div>
           <p class="recurso-desc">El stack mínimo para automatizar captación, nurturing y cierre. Con ejemplos reales y flujos de trabajo que puedes copiar directamente.</p>
-          <a href="#cta" class="recurso-link">Leer guía →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="recurso-link">Leer guía →</a>
         </div>
       </div>
 
       <div class="recurso-card reveal d2">
         <div class="recurso-thumb">
-          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(249,115,22,.12),rgba(249,115,22,.04))"></div>
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(249,115,22,.06))"></div>
           <div class="recurso-thumb-emoji">🎯</div>
         </div>
         <div class="recurso-body">
@@ -3373,7 +3230,7 @@
           </div>
           <div class="recurso-title">Auditoría digital en 30 minutos: encuentra los cuellos de botella de tu negocio</div>
           <p class="recurso-desc">El mismo proceso de diagnóstico que usamos en EcomLab para identificar exactamente dónde se pierde dinero en cualquier negocio digital.</p>
-          <a href="#cta" class="recurso-link">Descargar plantilla →</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="recurso-link">Descargar plantilla →</a>
         </div>
       </div>
 
@@ -3390,8 +3247,8 @@
         <!-- Left pitch -->
         <div class="cta-split-left">
           <div class="tag">Próximo paso</div>
-          <h2 class="cta-title">¿Listo para construir<br>el sistema que<br><span style="color:var(--orange)">te hace crecer?</span></h2>
-          <p class="cta-desc">Cuéntanos dónde estás. En 24 horas te respondemos con un diagnóstico preliminar y los siguientes pasos concretos para tu negocio.</p>
+          <h2 class="cta-title">Agendá tu asesoría<br>gratuita y arrancamos<br><span style="color:var(--orange)">cuando quieras.</span></h2>
+          <p class="cta-desc">Sesión de 60 minutos sin cargo. Analizamos tu negocio y te decimos exactamente qué sistema implementar para crecer.</p>
           <div class="cta-proof">
             <div class="cta-proof-item"><span class="cta-proof-icon">⚡</span> Respuesta en menos de 24 horas</div>
             <div class="cta-proof-item"><span class="cta-proof-icon">🎯</span> Diagnóstico personalizado sin coste</div>
@@ -3426,11 +3283,11 @@
                 <label class="form-label" for="cf-revenue">Facturación mensual actual</label>
                 <select class="form-select" id="cf-revenue">
                   <option value="">Selecciona rango</option>
-                  <option>Menos de €5.000</option>
-                  <option>€5.000 – €20.000</option>
-                  <option>€20.000 – €60.000</option>
-                  <option>€60.000 – €150.000</option>
-                  <option>Más de €150.000</option>
+                  <option>Menos de $5.000</option>
+                  <option>$5.000 – $20.000</option>
+                  <option>$20.000 – $60.000</option>
+                  <option>$60.000 – $150.000</option>
+                  <option>Más de $150.000</option>
                 </select>
               </div>
             </div>
@@ -3492,11 +3349,9 @@
         <div class="footer-col-title">Servicios</div>
         <div class="footer-links">
           <a href="#services">Ecommerce & Ventas</a>
-          <a href="#services">Automatización CRM</a>
-          <a href="#services">Estrategia Digital</a>
-          <a href="#services">Branding</a>
-          <a href="#services">Desarrollo Web</a>
-          <a href="#services">IA & Tecnología</a>
+          <a href="#services">Estrategia & Adquisición</a>
+          <a href="#services">Desarrollo Web & Apps</a>
+          <a href="#services">Paid Media</a>
         </div>
       </div>
       <div>
@@ -3512,8 +3367,8 @@
       <div>
         <div class="footer-col-title">Contacto</div>
         <div class="footer-links">
-          <a href="mailto:hola@ecomlab.es">hola@ecomlab.es</a>
-          <a href="#cta">Agendar llamada</a>
+          <a href="mailto:hola@ecomlab.ar">hola@ecomlab.ar</a>
+          <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener">Agendar asesoría</a>
           <a href="https://wa.me/34000000000">WhatsApp</a>
           <a href="#">LinkedIn</a>
         </div>
@@ -3548,7 +3403,7 @@
         <div class="pm-quote-text" id="pmQuoteText"></div>
         <div class="pm-quote-author" id="pmQuoteAuthor"></div>
       </div>
-      <a href="#cta" class="pm-cta" id="pmCta">Quiero resultados similares →</a>
+      <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="pm-cta" id="pmCta">Quiero resultados similares →</a>
     </div>
   </div>
 </div>
@@ -3584,10 +3439,10 @@
   <div class="sticky-bar-text">
     <div class="sticky-bar-dot"></div>
     <span>Solo <strong>3 cupos disponibles</strong> este mes</span>
-    <span class="sticky-bar-sub" style="color:var(--grey-4);font-weight:400"> — agenda tu diagnóstico gratuito ahora</span>
+    <span class="sticky-bar-sub" style="color:var(--grey-4);font-weight:400"> — primera sesión sin costo</span>
   </div>
   <div class="sticky-bar-actions">
-    <a href="#cta" class="btn-primary" style="font-size:13px;padding:10px 20px">Agendar llamada →</a>
+    <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn-primary" style="font-size:13px;padding:10px 20px">Agendar asesoría →</a>
     <button class="sticky-bar-close" id="closeStickyBar" aria-label="Cerrar">×</button>
   </div>
 </div>
@@ -3598,7 +3453,7 @@
   <div class="toast-text">
     <div class="toast-name" id="toastName">Alejandra M.</div>
     <div class="toast-action" id="toastAction">acaba de agendar un diagnóstico</div>
-    <div class="toast-time">hace 3 minutos · España</div>
+    <div class="toast-time">hace 3 minutos · Buenos Aires</div>
   </div>
 </div>
 
@@ -3766,9 +3621,9 @@
 
   /* ── Social proof toast ── */
   const toasts = [
-    { name: 'Alejandra M.', action: 'acaba de agendar un diagnóstico', time: 'hace 2 min · España', avatar: 'AM', color: 'linear-gradient(135deg,#F97316,#EA580C)' },
-    { name: 'Roberto S.', action: 'está viendo los casos de éxito', time: 'hace 5 min · México', avatar: 'RS', color: 'linear-gradient(135deg,#06B6D4,#0284C7)' },
-    { name: 'Laura G.', action: 'solicitó información de servicios', time: 'hace 8 min · Colombia', avatar: 'LG', color: 'linear-gradient(135deg,#22C55E,#16A34A)' },
+    { name: 'Alejandra M.', action: 'acaba de agendar un diagnóstico', time: 'hace 2 min · Buenos Aires', avatar: 'AM', color: 'linear-gradient(135deg,#F97316,#EA580C)' },
+    { name: 'Roberto S.', action: 'está viendo los casos de éxito', time: 'hace 5 min · Córdoba', avatar: 'RS', color: 'linear-gradient(135deg,#06B6D4,#0284C7)' },
+    { name: 'Laura G.', action: 'solicitó información de servicios', time: 'hace 8 min · Rosario', avatar: 'LG', color: 'linear-gradient(135deg,#22C55E,#16A34A)' },
     { name: 'Pablo V.', action: 'calculó su potencial de crecimiento', time: 'hace 11 min · Argentina', avatar: 'PV', color: 'linear-gradient(135deg,#A855F7,#7C3AED)' },
   ];
   const toast = document.getElementById('sp-toast');
@@ -3809,9 +3664,9 @@
     real:   { m90: 1.60, m6: 2.00, m12: 2.70 },
   };
   function fmt(n) {
-    if (n >= 1000000) return '€' + (n/1000000).toFixed(1) + 'M';
-    if (n >= 1000) return '€' + Math.round(n/1000) + 'K';
-    return '€' + Math.round(n);
+    if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+    return '$' + Math.round(n);
   }
   function animNum(el, from, to, duration, formatter) {
     const start = performance.now();
@@ -3838,18 +3693,18 @@
     container.innerHTML = `
       <div class="calc-result-card highlight">
         <div class="calc-result-label">Proyección a 12 meses</div>
-        <div class="calc-result-val" id="cr12">€0</div>
+        <div class="calc-result-val" id="cr12">$0</div>
         <div class="calc-result-sub">vs. ${fmt(rev)} actual — <strong style="color:var(--success)">+${Math.round((m.m12-1)*100)}% de crecimiento</strong></div>
       </div>
       <div class="calc-result-grid">
         <div class="calc-result-card">
           <div class="calc-result-label">En 90 días</div>
-          <div class="calc-result-val green" id="cr90">€0</div>
+          <div class="calc-result-val green" id="cr90">$0</div>
           <div class="calc-result-sub">+${Math.round((m.m90-1)*100)}% crecimiento</div>
         </div>
         <div class="calc-result-card">
           <div class="calc-result-label">En 6 meses</div>
-          <div class="calc-result-val" id="cr6">€0</div>
+          <div class="calc-result-val" id="cr6">$0</div>
           <div class="calc-result-sub">+${Math.round((m.m6-1)*100)}% crecimiento</div>
         </div>
       </div>
@@ -3880,8 +3735,8 @@
           </div>
         </div>
       </div>
-      <a href="#cta" class="btn-primary" style="justify-content:center;font-size:15px;padding:15px 24px">
-        Quiero conseguir estos números →
+      <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn-primary" style="justify-content:center;font-size:15px;padding:15px 24px">
+        Agendar asesoría gratuita →
       </a>
     `;
     animNum(document.getElementById('cr12'), 0, r12, 1400, fmt);
@@ -3948,8 +3803,8 @@
 
   /* ── Before / After toggle ── */
   const baData = {
-    before: { m1: '€22K', l1: 'Facturación anterior', m2: '1.2x', l2: 'ROAS antes', m3: '+18%', l3: 'CPA previo' },
-    after:  { m1: '+282%', l1: 'Facturación', m2: '4.8x', l2: 'ROAS', m3: '−41%', l3: 'CPA' },
+    before: { m1: '$2.8M', l1: 'Facturación anterior', m2: '1.2x', l2: 'Conv. rate antes', m3: '+18%', l3: 'CPA previo' },
+    after:  { m1: '+282%', l1: 'Facturación', m2: '×4.9', l2: 'Conv. rate', m3: '−41%', l3: 'Costo por cliente' },
   };
   window.setBA = function(state) {
     const d = baData[state];
@@ -4321,16 +4176,16 @@
   (function() {
     const data = {
       'project-001': {
-        num: '001', name: 'NovaModa Store', cat: 'Ecommerce · Moda · España',
-        challenge: 'Facturación mensual estancada en €22K con un ROAS medio de 1.2x. Las campañas se gestionaban sin estrategia cohesionada, el carrito tenía un 78% de abandono y no existía ningún flujo de recuperación automatizado.',
+        num: '001', name: 'NovaModa Store', cat: 'Ecommerce · Moda · Argentina',
+        challenge: 'Facturación mensual estancada en $2.8M ARS con una tasa de conversión del 1.8%. El carrito tenía un 78% de abandono y no existía ningún flujo de recuperación automatizado.',
         solution: 'Reconstruimos el ecosistema completo: nueva arquitectura Shopify Plus con UX optimizada para conversión, 12 flujos de email automatizados en Klaviyo (bienvenida, abandono, post-compra, reactivación), y reestructuración total de Google Ads con feed de productos optimizado y remarketing dinámico por segmento.',
-        results: [{v:'+282%',l:'Revenue'},{v:'4.8×',l:'ROAS'},{v:'−41%',l:'CPA'},{v:'90 días',l:'Tiempo'}],
+        results: [{v:'+282%',l:'Revenue'},{v:'4.8×',l:'Conv. rate'},{v:'−41%',l:'CPA'},{v:'90 días',l:'Tiempo'}],
         tech: ['Shopify Plus','Klaviyo','Google Ads','Analytics 4','Hotjar','Looker Studio'],
         quote: '"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tomamos decisiones con datos."',
         author: 'Alejandra Morales — CEO, NovaModa',
       },
       'project-002': {
-        num: '002', name: 'ConsultPro CRM', cat: 'Automatización · B2B · México',
+        num: '002', name: 'ConsultPro CRM', cat: 'Automatización · B2B · Argentina',
         challenge: 'El equipo comercial gestionaba 12 leads al mes de forma manual en hojas de cálculo. Sin seguimiento estructurado, el 70% de las oportunidades se perdía por falta de respuesta en tiempo y forma.',
         solution: 'Implementamos HubSpot CRM completo con pipeline personalizado, automatizamos el nurturing con 8 secuencias de email según etapa del ciclo de venta, lanzamos campañas LinkedIn Ads segmentadas por cargo y sector, y conectamos todo mediante n8n para notificaciones y asignaciones automáticas.',
         results: [{v:'+1.133%',l:'Leads/mes'},{v:'×11.7',l:'Pipeline'},{v:'−35%',l:'Tiempo cierre'},{v:'6 meses',l:'Tiempo'}],
@@ -4339,16 +4194,16 @@
         author: 'Roberto Salcedo — Director Comercial, ConsultPro',
       },
       'project-003': {
-        num: '003', name: 'FreshMarket Portal', cat: 'Web App · Retail · Colombia',
+        num: '003', name: 'FreshMarket Portal', cat: 'Web App · Retail · Argentina',
         challenge: 'Los pedidos se gestionaban 100% por WhatsApp manual. Sin trazabilidad, sin histórico de compras, sin upsell automatizado. El equipo perdía 3 horas/día en coordinación operativa.',
         solution: 'Desarrollamos un portal de cliente en Next.js con catálogo dinámico, carrito, historial de pedidos y sistema de recompras con un clic. Integración con Analytics 4 para funnel completo y experimentos de conversión. Sistema de notificaciones automáticas por WhatsApp y email.',
-        results: [{v:'×4.9',l:'Conversión'},{v:'+€180K',l:'Revenue extra'},{v:'−3h',l:'Ops/día'},{v:'4 meses',l:'Tiempo'}],
+        results: [{v:'×4.9',l:'Conversión'},{v:'+$180K',l:'Revenue extra'},{v:'−3h',l:'Ops/día'},{v:'4 meses',l:'Tiempo'}],
         tech: ['Next.js','React','Vercel','Google Analytics 4','WhatsApp API','Stripe'],
         quote: '"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta, y ejecutaron todo."',
         author: 'Laura González — Fundadora, FreshMarket',
       },
       'project-004': {
-        num: '004', name: 'VitalBot Assistant', cat: 'IA & Automatización · Salud · España',
+        num: '004', name: 'VitalBot Assistant', cat: 'IA & Automatización · Salud · Argentina',
         challenge: 'La clínica recibía más de 200 consultas de cita al mes. El equipo administrativo tardaba hasta 48h en responder, lo que generaba pérdida de pacientes directos a la competencia.',
         solution: 'Implementamos un asistente conversacional con GPT-4 entrenado en los servicios, precios y disponibilidad de la clínica. Integración directa con Google Calendar para reserva en tiempo real y sincronización con su CRM de pacientes. Disponible 24/7 en web y WhatsApp.',
         results: [{v:'−60%',l:'Tiempo resp.'},{v:'+45%',l:'Citas/mes'},{v:'24/7',l:'Disponibilidad'},{v:'3 meses',l:'Tiempo'}],
@@ -4366,7 +4221,7 @@
         author: 'Jorge Pereira — Fundador, SportXcel',
       },
       'project-006': {
-        num: '006', name: 'InmoElite Digital', cat: 'Real Estate · España',
+        num: '006', name: 'InmoElite Digital', cat: 'Real Estate · Argentina',
         challenge: 'El equipo comercial recibía muy pocos leads cualificados. Los portales inmobiliarios generaban contactos de baja intención y el coste por visita comercial era inasumible.',
         solution: 'Diseñamos un sistema de captación propio con 4 landing pages segmentadas por zona y tipo de propiedad, campañas Google Ads con keywords de alta intención, lead scoring automático en HubSpot y secuencias de nurturing según perfil del comprador.',
         results: [{v:'+89',l:'Leads/mes'},{v:'−52%',l:'Coste/lead'},{v:'×2.8',l:'Visitas'},{v:'5 meses',l:'Tiempo'}],
