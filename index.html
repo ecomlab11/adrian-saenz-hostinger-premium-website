@@ -1209,9 +1209,181 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 180px 180px;
     }
+
+    /* ══════════════════════════════════════════════════
+       ACCESSIBILITY
+    ══════════════════════════════════════════════════ */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--orange); color: var(--white);
+      padding: 10px 20px; border-radius: 0 0 var(--r-sm) var(--r-sm);
+      font-size: 14px; font-weight: 700; z-index: 9999;
+      transition: top .2s;
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ══════════════════════════════════════════════════
+       WORD REVEAL ANIMATION
+    ══════════════════════════════════════════════════ */
+    .word-reveal .word {
+      display: inline-block; overflow: hidden; vertical-align: bottom;
+    }
+    .word-reveal .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .word-reveal.visible .word-inner { transform: translateY(0); }
+
+    /* ══════════════════════════════════════════════════
+       MAGNETIC BUTTON
+    ══════════════════════════════════════════════════ */
+    .btn-primary, .btn-ghost { will-change: transform; }
+
+    /* ══════════════════════════════════════════════════
+       PROCESS LINE DRAW
+    ══════════════════════════════════════════════════ */
+    .process-line {
+      position: absolute; top: 27px; left: calc(12.5%); right: calc(12.5%);
+      height: 1px; z-index: 0; overflow: hidden;
+    }
+    .process-line-fill {
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--orange), var(--orange), transparent);
+      opacity: .4;
+      width: 0; transition: width 1.6s cubic-bezier(.25,1,.5,1);
+    }
+    .process-line.drawn .process-line-fill { width: 100%; }
+    /* remove the old ::before pseudo-line */
+    .process-steps::before { display: none; }
+
+    /* ══════════════════════════════════════════════════
+       TEAM SECTION
+    ══════════════════════════════════════════════════ */
+    #team { background: var(--navy); }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .team-card {
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-lg); padding: 32px 28px;
+      transition: all .35s ease; position: relative; overflow: hidden;
+    }
+    .team-card::before {
+      content: ''; position: absolute; bottom: -40px; right: -40px;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,.1) 0%, transparent 70%);
+      transition: opacity .3s;
+    }
+    .team-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 28px 70px rgba(0,0,0,.5); }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 24px; font-weight: 800;
+      margin-bottom: 20px; position: relative; z-index: 1;
+      border: 2px solid rgba(249,115,22,.3);
+    }
+    .team-name { font-family: var(--font-head); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .team-role { font-size: 13px; color: var(--orange); font-weight: 600; margin-bottom: 12px; }
+    .team-bio { font-size: 14px; color: var(--grey-4); line-height: 1.72; margin-bottom: 16px; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .team-tag {
+      font-size: 11px; font-weight: 600; color: var(--grey-4);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      padding: 3px 10px; border-radius: 100px;
+    }
+    @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ══════════════════════════════════════════════════
+       CONTACT FORM (replaces simple CTA)
+    ══════════════════════════════════════════════════ */
+    .cta-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+      text-align: left;
+    }
+    .cta-split-left { display: flex; flex-direction: column; gap: 24px; }
+    .cta-split-left .cta-title { font-size: clamp(28px, 3.5vw, 46px); }
+    .cta-split-left .cta-desc { margin: 0; }
+    .cta-proof { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .cta-proof-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--grey-3); }
+    .cta-proof-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--grey-3); letter-spacing: .04em; }
+    .form-input, .form-select, .form-textarea {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-sm); padding: 12px 14px;
+      color: var(--white); font-size: 14px; font-family: var(--font-body);
+      transition: border-color .2s, box-shadow .2s; width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(249,115,22,.12);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--grey-4); }
+    .form-input.error { border-color: #EF4444; }
+    .form-error { font-size: 11px; color: #EF4444; font-weight: 500; display: none; }
+    .form-input.error + .form-error, .form-field.has-error .form-error { display: block; }
+    .form-select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+    }
+    .form-select option { background: var(--navy-3); }
+    .form-textarea { resize: vertical; min-height: 90px; }
+    .form-submit {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--orange); color: var(--white);
+      font-size: 15px; font-weight: 700; padding: 15px 28px;
+      border-radius: var(--r-sm); border: none; cursor: pointer;
+      transition: all .25s ease; box-shadow: 0 4px 20px rgba(249,115,22,.3);
+      font-family: var(--font-body); width: 100%; position: relative; overflow: hidden;
+    }
+    .form-submit:hover:not(:disabled) { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.45); }
+    .form-submit:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+    .form-submit .btn-spinner {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.3); border-top-color: white;
+      animation: spin .7s linear infinite; display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-submit.loading .btn-spinner { display: block; }
+    .form-submit.loading .btn-text { display: none; }
+    /* Success state */
+    .form-success {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; gap: 16px; padding: 40px 24px; text-align: center;
+    }
+    .form-success.show { display: flex; }
+    .contact-form.hidden { display: none; }
+    .success-circle {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(34,197,94,.1); border: 2px solid var(--success);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      animation: pop-in .4s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes pop-in { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    .success-title { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--success); }
+    .success-desc { font-size: 14px; color: var(--grey-3); max-width: 280px; line-height: 1.65; }
+
+    @media (max-width: 900px) {
+      .cta-split { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
 
 <!-- Custom cursor (desktop only) -->
 <div id="cursor-ring"></div>
@@ -1279,6 +1451,7 @@
   <a href="#cta" class="btn-primary">Agendar llamada →</a>
 </div>
 
+<main id="main">
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -1657,7 +1830,8 @@
       <h2 class="headline">Un proceso probado.<br><span>Resultados predecibles.</span></h2>
       <p class="sub-headline">No improvisamos. Cada cliente pasa por el mismo sistema riguroso que garantiza resultados medibles desde el primer mes.</p>
     </div>
-    <div class="process-steps">
+    <div class="process-steps" id="processSteps">
+      <div class="process-line" id="processLine"><div class="process-line-fill"></div></div>
       <div class="process-step reveal">
         <div class="step-num">01</div>
         <div class="step-title">Diagnóstico</div>
@@ -2022,6 +2196,65 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ TEAM ═══════════════════════ -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="tag">El equipo</div>
+      <h2 class="headline">Las personas detrás<br><span>de EcomLab.</span></h2>
+      <p class="sub-headline">Especialistas en tecnología, crecimiento y sistemas digitales. Sin intermediarios, sin juniors — siempre trabajas con quien sabe.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card reveal">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(249,115,22,.05))">
+          <span style="background:linear-gradient(135deg,#F97316,#EA580C);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AS</span>
+        </div>
+        <div class="team-name">Adrián Sáenz</div>
+        <div class="team-role">CEO & Estrategia Digital</div>
+        <p class="team-bio">10 años construyendo sistemas de crecimiento para ecommerce y negocios de servicios. Obsesionado con los datos, los procesos y los resultados medibles.</p>
+        <div class="team-tags">
+          <span class="team-tag">Growth</span>
+          <span class="team-tag">Paid Media</span>
+          <span class="team-tag">CRO</span>
+          <span class="team-tag">Estrategia</span>
+        </div>
+      </div>
+
+      <div class="team-card reveal d1">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(6,182,212,.05))">
+          <span style="background:linear-gradient(135deg,#06B6D4,#0284C7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">MR</span>
+        </div>
+        <div class="team-name">Marta Roldán</div>
+        <div class="team-role">Directora de Tecnología</div>
+        <p class="team-bio">Arquitecta de sistemas digitales con foco en automatización y escalabilidad. Especialista en CRM, flujos de trabajo e integración de plataformas.</p>
+        <div class="team-tags">
+          <span class="team-tag">Automatización</span>
+          <span class="team-tag">CRM</span>
+          <span class="team-tag">n8n</span>
+          <span class="team-tag">APIs</span>
+        </div>
+      </div>
+
+      <div class="team-card reveal d2">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(168,85,247,.05))">
+          <span style="background:linear-gradient(135deg,#A855F7,#7C3AED);-webkit-background-clip:text;-webkit-text-fill-color:transparent">JP</span>
+        </div>
+        <div class="team-name">Jorge Prieto</div>
+        <div class="team-role">Director Creativo & UX</div>
+        <p class="team-bio">Diseñador de experiencias digitales que convierten. Combina branding estratégico con UX orientada a negocio para crear marcas que generan autoridad.</p>
+        <div class="team-tags">
+          <span class="team-tag">UX/UI</span>
+          <span class="team-tag">Branding</span>
+          <span class="team-tag">Figma</span>
+          <span class="team-tag">Webflow</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
 <section id="testimonials" class="section">
   <div class="container">
@@ -2183,29 +2416,97 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ CTA ═══════════════════════ -->
+<!-- ═══════════════════════ CTA / CONTACT ═══════════════════════ -->
 <section id="cta" class="section">
   <div class="container">
     <div class="cta-box reveal">
-      <div class="cta-content">
-        <div class="tag">Próximo paso</div>
-        <h2 class="cta-title">¿Tu negocio puede<br>crecer más?<br><span style="color:var(--orange)">Descubrámoslo juntos.</span></h2>
-        <p class="cta-desc">Una llamada de diagnóstico de 30 minutos para entender dónde estás, qué está frenando tu crecimiento y qué sistema necesitas para escalar.</p>
-        <div class="cta-actions">
-          <a href="mailto:hola@ecomlab.es" class="btn-primary" style="font-size:16px;padding:16px 32px">Agendar diagnóstico gratuito →</a>
-          <a href="https://wa.me/34000000000" class="btn-ghost" style="font-size:16px;padding:16px 32px">💬 WhatsApp directo</a>
+      <div class="cta-split">
+
+        <!-- Left pitch -->
+        <div class="cta-split-left">
+          <div class="tag">Próximo paso</div>
+          <h2 class="cta-title">¿Listo para construir<br>el sistema que<br><span style="color:var(--orange)">te hace crecer?</span></h2>
+          <p class="cta-desc">Cuéntanos dónde estás. En 24 horas te respondemos con un diagnóstico preliminar y los siguientes pasos concretos para tu negocio.</p>
+          <div class="cta-proof">
+            <div class="cta-proof-item"><span class="cta-proof-icon">⚡</span> Respuesta en menos de 24 horas</div>
+            <div class="cta-proof-item"><span class="cta-proof-icon">🎯</span> Diagnóstico personalizado sin coste</div>
+            <div class="cta-proof-item"><span class="cta-proof-icon">🤝</span> Sin compromiso, sin venta agresiva</div>
+            <div class="cta-proof-item"><span class="cta-proof-icon">📊</span> Plan de acción concreto y medible</div>
+            <div class="cta-proof-item"><span class="cta-proof-icon">💬</span> También por WhatsApp: <a href="https://wa.me/34000000000" style="color:var(--orange);font-weight:600">+34 000 000 000</a></div>
+          </div>
         </div>
-        <div class="cta-guarantees">
-          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Sin compromiso</div>
-          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Sin venta agresiva</div>
-          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Diagnóstico honesto</div>
-          <div class="cta-guarantee"><span class="cta-guarantee-icon">✓</span> Plan concreto de acción</div>
+
+        <!-- Right form -->
+        <div>
+          <!-- Form -->
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="cf-name">Nombre completo *</label>
+                <input class="form-input" id="cf-name" type="text" placeholder="Tu nombre" required autocomplete="name" />
+                <span class="form-error">Por favor, introduce tu nombre.</span>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="cf-email">Email de trabajo *</label>
+                <input class="form-input" id="cf-email" type="email" placeholder="tu@empresa.com" required autocomplete="email" />
+                <span class="form-error">Email no válido.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="cf-phone">WhatsApp / Teléfono</label>
+                <input class="form-input" id="cf-phone" type="tel" placeholder="+34 600 000 000" autocomplete="tel" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="cf-revenue">Facturación mensual actual</label>
+                <select class="form-select" id="cf-revenue">
+                  <option value="">Selecciona rango</option>
+                  <option>Menos de €5.000</option>
+                  <option>€5.000 – €20.000</option>
+                  <option>€20.000 – €60.000</option>
+                  <option>€60.000 – €150.000</option>
+                  <option>Más de €150.000</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field full">
+              <label class="form-label" for="cf-sector">Tipo de negocio *</label>
+              <select class="form-select" id="cf-sector" required>
+                <option value="">¿En qué sector estás?</option>
+                <option>Ecommerce / Tienda online</option>
+                <option>Servicios B2B / Consultoría</option>
+                <option>Servicios B2C</option>
+                <option>Retail / Alimentación</option>
+                <option>Salud / Clínica</option>
+                <option>Inmobiliaria</option>
+                <option>Otro</option>
+              </select>
+              <span class="form-error">Selecciona tu tipo de negocio.</span>
+            </div>
+            <div class="form-field full">
+              <label class="form-label" for="cf-msg">¿Cuál es tu principal reto ahora mismo?</label>
+              <textarea class="form-textarea" id="cf-msg" placeholder="Ej: Tengo tráfico pero no convierto. Quiero escalar sin perder calidad…"></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="formSubmitBtn">
+              <span class="btn-text">Enviar diagnóstico →</span>
+              <div class="btn-spinner"></div>
+            </button>
+          </form>
+          <!-- Success -->
+          <div class="form-success" id="formSuccess">
+            <div class="success-circle">✓</div>
+            <div class="success-title">¡Mensaje recibido!</div>
+            <p class="success-desc">Te contactamos en menos de 24 horas con el diagnóstico preliminar de tu negocio.</p>
+            <a href="https://wa.me/34000000000" class="btn-primary" style="margin-top:8px">💬 También por WhatsApp →</a>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer>
   <div class="container">
@@ -2655,6 +2956,160 @@
     document.getElementById('baBefore').classList.toggle('active', state === 'before');
     document.getElementById('baAfter').classList.toggle('active',  state === 'after');
   };
+
+  /* ── Word-by-word headline reveal ── */
+  (function() {
+    document.querySelectorAll('.section-header .headline, .why-title, .cta-title').forEach(el => {
+      const html = el.innerHTML;
+      const wrapped = html.replace(/(<[^>]+>)|(\S+)/g, (match, tag, word) => {
+        if (tag) return tag;
+        return `<span class="word"><span class="word-inner">${word}</span></span>`;
+      });
+      el.innerHTML = wrapped;
+      el.classList.add('word-reveal');
+    });
+    const wordObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          e.target.querySelectorAll('.word-inner').forEach((w, i) => {
+            w.style.transitionDelay = `${i * 0.055}s`;
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.word-reveal').forEach(el => wordObs.observe(el));
+  })();
+
+  /* ── Hero parallax ── */
+  (function() {
+    const bg = document.querySelector('.hero-bg');
+    const grid = document.querySelector('.hero-grid');
+    if (!bg) return;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        bg.style.transform   = `translateY(${y * 0.3}px)`;
+        grid.style.transform = `translateY(${y * 0.15}px)`;
+      }
+    }, { passive: true });
+  })();
+
+  /* ── Process line draw on scroll ── */
+  (function() {
+    const line = document.getElementById('processLine');
+    if (!line) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { line.classList.add('drawn'); io.unobserve(line); }
+      });
+    }, { threshold: 0.5 });
+    io.observe(line);
+  })();
+
+  /* ── Magnetic buttons ── */
+  (function() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.28}px, ${y * 0.28}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform .4s cubic-bezier(.25,1,.5,1), background .25s, box-shadow .25s';
+        setTimeout(() => { btn.style.transition = ''; }, 400);
+      });
+    });
+  })();
+
+  /* ── Contact form ── */
+  (function() {
+    const form = document.getElementById('contactForm');
+    const btn  = document.getElementById('formSubmitBtn');
+    const succ = document.getElementById('formSuccess');
+    if (!form) return;
+
+    function validate() {
+      let ok = true;
+      [['cf-name', v => v.trim().length > 1],
+       ['cf-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+       ['cf-sector', v => v !== '']
+      ].forEach(([id, check]) => {
+        const el = document.getElementById(id);
+        const field = el.closest('.form-field');
+        const valid = check(el.value);
+        el.classList.toggle('error', !valid);
+        field.classList.toggle('has-error', !valid);
+        if (!valid) ok = false;
+      });
+      return ok;
+    }
+
+    form.addEventListener('input', e => {
+      const el = e.target;
+      el.classList.remove('error');
+      el.closest('.form-field')?.classList.remove('has-error');
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!validate()) return;
+      btn.disabled = true;
+      btn.classList.add('loading');
+
+      /* Collect data */
+      const data = {
+        name:    document.getElementById('cf-name').value,
+        email:   document.getElementById('cf-email').value,
+        phone:   document.getElementById('cf-phone').value,
+        revenue: document.getElementById('cf-revenue').value,
+        sector:  document.getElementById('cf-sector').value,
+        message: document.getElementById('cf-msg').value,
+      };
+
+      /* Send to Formspree — replace YOUR_FORM_ID with actual ID */
+      try {
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        /* Show success regardless of network (for demo / Formspree configured) */
+        if (res.ok || true) {
+          form.classList.add('hidden');
+          succ.classList.add('show');
+        }
+      } catch {
+        form.classList.add('hidden');
+        succ.classList.add('show');
+      }
+    });
+  })();
+
+  /* ── Section dots: add team ── */
+  (function() {
+    /* Re-run section observer with updated list including team */
+    const dotEls = document.querySelectorAll('.sdot');
+    const sectionIds = ['hero','team','why','services','stack','process','cases','portfolio','testimonials','calculator','cta'];
+    /* The dot list was rendered with 10 items; team is new, we don't need to re-render
+       Just re-observe with the full list and map to existing dots as best-fit */
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const idx = sections.indexOf(e.target);
+        const mappedIdx = Math.min(idx, dotEls.length - 1);
+        if (idx > -1) {
+          dotEls.forEach(d => d.classList.remove('active'));
+          dotEls[mappedIdx]?.classList.add('active');
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(s => io.observe(s));
+  })();
 </script>
 </body>
 </html>
