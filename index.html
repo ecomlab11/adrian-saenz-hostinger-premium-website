@@ -748,6 +748,222 @@
     .d4 { transition-delay: .4s; }
 
     /* ══════════════════════════════════════════════════
+       TYPEWRITER
+    ══════════════════════════════════════════════════ */
+    .typewriter-wrap { display: inline-block; position: relative; }
+    .typewriter-cursor {
+      display: inline-block; width: 3px; height: .85em;
+      background: var(--orange); margin-left: 3px; vertical-align: middle;
+      animation: blink .75s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ══════════════════════════════════════════════════
+       PORTFOLIO FILTERS
+    ══════════════════════════════════════════════════ */
+    .port-filters {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center; margin: 0 auto 40px; max-width: 700px;
+    }
+    .port-filter-btn {
+      font-size: 13px; font-weight: 600; padding: 8px 18px;
+      border-radius: 100px; border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04); color: var(--grey-4);
+      cursor: pointer; transition: all .22s ease;
+    }
+    .port-filter-btn:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+    .port-filter-btn.active {
+      background: var(--orange); color: var(--white);
+      border-color: var(--orange); box-shadow: 0 4px 16px rgba(249,115,22,.35);
+    }
+    .port-item { transition: opacity .35s ease, transform .35s ease; }
+    .port-item.hidden { opacity: 0; pointer-events: none; transform: scale(.95); position: absolute; visibility: hidden; }
+
+    /* ══════════════════════════════════════════════════
+       CALCULATOR
+    ══════════════════════════════════════════════════ */
+    #calculator { background: var(--navy-2); }
+    .calc-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .calc-left { display: flex; flex-direction: column; gap: 28px; }
+    .calc-form { display: flex; flex-direction: column; gap: 20px; }
+    .calc-field { display: flex; flex-direction: column; gap: 8px; }
+    .calc-label { font-size: 13px; font-weight: 600; color: var(--grey-3); }
+    .calc-input {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-sm); padding: 13px 16px;
+      color: var(--white); font-size: 16px; font-family: var(--font-head); font-weight: 700;
+      transition: border-color .2s;
+      width: 100%;
+    }
+    .calc-input:focus { outline: none; border-color: var(--orange); }
+    .calc-input::placeholder { color: var(--grey-4); font-weight: 400; font-size: 14px; font-family: var(--font-body); }
+    .calc-select {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-sm); padding: 13px 16px;
+      color: var(--white); font-size: 14px; font-family: var(--font-body);
+      transition: border-color .2s; width: 100%; cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+    }
+    .calc-select:focus { outline: none; border-color: var(--orange); }
+    .calc-select option { background: var(--navy-3); }
+    .calc-btn {
+      background: var(--orange); color: var(--white); border: none;
+      font-size: 15px; font-weight: 700; padding: 14px 24px;
+      border-radius: var(--r-sm); cursor: pointer; transition: all .25s;
+      box-shadow: 0 4px 20px rgba(249,115,22,.3);
+    }
+    .calc-btn:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.45); }
+    .calc-disclaimer { font-size: 12px; color: var(--grey-4); line-height: 1.6; }
+
+    .calc-right { display: flex; flex-direction: column; gap: 16px; }
+    .calc-result-card {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-md); padding: 24px;
+    }
+    .calc-result-card.highlight { border-color: rgba(249,115,22,.3); background: rgba(249,115,22,.05); }
+    .calc-result-label { font-size: 12px; font-weight: 600; color: var(--grey-4); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
+    .calc-result-val {
+      font-family: var(--font-head); font-size: 36px; font-weight: 800; line-height: 1;
+      color: var(--orange);
+    }
+    .calc-result-val.green { color: var(--success); }
+    .calc-result-sub { font-size: 13px; color: var(--grey-4); margin-top: 4px; }
+    .calc-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .calc-bar-section { margin-top: 8px; }
+    .calc-bar-label { font-size: 12px; color: var(--grey-4); margin-bottom: 8px; font-weight: 500; }
+    .calc-bar-group { display: flex; flex-direction: column; gap: 8px; }
+    .calc-bar-row { display: flex; align-items: center; gap: 10px; }
+    .calc-bar-name { font-size: 12px; color: var(--grey-3); width: 80px; flex-shrink: 0; }
+    .calc-bar-track { flex: 1; height: 10px; background: rgba(255,255,255,.05); border-radius: 5px; overflow: hidden; }
+    .calc-bar-fill-el { height: 100%; border-radius: 5px; transition: width 1.2s cubic-bezier(.25,1,.5,1); }
+    .calc-bar-amt { font-size: 12px; font-weight: 700; color: var(--white); width: 70px; text-align: right; }
+    .calc-initial-msg {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; padding: 48px 24px; text-align: center;
+      color: var(--grey-4); font-size: 14px;
+    }
+    .calc-initial-icon { font-size: 48px; opacity: .4; }
+
+    @media (max-width: 768px) {
+      .calc-inner { grid-template-columns: 1fr; gap: 40px; }
+      .calc-result-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       FLOATING ELEMENTS
+    ══════════════════════════════════════════════════ */
+    /* WhatsApp button */
+    #wa-btn {
+      position: fixed; bottom: 24px; right: 24px; z-index: 80;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none;
+    }
+    #wa-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.55); }
+    #wa-btn .wa-tooltip {
+      position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm); padding: 8px 14px;
+      font-size: 13px; font-weight: 600; color: var(--white);
+      white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s;
+    }
+    #wa-btn .wa-tooltip::after {
+      content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+      border: 6px solid transparent; border-left-color: rgba(255,255,255,.1);
+    }
+    #wa-btn:hover .wa-tooltip { opacity: 1; }
+
+    /* Back to top */
+    #back-top {
+      position: fixed; bottom: 90px; right: 24px; z-index: 80;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer; color: var(--grey-3);
+      opacity: 0; transform: translateY(12px);
+      transition: all .3s ease; pointer-events: none;
+    }
+    #back-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-top:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+    /* Sticky CTA bar */
+    #sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 70;
+      background: var(--navy-2); border-top: 1px solid rgba(249,115,22,.25);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      transform: translateY(100%); transition: transform .4s ease;
+      backdrop-filter: blur(16px);
+    }
+    #sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar-text { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .sticky-bar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pdot 2s infinite; flex-shrink: 0; }
+    .sticky-bar-close {
+      background: none; border: none; color: var(--grey-4); font-size: 20px;
+      cursor: pointer; padding: 4px; line-height: 1; transition: color .2s;
+    }
+    .sticky-bar-close:hover { color: var(--white); }
+    .sticky-bar-actions { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 600px) {
+      .sticky-bar-text span.sticky-bar-sub { display: none; }
+      #sticky-bar { padding: 10px 16px; }
+    }
+
+    /* Social proof toast */
+    #sp-toast {
+      position: fixed; bottom: 90px; left: 24px; z-index: 79;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-md); padding: 14px 18px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      max-width: 300px;
+      transform: translateX(-120%); opacity: 0;
+      transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+    }
+    #sp-toast.show { transform: translateX(0); opacity: 1; }
+    .toast-avatar {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+    }
+    .toast-text { display: flex; flex-direction: column; }
+    .toast-name { font-size: 13px; font-weight: 700; }
+    .toast-action { font-size: 12px; color: var(--grey-4); }
+    .toast-time { font-size: 11px; color: var(--grey-4); margin-top: 1px; }
+
+    /* Cookie banner */
+    #cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--navy-3); border-top: 1px solid rgba(255,255,255,.08);
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      transform: translateY(0); transition: transform .4s ease;
+    }
+    #cookie-banner.hidden { transform: translateY(110%); }
+    .cookie-text { font-size: 13px; color: var(--grey-3); max-width: 600px; line-height: 1.5; }
+    .cookie-text a { color: var(--orange); }
+    .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cookie-accept {
+      background: var(--orange); color: var(--white); border: none;
+      font-size: 13px; font-weight: 700; padding: 9px 20px;
+      border-radius: var(--r-sm); cursor: pointer; transition: background .2s;
+    }
+    .cookie-accept:hover { background: var(--orange-d); }
+    .cookie-decline {
+      background: transparent; border: 1px solid rgba(255,255,255,.12); color: var(--grey-4);
+      font-size: 13px; font-weight: 600; padding: 9px 16px;
+      border-radius: var(--r-sm); cursor: pointer; transition: all .2s;
+    }
+    .cookie-decline:hover { border-color: rgba(255,255,255,.25); color: var(--white); }
+
+    /* ══════════════════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════════════════ */
     @media (max-width: 1024px) {
@@ -815,6 +1031,7 @@
         <a href="#services">Servicios</a>
         <a href="#cases">Casos de Éxito</a>
         <a href="#portfolio">Portfolio</a>
+        <a href="#calculator">Calculadora</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-right">
@@ -833,6 +1050,7 @@
   <a href="#services" class="drawer-link">Servicios</a>
   <a href="#cases" class="drawer-link">Casos de Éxito</a>
   <a href="#portfolio" class="drawer-link">Portfolio</a>
+  <a href="#calculator" class="drawer-link">Calculadora</a>
   <a href="#faq" class="drawer-link">FAQ</a>
   <a href="#cta" class="btn-primary">Agendar llamada →</a>
 </div>
@@ -852,7 +1070,7 @@
         <h1 class="hero-title">
           Sistemas digitales<br>
           para negocios que<br>
-          <span class="accent">quieren crecer.</span>
+          <span class="accent"><span class="typewriter-wrap"><span id="tw-text">quieren crecer</span><span class="typewriter-cursor"></span></span>.</span>
         </h1>
         <p class="hero-desc">
           Construimos la infraestructura tecnológica, los procesos y la estrategia digital que tu negocio necesita para escalar de forma ordenada, medible y sostenible.
@@ -1384,9 +1602,18 @@
       <p class="sub-headline">Proyectos reales con resultados documentados. Desde la estrategia hasta los números finales.</p>
     </div>
   </div>
-  <div class="portfolio-grid">
+  <div class="container">
+    <div class="port-filters">
+      <button class="port-filter-btn active" data-filter="all">Todos</button>
+      <button class="port-filter-btn" data-filter="ecommerce">Ecommerce</button>
+      <button class="port-filter-btn" data-filter="automatizacion">Automatización</button>
+      <button class="port-filter-btn" data-filter="estrategia">Estrategia</button>
+      <button class="port-filter-btn" data-filter="ia">IA & Tech</button>
+    </div>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid">
 
-    <div class="port-item pc-1">
+    <div class="port-item pc-1" data-cat="ecommerce">
       <div class="port-bg"><div class="port-bg-emoji">🛒</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1404,7 +1631,7 @@
       </div>
     </div>
 
-    <div class="port-item pc-2">
+    <div class="port-item pc-2" data-cat="automatizacion">
       <div class="port-bg"><div class="port-bg-emoji">⚡</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1421,7 +1648,7 @@
       </div>
     </div>
 
-    <div class="port-item pc-3 tall">
+    <div class="port-item pc-3 tall" data-cat="ecommerce">
       <div class="port-bg"><div class="port-bg-emoji">📱</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1438,7 +1665,7 @@
       </div>
     </div>
 
-    <div class="port-item pc-4">
+    <div class="port-item pc-4" data-cat="ia">
       <div class="port-bg"><div class="port-bg-emoji">🤖</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1455,7 +1682,7 @@
       </div>
     </div>
 
-    <div class="port-item pc-5">
+    <div class="port-item pc-5" data-cat="estrategia">
       <div class="port-bg"><div class="port-bg-emoji">📊</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1473,7 +1700,7 @@
       </div>
     </div>
 
-    <div class="port-item pc-6">
+    <div class="port-item pc-6" data-cat="estrategia">
       <div class="port-bg"><div class="port-bg-emoji">🏗️</div></div>
       <div class="port-overlay"></div>
       <div class="port-top">
@@ -1533,6 +1760,61 @@
             <div class="testi-role">Fundadora · FreshMarket — Colombia</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CALCULATOR ═══════════════════════ -->
+<section id="calculator" class="section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="tag">Calculadora de crecimiento</div>
+      <h2 class="headline">¿Cuánto puede crecer<br><span>tu facturación?</span></h2>
+      <p class="sub-headline">Introduce tus datos actuales y calcula el potencial de crecimiento real de tu negocio con EcomLab.</p>
+    </div>
+    <div class="calc-inner reveal">
+      <div class="calc-left">
+        <div class="calc-form">
+          <div class="calc-field">
+            <label class="calc-label" for="calcRevenue">Facturación mensual actual</label>
+            <input class="calc-input" id="calcRevenue" type="number" placeholder="Ej: 15000" min="0" />
+          </div>
+          <div class="calc-field">
+            <label class="calc-label" for="calcSector">Tipo de negocio</label>
+            <select class="calc-select" id="calcSector">
+              <option value="">Selecciona tu sector</option>
+              <option value="ecom">Ecommerce / Tienda online</option>
+              <option value="b2b">Servicios B2B / Consultoría</option>
+              <option value="b2c">Servicios B2C / Local</option>
+              <option value="retail">Retail / Alimentación</option>
+              <option value="clinic">Salud / Clínica</option>
+              <option value="real">Inmobiliaria / Real Estate</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label class="calc-label" for="calcStage">Estado actual del negocio</label>
+            <select class="calc-select" id="calcStage">
+              <option value="">¿Dónde estás ahora?</option>
+              <option value="0">Sin presencia digital</option>
+              <option value="1">Web básica, sin campañas</option>
+              <option value="2">Campañas activas, sin sistema</option>
+              <option value="3">Sistema parcial, quiero escalar</option>
+            </select>
+          </div>
+          <button class="calc-btn" id="calcBtn" onclick="runCalc()">
+            Calcular mi potencial de crecimiento →
+          </button>
+        </div>
+        <p class="calc-disclaimer">* Proyecciones basadas en resultados reales de clientes con perfil similar. No garantizamos resultados específicos — cada negocio es diferente.</p>
+      </div>
+
+      <div class="calc-right" id="calcResults">
+        <div class="calc-initial-msg" id="calcInitial">
+          <div class="calc-initial-icon">📊</div>
+          <div>Completa el formulario para ver tu proyección de crecimiento personalizada.</div>
+        </div>
+        <!-- Results injected by JS -->
       </div>
     </div>
   </div>
@@ -1676,6 +1958,49 @@
   </div>
 </footer>
 
+<!-- ═══════════════════════ FLOATING ELEMENTS ═══════════════════════ -->
+
+<!-- WhatsApp -->
+<a id="wa-btn" href="https://wa.me/34000000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span>💬</span>
+  <div class="wa-tooltip">¡Escríbenos por WhatsApp!</div>
+</a>
+
+<!-- Back to top -->
+<button id="back-top" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Sticky CTA bar -->
+<div id="sticky-bar">
+  <div class="sticky-bar-text">
+    <div class="sticky-bar-dot"></div>
+    <span>Solo <strong>3 cupos disponibles</strong> este mes</span>
+    <span class="sticky-bar-sub" style="color:var(--grey-4);font-weight:400"> — agenda tu diagnóstico gratuito ahora</span>
+  </div>
+  <div class="sticky-bar-actions">
+    <a href="#cta" class="btn-primary" style="font-size:13px;padding:10px 20px">Agendar llamada →</a>
+    <button class="sticky-bar-close" id="closeStickyBar" aria-label="Cerrar">×</button>
+  </div>
+</div>
+
+<!-- Social proof toast -->
+<div id="sp-toast">
+  <div class="toast-avatar" id="toastAvatar" style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</div>
+  <div class="toast-text">
+    <div class="toast-name" id="toastName">Alejandra M.</div>
+    <div class="toast-action" id="toastAction">acaba de agendar un diagnóstico</div>
+    <div class="toast-time">hace 3 minutos · España</div>
+  </div>
+</div>
+
+<!-- Cookie banner -->
+<div id="cookie-banner">
+  <p class="cookie-text">Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="#">política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button class="cookie-decline" id="cookieDecline">Solo esenciales</button>
+    <button class="cookie-accept" id="cookieAccept">Aceptar todo</button>
+  </div>
+</div>
+
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
 <script>
   /* ── Loader ── */
@@ -1775,6 +2100,193 @@
     kpi.style.transition = `opacity .5s ${0.4 + i * 0.12}s ease, transform .5s ${0.4 + i * 0.12}s ease`;
     setTimeout(() => { kpi.style.opacity = '1'; kpi.style.transform = 'translateY(0)'; }, 1300);
   });
+
+  /* ── Typewriter effect ── */
+  (function() {
+    const el = document.getElementById('tw-text');
+    if (!el) return;
+    const words = ['quieren crecer', 'quieren escalar', 'facturan más', 'son sistemáticos', 'piensan en grande'];
+    let wi = 0, ci = 0, deleting = false;
+    const SPEED_TYPE = 80, SPEED_DEL = 45, PAUSE = 2200;
+    function tick() {
+      const word = words[wi];
+      if (!deleting) {
+        el.textContent = word.slice(0, ci + 1);
+        ci++;
+        if (ci === word.length) { deleting = true; setTimeout(tick, PAUSE); return; }
+      } else {
+        el.textContent = word.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+      }
+      setTimeout(tick, deleting ? SPEED_DEL : SPEED_TYPE);
+    }
+    setTimeout(tick, 2000);
+  })();
+
+  /* ── Portfolio filter tabs ── */
+  document.querySelectorAll('.port-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.port-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.port-item').forEach(item => {
+        const match = filter === 'all' || item.dataset.cat === filter;
+        item.classList.toggle('hidden', !match);
+      });
+    });
+  });
+
+  /* ── Back to top ── */
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 500);
+  });
+
+  /* ── Sticky CTA bar ── */
+  const sBar = document.getElementById('sticky-bar');
+  let sBarDismissed = false;
+  window.addEventListener('scroll', () => {
+    if (!sBarDismissed) sBar.classList.toggle('visible', window.scrollY > 700);
+  });
+  document.getElementById('closeStickyBar').addEventListener('click', () => {
+    sBarDismissed = true;
+    sBar.classList.remove('visible');
+  });
+
+  /* ── Social proof toast ── */
+  const toasts = [
+    { name: 'Alejandra M.', action: 'acaba de agendar un diagnóstico', time: 'hace 2 min · España', avatar: 'AM', color: 'linear-gradient(135deg,#F97316,#EA580C)' },
+    { name: 'Roberto S.', action: 'está viendo los casos de éxito', time: 'hace 5 min · México', avatar: 'RS', color: 'linear-gradient(135deg,#06B6D4,#0284C7)' },
+    { name: 'Laura G.', action: 'solicitó información de servicios', time: 'hace 8 min · Colombia', avatar: 'LG', color: 'linear-gradient(135deg,#22C55E,#16A34A)' },
+    { name: 'Pablo V.', action: 'calculó su potencial de crecimiento', time: 'hace 11 min · Argentina', avatar: 'PV', color: 'linear-gradient(135deg,#A855F7,#7C3AED)' },
+  ];
+  const toast = document.getElementById('sp-toast');
+  let ti = 0;
+  function showToast() {
+    const t = toasts[ti % toasts.length]; ti++;
+    document.getElementById('toastAvatar').textContent = t.avatar;
+    document.getElementById('toastAvatar').style.background = t.color;
+    document.getElementById('toastName').textContent = t.name;
+    document.getElementById('toastAction').textContent = t.action;
+    toast.querySelector('.toast-time').textContent = t.time;
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 4500);
+    setTimeout(showToast, 12000);
+  }
+  setTimeout(showToast, 6000);
+
+  /* ── Cookie banner ── */
+  if (!localStorage.getItem('cookie_consent')) {
+    document.getElementById('cookie-banner').classList.remove('hidden');
+  } else {
+    document.getElementById('cookie-banner').classList.add('hidden');
+  }
+  ['cookieAccept', 'cookieDecline'].forEach(id => {
+    document.getElementById(id).addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', id === 'cookieAccept' ? 'all' : 'essential');
+      document.getElementById('cookie-banner').classList.add('hidden');
+    });
+  });
+
+  /* ── Revenue calculator ── */
+  const growthMultipliers = {
+    ecom:   { m90: 1.55, m6: 1.90, m12: 2.55 },
+    b2b:    { m90: 1.45, m6: 1.80, m12: 2.30 },
+    b2c:    { m90: 1.40, m6: 1.70, m12: 2.10 },
+    retail: { m90: 1.50, m6: 1.85, m12: 2.40 },
+    clinic: { m90: 1.35, m6: 1.65, m12: 2.00 },
+    real:   { m90: 1.60, m6: 2.00, m12: 2.70 },
+  };
+  function fmt(n) {
+    if (n >= 1000000) return '€' + (n/1000000).toFixed(1) + 'M';
+    if (n >= 1000) return '€' + Math.round(n/1000) + 'K';
+    return '€' + Math.round(n);
+  }
+  function animNum(el, from, to, duration, formatter) {
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatter(from + (to - from) * ease);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  window.runCalc = function() {
+    const rev = parseFloat(document.getElementById('calcRevenue').value);
+    const sector = document.getElementById('calcSector').value;
+    if (!rev || rev < 100 || !sector) {
+      document.getElementById('calcRevenue').style.borderColor = 'rgba(249,115,22,.6)';
+      setTimeout(() => document.getElementById('calcRevenue').style.borderColor = '', 1500);
+      return;
+    }
+    const m = growthMultipliers[sector] || growthMultipliers.b2c;
+    const r90 = rev * m.m90, r6 = rev * m.m6, r12 = rev * m.m12;
+    const maxBar = r12;
+    const container = document.getElementById('calcResults');
+    container.innerHTML = `
+      <div class="calc-result-card highlight">
+        <div class="calc-result-label">Proyección a 12 meses</div>
+        <div class="calc-result-val" id="cr12">€0</div>
+        <div class="calc-result-sub">vs. ${fmt(rev)} actual — <strong style="color:var(--success)">+${Math.round((m.m12-1)*100)}% de crecimiento</strong></div>
+      </div>
+      <div class="calc-result-grid">
+        <div class="calc-result-card">
+          <div class="calc-result-label">En 90 días</div>
+          <div class="calc-result-val green" id="cr90">€0</div>
+          <div class="calc-result-sub">+${Math.round((m.m90-1)*100)}% crecimiento</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-label">En 6 meses</div>
+          <div class="calc-result-val" id="cr6">€0</div>
+          <div class="calc-result-sub">+${Math.round((m.m6-1)*100)}% crecimiento</div>
+        </div>
+      </div>
+      <div class="calc-result-card">
+        <div class="calc-bar-section">
+          <div class="calc-bar-label">Proyección de crecimiento mensual</div>
+          <div class="calc-bar-group">
+            <div class="calc-bar-row">
+              <span class="calc-bar-name">Hoy</span>
+              <div class="calc-bar-track"><div class="calc-bar-fill-el" id="cb0" style="width:0;background:rgba(100,116,139,.5)"></div></div>
+              <span class="calc-bar-amt">${fmt(rev)}</span>
+            </div>
+            <div class="calc-bar-row">
+              <span class="calc-bar-name">90 días</span>
+              <div class="calc-bar-track"><div class="calc-bar-fill-el" id="cb1" style="width:0;background:rgba(249,115,22,.5)"></div></div>
+              <span class="calc-bar-amt">${fmt(r90)}</span>
+            </div>
+            <div class="calc-bar-row">
+              <span class="calc-bar-name">6 meses</span>
+              <div class="calc-bar-track"><div class="calc-bar-fill-el" id="cb2" style="width:0;background:rgba(249,115,22,.75)"></div></div>
+              <span class="calc-bar-amt">${fmt(r6)}</span>
+            </div>
+            <div class="calc-bar-row">
+              <span class="calc-bar-name">12 meses</span>
+              <div class="calc-bar-track"><div class="calc-bar-fill-el" id="cb3" style="width:0;background:linear-gradient(90deg,#F97316,#FB923C)"></div></div>
+              <span class="calc-bar-amt">${fmt(r12)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#cta" class="btn-primary" style="justify-content:center;font-size:15px;padding:15px 24px">
+        Quiero conseguir estos números →
+      </a>
+    `;
+    animNum(document.getElementById('cr12'), 0, r12, 1400, fmt);
+    animNum(document.getElementById('cr90'), 0, r90, 1200, fmt);
+    animNum(document.getElementById('cr6'),  0, r6,  1300, fmt);
+    setTimeout(() => {
+      const pct = (w, max) => Math.round((w / max) * 100) + '%';
+      document.getElementById('cb0').style.width = pct(rev, maxBar);
+      document.getElementById('cb1').style.width = pct(r90, maxBar);
+      document.getElementById('cb2').style.width = pct(r6,  maxBar);
+      document.getElementById('cb3').style.width = '100%';
+    }, 80);
+    document.getElementById('calcResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  document.getElementById('calcRevenue').addEventListener('keydown', e => { if (e.key === 'Enter') window.runCalc(); });
 </script>
 </body>
 </html>
