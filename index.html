@@ -8,6 +8,28 @@
   <meta property="og:title" content="EcomLab — Sistemas Digitales para Negocios que Crecen" />
   <meta property="og:description" content="Construimos la infraestructura digital que tu negocio necesita para escalar. Tecnología, automatización y estrategia con resultados medibles." />
   <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0B1120" />
+  <meta name="robots" content="index, follow" />
+  <!-- Favicon inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23F97316'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-size='20' font-weight='900' fill='white'>e</text></svg>" />
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EcomLab",
+    "description": "Sistemas digitales para negocios que quieren crecer. Tecnología, automatización y estrategia digital con resultados medibles en 90 días.",
+    "url": "https://ecomlab.es",
+    "email": "hola@ecomlab.es",
+    "areaServed": ["ES", "MX", "CO", "AR"],
+    "serviceType": ["Ecommerce Development", "Digital Marketing", "CRM Automation", "Brand Strategy"],
+    "sameAs": ["https://linkedin.com/company/ecomlab"],
+    "offers": {
+      "@type": "Offer",
+      "description": "Diagnóstico gratuito de 30 minutos para identificar oportunidades de crecimiento"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -1003,9 +1025,211 @@
       .compare-header, .compare-row { grid-template-columns: 1fr 1fr; }
       .compare-cell.other, .compare-col:last-child { display: none; }
     }
+
+    /* ══════════════════════════════════════════════════
+       CUSTOM CURSOR
+    ══════════════════════════════════════════════════ */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      a, button, [role="button"], input, select, textarea, label { cursor: none; }
+    }
+    #cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid rgba(249,115,22,.55);
+      transform: translate(-50%,-50%);
+      transition: width .25s, height .25s, border-color .25s, opacity .3s;
+      will-change: transform;
+    }
+    #cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--orange);
+      transform: translate(-50%,-50%);
+      will-change: transform;
+    }
+    #cursor-ring.hovered { width: 52px; height: 52px; border-color: var(--orange); }
+    #cursor-ring.clicking { width: 28px; height: 28px; }
+
+    /* ══════════════════════════════════════════════════
+       HERO PARTICLES
+    ══════════════════════════════════════════════════ */
+    .hero-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .hp {
+      position: absolute; border-radius: 50%;
+      background: var(--orange); opacity: .12;
+      animation: particle-drift linear infinite;
+    }
+    .hp:nth-child(1)  { width:4px;  height:4px;  left:10%; top:20%; animation-duration:18s; animation-delay:0s; }
+    .hp:nth-child(2)  { width:6px;  height:6px;  left:25%; top:70%; animation-duration:22s; animation-delay:-4s; }
+    .hp:nth-child(3)  { width:3px;  height:3px;  left:60%; top:15%; animation-duration:15s; animation-delay:-7s; }
+    .hp:nth-child(4)  { width:5px;  height:5px;  left:80%; top:55%; animation-duration:20s; animation-delay:-2s; background:var(--cyan); }
+    .hp:nth-child(5)  { width:4px;  height:4px;  left:45%; top:85%; animation-duration:25s; animation-delay:-10s; }
+    .hp:nth-child(6)  { width:7px;  height:7px;  left:90%; top:30%; animation-duration:17s; animation-delay:-5s; background:var(--purple); opacity:.08; }
+    .hp:nth-child(7)  { width:3px;  height:3px;  left:5%;  top:50%; animation-duration:19s; animation-delay:-8s; }
+    .hp:nth-child(8)  { width:5px;  height:5px;  left:70%; top:80%; animation-duration:23s; animation-delay:-3s; background:var(--cyan); }
+    @keyframes particle-drift {
+      0%   { transform: translateY(0) translateX(0) scale(1); opacity: .12; }
+      33%  { transform: translateY(-40px) translateX(15px) scale(1.2); opacity: .18; }
+      66%  { transform: translateY(-20px) translateX(-10px) scale(0.9); opacity: .08; }
+      100% { transform: translateY(0) translateX(0) scale(1); opacity: .12; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       SECTION NAV DOTS
+    ══════════════════════════════════════════════════ */
+    #section-dots {
+      position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+      z-index: 50; display: flex; flex-direction: column; gap: 10px;
+      pointer-events: auto;
+    }
+    .sdot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.15);
+      cursor: pointer; transition: all .3s ease; position: relative;
+    }
+    .sdot:hover { background: rgba(255,255,255,.5); transform: scale(1.3); }
+    .sdot.active { background: var(--orange); border-color: var(--orange); box-shadow: 0 0 8px rgba(249,115,22,.5); }
+    .sdot-label {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 6px; padding: 4px 10px;
+      font-size: 11px; font-weight: 600; color: var(--grey-3); white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity .2s;
+    }
+    .sdot:hover .sdot-label { opacity: 1; }
+    @media (max-width: 1100px) { #section-dots { display: none; } }
+
+    /* ══════════════════════════════════════════════════
+       TECH STACK SECTION
+    ══════════════════════════════════════════════════ */
+    #stack { background: var(--navy); border-top: 1px solid rgba(255,255,255,.04); border-bottom: 1px solid rgba(255,255,255,.04); padding: 64px 0; }
+    .stack-head { text-align: center; margin-bottom: 40px; }
+    .stack-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey-4); margin-bottom: 10px; }
+    .stack-title { font-family: var(--font-head); font-size: clamp(22px,2.5vw,32px); font-weight: 700; }
+    .stack-grid {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 860px; margin: 0 auto;
+    }
+    .stack-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 100px; padding: 10px 18px;
+      font-size: 13px; font-weight: 600; color: var(--grey-3);
+      transition: all .25s ease;
+    }
+    .stack-pill:hover { border-color: rgba(249,115,22,.3); color: var(--white); transform: translateY(-2px); }
+    .stack-icon { font-size: 16px; }
+    .stack-cat {
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--grey-4); margin-bottom: 14px; margin-top: 8px;
+      text-align: center; width: 100%;
+    }
+
+    /* ══════════════════════════════════════════════════
+       ANIMATED CTA BORDER
+    ══════════════════════════════════════════════════ */
+    .cta-box {
+      position: relative;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: -1px; border-radius: calc(var(--r-xl) + 1px);
+      background: conic-gradient(from var(--angle, 0deg),
+        transparent 0deg, rgba(249,115,22,.6) 60deg, transparent 120deg);
+      animation: spin-border 4s linear infinite;
+      z-index: 0;
+    }
+    @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+    @keyframes spin-border { to { --angle: 360deg; } }
+    .cta-box > * { position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════════════════
+       BROWSER MOCKUP (portfolio)
+    ══════════════════════════════════════════════════ */
+    .browser-mock {
+      position: absolute; inset: 16px;
+      background: var(--navy-2); border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.1);
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      transition: transform .5s ease, box-shadow .5s ease;
+    }
+    .port-item:hover .browser-mock { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+    .brow-top {
+      background: rgba(255,255,255,.04); padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .brow-dots { display: flex; gap: 5px; }
+    .brow-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .brow-dot:nth-child(1) { background: rgba(255,95,87,.6); }
+    .brow-dot:nth-child(2) { background: rgba(254,188,46,.6); }
+    .brow-dot:nth-child(3) { background: rgba(40,200,64,.6); }
+    .brow-bar {
+      flex: 1; height: 18px; background: rgba(255,255,255,.06); border-radius: 4px;
+      display: flex; align-items: center; padding: 0 8px;
+    }
+    .brow-url { font-size: 9px; color: rgba(255,255,255,.3); font-family: monospace; }
+    .brow-body { flex: 1; position: relative; overflow: hidden; }
+    /* Content placeholder lines inside browser */
+    .brow-content { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .brow-hero-block {
+      height: 36px; border-radius: 4px;
+      background: linear-gradient(135deg, rgba(249,115,22,.25), rgba(249,115,22,.05));
+      margin-bottom: 4px;
+    }
+    .brow-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,.07); }
+    .brow-line.w80 { width: 80%; }
+    .brow-line.w60 { width: 60%; }
+    .brow-line.w90 { width: 90%; }
+    .brow-line.w40 { width: 40%; }
+    .brow-cards { display: flex; gap: 6px; margin-top: 4px; }
+    .brow-card { flex: 1; height: 28px; border-radius: 4px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.06); }
+    .brow-card:first-child { background: rgba(249,115,22,.12); border-color: rgba(249,115,22,.2); }
+
+    /* ══════════════════════════════════════════════════
+       BEFORE/AFTER TOGGLE
+    ══════════════════════════════════════════════════ */
+    .ba-toggle {
+      display: inline-flex; background: var(--navy-4); border-radius: 100px; padding: 3px; gap: 2px;
+    }
+    .ba-btn {
+      font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 100px;
+      cursor: pointer; transition: all .2s; color: var(--grey-4); border: none;
+      background: transparent; font-family: var(--font-body);
+    }
+    .ba-btn.active { background: var(--orange); color: var(--white); box-shadow: 0 2px 8px rgba(249,115,22,.4); }
+    .ba-state { transition: all .4s ease; }
+
+    /* ══════════════════════════════════════════════════
+       NOISE TEXTURE OVERLAY
+    ══════════════════════════════════════════════════ */
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 1000; pointer-events: none;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
   </style>
 </head>
 <body>
+
+<!-- Custom cursor (desktop only) -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- Section nav dots -->
+<nav id="section-dots" aria-label="Navegación de secciones">
+  <div class="sdot active" data-target="hero"><span class="sdot-label">Inicio</span></div>
+  <div class="sdot" data-target="why"><span class="sdot-label">Por qué EcomLab</span></div>
+  <div class="sdot" data-target="services"><span class="sdot-label">Servicios</span></div>
+  <div class="sdot" data-target="stack"><span class="sdot-label">Stack Tech</span></div>
+  <div class="sdot" data-target="process"><span class="sdot-label">Proceso</span></div>
+  <div class="sdot" data-target="cases"><span class="sdot-label">Casos de Éxito</span></div>
+  <div class="sdot" data-target="portfolio"><span class="sdot-label">Portfolio</span></div>
+  <div class="sdot" data-target="testimonials"><span class="sdot-label">Testimonios</span></div>
+  <div class="sdot" data-target="calculator"><span class="sdot-label">Calculadora</span></div>
+  <div class="sdot" data-target="cta"><span class="sdot-label">Contacto</span></div>
+</nav>
 
 <!-- ═══════════════════════ LOADER ═══════════════════════ -->
 <div id="loader">
@@ -1059,6 +1283,10 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="hero-particles">
+    <div class="hp"></div><div class="hp"></div><div class="hp"></div><div class="hp"></div>
+    <div class="hp"></div><div class="hp"></div><div class="hp"></div><div class="hp"></div>
+  </div>
   <div class="container hero-content">
     <div class="hero-inner">
 
@@ -1383,6 +1611,44 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ TECH STACK ═══════════════════════ -->
+<section id="stack">
+  <div class="container">
+    <div class="stack-head reveal">
+      <div class="stack-eyebrow">Herramientas que dominamos</div>
+      <h2 class="stack-title">Tecnología de primer nivel.<br><span style="color:var(--orange)">Al servicio de tu negocio.</span></h2>
+    </div>
+    <div class="stack-grid reveal">
+      <div class="stack-cat">Ecommerce</div>
+      <div class="stack-pill"><span class="stack-icon">🛍️</span>Shopify</div>
+      <div class="stack-pill"><span class="stack-icon">🛒</span>WooCommerce</div>
+      <div class="stack-pill"><span class="stack-icon">📦</span>PrestaShop</div>
+      <div class="stack-pill"><span class="stack-icon">🔁</span>Klaviyo</div>
+
+      <div class="stack-cat">Automatización & CRM</div>
+      <div class="stack-pill"><span class="stack-icon">🟠</span>HubSpot</div>
+      <div class="stack-pill"><span class="stack-icon">⚡</span>ActiveCampaign</div>
+      <div class="stack-pill"><span class="stack-icon">🔗</span>Zapier</div>
+      <div class="stack-pill"><span class="stack-icon">⚙️</span>n8n</div>
+      <div class="stack-pill"><span class="stack-icon">📋</span>Notion</div>
+
+      <div class="stack-cat">Paid Media & Analytics</div>
+      <div class="stack-pill"><span class="stack-icon">🎯</span>Google Ads</div>
+      <div class="stack-pill"><span class="stack-icon">📘</span>Meta Ads</div>
+      <div class="stack-pill"><span class="stack-icon">📊</span>GA4</div>
+      <div class="stack-pill"><span class="stack-icon">🔍</span>Semrush</div>
+      <div class="stack-pill"><span class="stack-icon">🗺️</span>Hotjar</div>
+
+      <div class="stack-cat">Desarrollo & Diseño</div>
+      <div class="stack-pill"><span class="stack-icon">⚛️</span>React</div>
+      <div class="stack-pill"><span class="stack-icon">▲</span>Next.js</div>
+      <div class="stack-pill"><span class="stack-icon">🎨</span>Figma</div>
+      <div class="stack-pill"><span class="stack-icon">🌐</span>Webflow</div>
+      <div class="stack-pill"><span class="stack-icon">🤖</span>OpenAI API</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════ PROCESS ═══════════════════════ -->
 <section id="process" class="section">
   <div class="container">
@@ -1463,19 +1729,25 @@
         <div class="case-info">
           <span class="case-client">Cliente confidencial · España · 4 meses</span>
           <h3 class="case-title">De €22K a €84K de facturación mensual</h3>
-          <p class="case-desc">Rediseñamos por completo el sistema de adquisición y el funnel de conversión. Email marketing automatizado, checkout optimizado y paid media con estructura de campañas TOFU/MOFU/BOFU. El resultado fue inmediato y predecible.</p>
-          <div class="case-metrics">
+          <p class="case-desc">Rediseñamos por completo el sistema de adquisición y el funnel de conversión. Email marketing automatizado, checkout optimizado y paid media con estructura TOFU/MOFU/BOFU. El resultado fue inmediato y predecible.</p>
+
+          <!-- Before / After toggle -->
+          <div class="ba-toggle" id="baToggle">
+            <button class="ba-btn" id="baBefore" onclick="setBA('before')">Antes</button>
+            <button class="ba-btn active" id="baAfter" onclick="setBA('after')">Después</button>
+          </div>
+          <div class="case-metrics ba-state" id="baMetrics">
             <div class="case-metric">
-              <div class="case-metric-val o">+282%</div>
-              <div class="case-metric-lbl">Facturación</div>
+              <div class="case-metric-val o" id="baMet1">+282%</div>
+              <div class="case-metric-lbl" id="baLbl1">Facturación</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val g">4.8x</div>
-              <div class="case-metric-lbl">ROAS</div>
+              <div class="case-metric-val g" id="baMet2">4.8x</div>
+              <div class="case-metric-lbl" id="baLbl2">ROAS</div>
             </div>
             <div class="case-metric">
-              <div class="case-metric-val c">−41%</div>
-              <div class="case-metric-lbl">CPA</div>
+              <div class="case-metric-val c" id="baMet3">−41%</div>
+              <div class="case-metric-lbl" id="baLbl3">CPA</div>
             </div>
           </div>
           <a href="#cta" class="case-link">Quiero estos resultados →</a>
@@ -1614,7 +1886,12 @@
   <div class="portfolio-grid" id="portfolioGrid">
 
     <div class="port-item pc-1" data-cat="ecommerce">
-      <div class="port-bg"><div class="port-bg-emoji">🛒</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">novamoda.es/shop</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block"></div><div class="brow-line w80"></div><div class="brow-line w60"></div><div class="brow-cards"><div class="brow-card"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">001</span>
@@ -1632,7 +1909,12 @@
     </div>
 
     <div class="port-item pc-2" data-cat="automatizacion">
-      <div class="port-bg"><div class="port-bg-emoji">⚡</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">app.consultpro.mx/crm</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(6,182,212,.25),rgba(6,182,212,.05))"></div><div class="brow-line w90"></div><div class="brow-line w40"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.25)"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">002</span>
@@ -1649,7 +1931,12 @@
     </div>
 
     <div class="port-item pc-3 tall" data-cat="ecommerce">
-      <div class="port-bg"><div class="port-bg-emoji">📱</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">freshmarket.co/tienda</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(34,197,94,.04))"></div><div class="brow-line w80"></div><div class="brow-line w60"></div><div class="brow-line w90"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.2)"></div><div class="brow-card"></div></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">003</span>
@@ -1666,7 +1953,12 @@
     </div>
 
     <div class="port-item pc-4" data-cat="ia">
-      <div class="port-bg"><div class="port-bg-emoji">🤖</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">clinicavital.es/bot</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.04))"></div><div class="brow-line w60"></div><div class="brow-line w80"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.2)"></div><div class="brow-card"></div><div class="brow-card"></div></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">004</span>
@@ -1683,7 +1975,12 @@
     </div>
 
     <div class="port-item pc-5" data-cat="estrategia">
-      <div class="port-bg"><div class="port-bg-emoji">📊</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">sportxcel.ar/dashboard</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="height:24px;margin-bottom:8px"></div><div class="brow-cards"><div class="brow-card"></div><div class="brow-card"></div><div class="brow-card"></div></div><div style="margin-top:6px"><div class="brow-line w90"></div></div><div class="brow-line w60" style="margin-top:4px"></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">005</span>
@@ -1701,7 +1998,12 @@
     </div>
 
     <div class="port-item pc-6" data-cat="estrategia">
-      <div class="port-bg"><div class="port-bg-emoji">🏗️</div></div>
+      <div class="port-bg">
+        <div class="browser-mock">
+          <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">inmoelite.es/propiedades</span></div></div>
+          <div class="brow-body"><div class="brow-content"><div class="brow-hero-block" style="background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(6,182,212,.03))"></div><div class="brow-line w80"></div><div class="brow-cards"><div class="brow-card" style="background:rgba(6,182,212,.08);border-color:rgba(6,182,212,.2)"></div><div class="brow-card"></div></div></div></div>
+        </div>
+      </div>
       <div class="port-overlay"></div>
       <div class="port-top">
         <span class="port-num">006</span>
@@ -2287,6 +2589,72 @@
     document.getElementById('calcResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
   document.getElementById('calcRevenue').addEventListener('keydown', e => { if (e.key === 'Enter') window.runCalc(); });
+
+  /* ── Custom cursor ── */
+  (function() {
+    const ring = document.getElementById('cursor-ring');
+    const dot  = document.getElementById('cursor-dot');
+    if (!ring || window.matchMedia('(pointer: coarse)').matches) return;
+    let rx = 0, ry = 0, mx = 0, my = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function tick() {
+      rx = lerp(rx, mx, 0.14); ry = lerp(ry, my, 0.14);
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+      dot.style.transform  = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+    const hover = 'a,button,[role="button"],input,select,textarea,.port-filter-btn,.ba-btn,.sdot,.faq-question';
+    document.querySelectorAll(hover).forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+    document.addEventListener('mousedown', () => ring.classList.add('clicking'));
+    document.addEventListener('mouseup',   () => ring.classList.remove('clicking'));
+  })();
+
+  /* ── Section nav dots ── */
+  (function() {
+    const dots = document.querySelectorAll('.sdot');
+    const sections = ['hero','why','services','stack','process','cases','portfolio','testimonials','calculator','cta'];
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        const t = document.getElementById(d.dataset.target);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = sections.indexOf(e.target.id);
+          if (idx > -1) {
+            dots.forEach(d => d.classList.remove('active'));
+            dots[idx] && dots[idx].classList.add('active');
+          }
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+  })();
+
+  /* ── Before / After toggle ── */
+  const baData = {
+    before: { m1: '€22K', l1: 'Facturación anterior', m2: '1.2x', l2: 'ROAS antes', m3: '+18%', l3: 'CPA previo' },
+    after:  { m1: '+282%', l1: 'Facturación', m2: '4.8x', l2: 'ROAS', m3: '−41%', l3: 'CPA' },
+  };
+  window.setBA = function(state) {
+    const d = baData[state];
+    if (!d) return;
+    document.getElementById('baMet1').textContent = d.m1;
+    document.getElementById('baLbl1').textContent = d.l1;
+    document.getElementById('baMet2').textContent = d.m2;
+    document.getElementById('baLbl2').textContent = d.l2;
+    document.getElementById('baMet3').textContent = d.m3;
+    document.getElementById('baLbl3').textContent = d.l3;
+    document.getElementById('baBefore').classList.toggle('active', state === 'before');
+    document.getElementById('baAfter').classList.toggle('active',  state === 'after');
+  };
 </script>
 </body>
 </html>
