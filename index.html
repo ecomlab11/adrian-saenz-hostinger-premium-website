@@ -1593,6 +1593,148 @@
     @media (max-width: 600px) { .testi-slide { padding: 32px 24px; } .testi-slide-metric { display: none; } }
 
     /* ══════════════════════════════════════════════════
+       PORTFOLIO MODAL
+    ══════════════════════════════════════════════════ */
+    #portfolioModal {
+      position: fixed; inset: 0; z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(7,10,20,.85); backdrop-filter: blur(12px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    #portfolioModal.open { opacity: 1; pointer-events: all; }
+    .pm-box {
+      position: relative;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--r-xl); width: 92%; max-width: 860px;
+      max-height: 88vh; overflow-y: auto;
+      transform: translateY(24px) scale(.97);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      scrollbar-width: thin; scrollbar-color: rgba(249,115,22,.3) transparent;
+    }
+    #portfolioModal.open .pm-box { transform: translateY(0) scale(1); }
+    .pm-close {
+      position: sticky; top: 0; left: 100%; z-index: 2;
+      float: right; margin: 16px 16px 0 0;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--grey-3); font-size: 18px; line-height: 1;
+      cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pm-close:hover { background: rgba(249,115,22,.15); border-color: var(--orange); color: var(--white); }
+    .pm-header {
+      padding: 40px 44px 28px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .pm-num { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--grey-4); text-transform: uppercase; margin-bottom: 6px; }
+    .pm-title { font-family: var(--font-head); font-size: clamp(24px,4vw,36px); font-weight: 800; margin-bottom: 6px; }
+    .pm-cat { font-size: 13px; color: var(--orange); font-weight: 600; }
+    .pm-body { padding: 32px 44px 44px; }
+    .pm-section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--grey-4); margin-bottom: 12px;
+    }
+    .pm-text { font-size: 15px; color: var(--grey-3); line-height: 1.78; margin-bottom: 28px; }
+    .pm-results {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px;
+    }
+    .pm-result-card {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--r-md); padding: 16px 14px; text-align: center;
+    }
+    .pm-result-val { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--orange); }
+    .pm-result-label { font-size: 12px; color: var(--grey-4); margin-top: 4px; }
+    .pm-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .pm-tech-tag {
+      padding: 5px 14px; border-radius: 100px;
+      background: rgba(249,115,22,.09); border: 1px solid rgba(249,115,22,.2);
+      font-size: 12px; font-weight: 600; color: var(--orange-l);
+    }
+    .pm-quote {
+      background: rgba(255,255,255,.03); border-left: 3px solid var(--orange);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      padding: 18px 22px; margin-bottom: 28px;
+    }
+    .pm-quote-text { font-size: 15px; color: var(--grey-3); font-style: italic; line-height: 1.7; margin-bottom: 8px; }
+    .pm-quote-author { font-size: 13px; color: var(--grey-4); font-weight: 600; }
+    .pm-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: var(--white); padding: 13px 28px; border-radius: var(--r-sm); font-weight: 700; font-size: 15px; transition: all .25s; }
+    .pm-cta:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.4); }
+    @media (max-width: 600px) {
+      .pm-header, .pm-body { padding-left: 24px; padding-right: 24px; }
+      .pm-results { grid-template-columns: repeat(2, 1fr); }
+    }
+    /* Port item "ver caso" button */
+    .port-case-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px; padding: 7px 16px; border-radius: var(--r-sm);
+      background: rgba(249,115,22,.12); border: 1px solid rgba(249,115,22,.3);
+      color: var(--orange-l); font-size: 12px; font-weight: 700;
+      transition: all .2s; cursor: pointer;
+    }
+    .port-case-btn:hover { background: rgba(249,115,22,.22); border-color: var(--orange); }
+
+    /* ══════════════════════════════════════════════════
+       EXIT INTENT POPUP
+    ══════════════════════════════════════════════════ */
+    #exitPopup {
+      position: fixed; inset: 0; z-index: 9990;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(7,10,20,.8); backdrop-filter: blur(10px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    #exitPopup.open { opacity: 1; pointer-events: all; }
+    .ep-box {
+      position: relative;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--r-xl); padding: 48px 44px;
+      width: 92%; max-width: 520px; text-align: center;
+      transform: scale(.92) translateY(20px);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    #exitPopup.open .ep-box { transform: scale(1) translateY(0); }
+    .ep-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      color: var(--grey-4); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .ep-close:hover { background: rgba(249,115,22,.15); color: var(--white); }
+    .ep-icon { font-size: 40px; margin-bottom: 16px; }
+    .ep-title { font-family: var(--font-head); font-size: clamp(20px,3vw,26px); font-weight: 800; margin-bottom: 10px; }
+    .ep-sub { font-size: 15px; color: var(--grey-3); line-height: 1.65; margin-bottom: 28px; }
+    .ep-form { display: flex; gap: 10px; margin-bottom: 14px; }
+    .ep-input {
+      flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-sm); padding: 12px 16px;
+      color: var(--white); font-size: 14px; font-family: var(--font-body);
+      transition: border-color .2s;
+    }
+    .ep-input:focus { outline: none; border-color: var(--orange); }
+    .ep-input::placeholder { color: var(--grey-4); }
+    .ep-btn {
+      background: var(--orange); color: var(--white);
+      border-radius: var(--r-sm); padding: 12px 20px;
+      font-weight: 700; font-size: 14px; white-space: nowrap;
+      transition: all .25s; cursor: pointer;
+    }
+    .ep-btn:hover { background: var(--orange-d); transform: translateY(-1px); }
+    .ep-note { font-size: 12px; color: var(--grey-4); }
+    @media (max-width: 480px) {
+      .ep-box { padding: 36px 24px; }
+      .ep-form { flex-direction: column; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       3D TILT CARDS
+    ══════════════════════════════════════════════════ */
+    .tilt-card { transform-style: preserve-3d; will-change: transform; }
+
+    /* ══════════════════════════════════════════════════
        PRINT STYLESHEET
     ══════════════════════════════════════════════════ */
     @media print {
@@ -2529,7 +2671,7 @@
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
 
-    <div class="port-item pc-1" data-cat="ecommerce">
+    <div class="port-item pc-1 tilt-card" data-cat="ecommerce" data-modal="project-001">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">novamoda.es/shop</span></div></div>
@@ -2549,10 +2691,11 @@
         <div class="port-tag">Moda · España</div>
         <div class="port-name">NovaModa Store</div>
         <div class="port-tech">Shopify · Email Marketing · Google Ads</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
-    <div class="port-item pc-2" data-cat="automatizacion">
+    <div class="port-item pc-2 tilt-card" data-cat="automatizacion" data-modal="project-002">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">app.consultpro.mx/crm</span></div></div>
@@ -2571,10 +2714,11 @@
         <div class="port-tag">B2B · México</div>
         <div class="port-name">ConsultPro CRM</div>
         <div class="port-tech">HubSpot · LinkedIn Ads · n8n</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
-    <div class="port-item pc-3 tall" data-cat="ecommerce">
+    <div class="port-item pc-3 tall tilt-card" data-cat="ecommerce" data-modal="project-003">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">freshmarket.co/tienda</span></div></div>
@@ -2593,10 +2737,11 @@
         <div class="port-tag">Retail · Colombia</div>
         <div class="port-name">FreshMarket Portal</div>
         <div class="port-tech">React · Next.js · Analytics</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
-    <div class="port-item pc-4" data-cat="ia">
+    <div class="port-item pc-4 tilt-card" data-cat="ia" data-modal="project-004">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">clinicavital.es/bot</span></div></div>
@@ -2615,10 +2760,11 @@
         <div class="port-tag">Salud · España</div>
         <div class="port-name">VitalBot Assistant</div>
         <div class="port-tech">ChatGPT API · Zapier · CRM</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
-    <div class="port-item pc-5" data-cat="estrategia">
+    <div class="port-item pc-5 tilt-card" data-cat="estrategia" data-modal="project-005">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">sportxcel.ar/dashboard</span></div></div>
@@ -2638,10 +2784,11 @@
         <div class="port-tag">Retail · Argentina</div>
         <div class="port-name">SportXcel Brand</div>
         <div class="port-tech">SEO · Meta Ads · Branding</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
-    <div class="port-item pc-6" data-cat="estrategia">
+    <div class="port-item pc-6 tilt-card" data-cat="estrategia" data-modal="project-006">
       <div class="port-bg">
         <div class="browser-mock">
           <div class="brow-top"><div class="brow-dots"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div></div><div class="brow-bar"><span class="brow-url">inmoelite.es/propiedades</span></div></div>
@@ -2660,6 +2807,7 @@
         <div class="port-tag">Real Estate · España</div>
         <div class="port-name">InmoElite Digital</div>
         <div class="port-tech">Landing Pages · Google Ads · CRM</div>
+        <button class="port-case-btn">Ver caso completo →</button>
       </div>
     </div>
 
@@ -3257,6 +3405,48 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════════ PORTFOLIO MODAL ═══════════════════════ -->
+<div id="portfolioModal" role="dialog" aria-modal="true" aria-label="Caso de estudio">
+  <div class="pm-box" id="pmBox">
+    <button class="pm-close" id="pmClose" aria-label="Cerrar">×</button>
+    <div class="pm-header">
+      <div class="pm-num" id="pmNum">001</div>
+      <div class="pm-title" id="pmTitle"></div>
+      <div class="pm-cat" id="pmCat"></div>
+    </div>
+    <div class="pm-body">
+      <div class="pm-section-label">El reto</div>
+      <p class="pm-text" id="pmChallenge"></p>
+      <div class="pm-section-label">Nuestra solución</div>
+      <p class="pm-text" id="pmSolution"></p>
+      <div class="pm-section-label">Resultados</div>
+      <div class="pm-results" id="pmResults"></div>
+      <div class="pm-section-label">Tecnología utilizada</div>
+      <div class="pm-tech" id="pmTech"></div>
+      <div class="pm-quote" id="pmQuote">
+        <div class="pm-quote-text" id="pmQuoteText"></div>
+        <div class="pm-quote-author" id="pmQuoteAuthor"></div>
+      </div>
+      <a href="#cta" class="pm-cta" id="pmCta">Quiero resultados similares →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ EXIT INTENT POPUP ═══════════════════════ -->
+<div id="exitPopup" role="dialog" aria-modal="true" aria-label="Antes de irte">
+  <div class="ep-box">
+    <button class="ep-close" id="epClose" aria-label="Cerrar">×</button>
+    <div class="ep-icon">🎯</div>
+    <h3 class="ep-title">¿Te vas sin saber cuánto puedes crecer?</h3>
+    <p class="ep-sub">Déjanos tu email y te enviamos gratis: <strong>Los 7 sistemas que usan los negocios que duplican su facturación en 90 días.</strong></p>
+    <div class="ep-form">
+      <input class="ep-input" id="epEmail" type="email" placeholder="tu@email.com" />
+      <button class="ep-btn" id="epSubmit">Enviar →</button>
+    </div>
+    <p class="ep-note">Sin spam. Puedes darte de baja cuando quieras.</p>
+  </div>
+</div>
 
 <!-- ═══════════════════════ FLOATING ELEMENTS ═══════════════════════ -->
 
@@ -4005,6 +4195,205 @@
     }
 
     startAuto();
+  })();
+
+  /* ── Portfolio case study modals ── */
+  (function() {
+    const data = {
+      'project-001': {
+        num: '001', name: 'NovaModa Store', cat: 'Ecommerce · Moda · España',
+        challenge: 'Facturación mensual estancada en €22K con un ROAS medio de 1.2x. Las campañas se gestionaban sin estrategia cohesionada, el carrito tenía un 78% de abandono y no existía ningún flujo de recuperación automatizado.',
+        solution: 'Reconstruimos el ecosistema completo: nueva arquitectura Shopify Plus con UX optimizada para conversión, 12 flujos de email automatizados en Klaviyo (bienvenida, abandono, post-compra, reactivación), y reestructuración total de Google Ads con feed de productos optimizado y remarketing dinámico por segmento.',
+        results: [{v:'+282%',l:'Revenue'},{v:'4.8×',l:'ROAS'},{v:'−41%',l:'CPA'},{v:'90 días',l:'Tiempo'}],
+        tech: ['Shopify Plus','Klaviyo','Google Ads','Analytics 4','Hotjar','Looker Studio'],
+        quote: '"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tomamos decisiones con datos."',
+        author: 'Alejandra Morales — CEO, NovaModa',
+      },
+      'project-002': {
+        num: '002', name: 'ConsultPro CRM', cat: 'Automatización · B2B · México',
+        challenge: 'El equipo comercial gestionaba 12 leads al mes de forma manual en hojas de cálculo. Sin seguimiento estructurado, el 70% de las oportunidades se perdía por falta de respuesta en tiempo y forma.',
+        solution: 'Implementamos HubSpot CRM completo con pipeline personalizado, automatizamos el nurturing con 8 secuencias de email según etapa del ciclo de venta, lanzamos campañas LinkedIn Ads segmentadas por cargo y sector, y conectamos todo mediante n8n para notificaciones y asignaciones automáticas.',
+        results: [{v:'+1.133%',l:'Leads/mes'},{v:'×11.7',l:'Pipeline'},{v:'−35%',l:'Tiempo cierre'},{v:'6 meses',l:'Tiempo'}],
+        tech: ['HubSpot','LinkedIn Ads','n8n','Notion','Slack','Apollo.io'],
+        quote: '"Pasamos de 12 leads al mes a más de 140. Lo más valioso fue entender que el problema era estructural. EcomLab nos dio orden, claridad y resultados."',
+        author: 'Roberto Salcedo — Director Comercial, ConsultPro',
+      },
+      'project-003': {
+        num: '003', name: 'FreshMarket Portal', cat: 'Web App · Retail · Colombia',
+        challenge: 'Los pedidos se gestionaban 100% por WhatsApp manual. Sin trazabilidad, sin histórico de compras, sin upsell automatizado. El equipo perdía 3 horas/día en coordinación operativa.',
+        solution: 'Desarrollamos un portal de cliente en Next.js con catálogo dinámico, carrito, historial de pedidos y sistema de recompras con un clic. Integración con Analytics 4 para funnel completo y experimentos de conversión. Sistema de notificaciones automáticas por WhatsApp y email.',
+        results: [{v:'×4.9',l:'Conversión'},{v:'+€180K',l:'Revenue extra'},{v:'−3h',l:'Ops/día'},{v:'4 meses',l:'Tiempo'}],
+        tech: ['Next.js','React','Vercel','Google Analytics 4','WhatsApp API','Stripe'],
+        quote: '"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta, y ejecutaron todo."',
+        author: 'Laura González — Fundadora, FreshMarket',
+      },
+      'project-004': {
+        num: '004', name: 'VitalBot Assistant', cat: 'IA & Automatización · Salud · España',
+        challenge: 'La clínica recibía más de 200 consultas de cita al mes. El equipo administrativo tardaba hasta 48h en responder, lo que generaba pérdida de pacientes directos a la competencia.',
+        solution: 'Implementamos un asistente conversacional con GPT-4 entrenado en los servicios, precios y disponibilidad de la clínica. Integración directa con Google Calendar para reserva en tiempo real y sincronización con su CRM de pacientes. Disponible 24/7 en web y WhatsApp.',
+        results: [{v:'−60%',l:'Tiempo resp.'},{v:'+45%',l:'Citas/mes'},{v:'24/7',l:'Disponibilidad'},{v:'3 meses',l:'Tiempo'}],
+        tech: ['OpenAI API','Zapier','Google Calendar','HubSpot','WhatsApp Business API','Webflow'],
+        quote: '"El bot atiende mejor que muchos humanos. Y lo que antes tardaba 48h en responderse ahora se resuelve en 2 minutos, a cualquier hora."',
+        author: 'Dr. Carlos Vidal — Director Médico, VitalClinic',
+      },
+      'project-005': {
+        num: '005', name: 'SportXcel Brand', cat: 'Estrategia Digital · Retail · Argentina',
+        challenge: 'Marca nueva sin presencia digital en un mercado dominado por competidores con años de SEO acumulado. Presupuesto limitado, urgencia por generar ventas en los primeros 6 meses.',
+        solution: 'Estrategia omnicanal desde cero: posicionamiento de marca, SEO técnico + contenido con 240 artículos en 6 meses, campañas Meta Ads con creative testing agresivo, y un programa de embajadores que multiplicó el alcance orgánico ×4 sin coste adicional.',
+        results: [{v:'+340%',l:'Tráfico orgánico'},{v:'×3.2',l:'Revenue'},{v:'#1',l:'Posición SEO local'},{v:'6 meses',l:'Tiempo'}],
+        tech: ['WordPress','Semrush','Meta Ads','Google Search Console','Canva Pro','Ahrefs'],
+        quote: '"Llevábamos años con el mismo nivel de ventas. En 6 meses llegamos al doble. Lo que más me sorprendió fue la claridad del proceso desde el primer día."',
+        author: 'Jorge Pereira — Fundador, SportXcel',
+      },
+      'project-006': {
+        num: '006', name: 'InmoElite Digital', cat: 'Real Estate · España',
+        challenge: 'El equipo comercial recibía muy pocos leads cualificados. Los portales inmobiliarios generaban contactos de baja intención y el coste por visita comercial era inasumible.',
+        solution: 'Diseñamos un sistema de captación propio con 4 landing pages segmentadas por zona y tipo de propiedad, campañas Google Ads con keywords de alta intención, lead scoring automático en HubSpot y secuencias de nurturing según perfil del comprador.',
+        results: [{v:'+89',l:'Leads/mes'},{v:'−52%',l:'Coste/lead'},{v:'×2.8',l:'Visitas'},{v:'5 meses',l:'Tiempo'}],
+        tech: ['Webflow','Google Ads','HubSpot','WhatsApp API','Hotjar','Looker Studio'],
+        quote: '"Teníamos tráfico pero no convertíamos. EcomLab rediseñó el embudo y automatizó el seguimiento. Ahora el equipo trabaja solo con leads calificados."',
+        author: 'María Castillo — Directora Comercial, InmoElite',
+      },
+    };
+
+    const modal   = document.getElementById('portfolioModal');
+    const pmClose = document.getElementById('pmClose');
+
+    function openModal(id) {
+      const d = data[id];
+      if (!d) return;
+      document.getElementById('pmNum').textContent    = d.num;
+      document.getElementById('pmTitle').textContent  = d.name;
+      document.getElementById('pmCat').textContent    = d.cat;
+      document.getElementById('pmChallenge').textContent = d.challenge;
+      document.getElementById('pmSolution').textContent  = d.solution;
+      document.getElementById('pmResults').innerHTML  = d.results.map(r =>
+        `<div class="pm-result-card"><div class="pm-result-val">${r.v}</div><div class="pm-result-label">${r.l}</div></div>`).join('');
+      document.getElementById('pmTech').innerHTML     = d.tech.map(t =>
+        `<span class="pm-tech-tag">${t}</span>`).join('');
+      document.getElementById('pmQuoteText').textContent   = d.quote;
+      document.getElementById('pmQuoteAuthor').textContent = d.author;
+      document.getElementById('pmBox').scrollTop = 0;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      pmClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.port-item[data-modal]').forEach(item => {
+      item.addEventListener('click', e => {
+        if (e.target.closest('.port-filter-btn')) return;
+        openModal(item.dataset.modal);
+      });
+    });
+
+    document.querySelectorAll('.port-case-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        openModal(btn.closest('.port-item').dataset.modal);
+      });
+    });
+
+    pmClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    /* close CTA inside modal also closes it */
+    document.getElementById('pmCta').addEventListener('click', closeModal);
+  })();
+
+  /* ── Exit intent popup ── */
+  (function() {
+    if (localStorage.getItem('exit_shown')) return;
+    const popup  = document.getElementById('exitPopup');
+    const close  = document.getElementById('epClose');
+    const submit = document.getElementById('epSubmit');
+    if (!popup) return;
+    let shown = false;
+
+    function openExit() {
+      if (shown) return;
+      shown = true;
+      popup.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      localStorage.setItem('exit_shown', '1');
+    }
+
+    function closeExit() {
+      popup.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('mouseleave', e => {
+      if (e.clientY <= 0) openExit();
+    });
+
+    close.addEventListener('click', closeExit);
+    popup.addEventListener('click', e => { if (e.target === popup) closeExit(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && popup.classList.contains('open')) closeExit();
+    });
+
+    submit.addEventListener('click', () => {
+      const email = document.getElementById('epEmail').value;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('epEmail').style.borderColor = 'rgba(249,115,22,.7)';
+        return;
+      }
+      submit.textContent = '¡Enviado! ✓';
+      submit.style.background = '#22C55E';
+      document.getElementById('epEmail').disabled = true;
+      setTimeout(closeExit, 1800);
+    });
+  })();
+
+  /* ── 3D tilt effect on cards ── */
+  (function() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width  - 0.5;
+        const y = (e.clientY - r.top)  / r.height - 0.5;
+        card.style.transition = 'transform .08s ease';
+        card.style.transform  = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.025)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform .55s cubic-bezier(.25,1,.5,1)';
+        card.style.transform  = '';
+        setTimeout(() => { card.style.transition = ''; }, 550);
+      });
+    });
+  })();
+
+  /* ── Testimonial carousel: swipe + keyboard ── */
+  (function() {
+    const carousel = document.querySelector('.testi-carousel');
+    if (!carousel) return;
+    /* touch swipe */
+    let tx = 0;
+    carousel.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+      const diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 48) {
+        const next = document.getElementById('testiNext');
+        const prev = document.getElementById('testiPrev');
+        if (diff > 0 && next) next.click();
+        else if (prev) prev.click();
+      }
+    }, { passive: true });
+    /* keyboard */
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') document.getElementById('testiNext')?.click();
+      if (e.key === 'ArrowLeft')  document.getElementById('testiPrev')?.click();
+    });
   })();
 
   /* ── Section dots: also add showreel / guarantee / recursos ── */
