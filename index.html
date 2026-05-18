@@ -1436,6 +1436,196 @@
     }
 
     /* ══════════════════════════════════════════════════
+       ANIMATED GRADIENT TEXT
+    ══════════════════════════════════════════════════ */
+    .grad-text {
+      background: linear-gradient(90deg,
+        var(--orange-l) 0%, var(--orange) 30%, #FACC15 55%, var(--orange) 70%, var(--orange-l) 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: grad-flow 4s linear infinite;
+    }
+    @keyframes grad-flow {
+      0%   { background-position: 0%   center; }
+      100% { background-position: 220% center; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       SMART NAVBAR (hide on scroll-down)
+    ══════════════════════════════════════════════════ */
+    nav { transition: transform .35s ease, padding .3s, background .3s; }
+    nav.nav-hidden { transform: translateY(-110%); }
+
+    /* ══════════════════════════════════════════════════
+       PRICING SECTION
+    ══════════════════════════════════════════════════ */
+    #pricing { background: var(--navy-2); }
+    .pricing-toggle-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin-bottom: 48px;
+    }
+    .pricing-toggle-label { font-size: 14px; font-weight: 600; color: var(--grey-4); }
+    .pricing-toggle-label.active { color: var(--white); }
+    .ptoggle {
+      width: 48px; height: 26px; border-radius: 13px;
+      background: var(--navy-4); border: 1px solid rgba(255,255,255,.1);
+      position: relative; cursor: pointer; transition: background .3s;
+    }
+    .ptoggle.on { background: var(--orange); }
+    .ptoggle-thumb {
+      position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--white); transition: transform .3s;
+    }
+    .ptoggle.on .ptoggle-thumb { transform: translateX(22px); }
+    .pricing-badge-annual {
+      font-size: 11px; font-weight: 700; color: var(--success);
+      background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.2);
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+    .pricing-card {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--r-lg); padding: 32px 28px;
+      position: relative; transition: all .35s ease;
+    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(0,0,0,.5); }
+    .pricing-card.popular {
+      border-color: rgba(249,115,22,.35);
+      background: linear-gradient(180deg, rgba(249,115,22,.06) 0%, var(--navy-3) 60%);
+      transform: scale(1.03);
+    }
+    .pricing-card.popular:hover { transform: scale(1.03) translateY(-6px); }
+    .popular-badge, .pricing-popular-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--orange); color: var(--white);
+      font-size: 11px; font-weight: 700; padding: 5px 18px;
+      border-radius: 100px; white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(249,115,22,.4);
+    }
+    .pricing-tier { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey-4); margin-bottom: 10px; }
+    .pricing-name { font-family: var(--font-head); font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .pricing-desc { font-size: 14px; color: var(--grey-4); line-height: 1.65; margin-bottom: 24px; }
+    .pricing-price {
+      display: flex; align-items: flex-end; gap: 4px; margin-bottom: 24px;
+    }
+    .price-val { font-family: var(--font-head); font-size: 40px; font-weight: 800; line-height: 1; }
+    .price-val.orange { color: var(--orange); }
+    .price-period { font-size: 14px; color: var(--grey-4); margin-bottom: 4px; }
+    .pricing-currency { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--orange); margin-bottom: 6px; }
+    .pricing-amount { font-family: var(--font-head); font-size: 42px; font-weight: 800; line-height: 1; color: var(--white); }
+    .pricing-period { font-size: 14px; color: var(--grey-4); margin-bottom: 6px; align-self: flex-end; }
+    .pricing-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; list-style: none; padding: 0; margin-left: 0; }
+    .pricing-feature { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--grey-3); }
+    .pricing-feature svg { flex-shrink: 0; }
+    .pricing-feature.exc { color: var(--grey-4); }
+    .pf-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+    .pf-check { color: var(--success); font-size: 14px; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+    .pf-cross { color: var(--grey-4); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .pf-text { color: var(--grey-3); line-height: 1.4; }
+    .pf-text.dim { color: var(--grey-4); }
+    .pricing-cta {
+      display: block; text-align: center;
+      padding: 13px 24px; border-radius: var(--r-sm);
+      font-weight: 700; font-size: 15px; transition: all .25s;
+    }
+    .pricing-cta.primary {
+      background: var(--orange); color: var(--white);
+      box-shadow: 0 4px 20px rgba(249,115,22,.3);
+    }
+    .pricing-cta.primary:hover { background: var(--orange-d); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(249,115,22,.45); }
+    .pricing-cta.ghost {
+      background: rgba(255,255,255,.05); color: var(--white);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .pricing-cta.ghost:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
+    .pricing-note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--grey-4); }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } .pricing-card.popular { transform: none; } }
+
+    /* ══════════════════════════════════════════════════
+       TESTIMONIAL CAROUSEL
+    ══════════════════════════════════════════════════ */
+    .testi-carousel { position: relative; max-width: 800px; margin: 0 auto; }
+    .testi-slides { overflow: hidden; border-radius: var(--r-xl); }
+    .testi-slide {
+      display: none;
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--r-xl); padding: 48px 52px;
+      animation: fadeSlide .5s ease;
+    }
+    .testi-slide.active { display: block; }
+    @keyframes fadeSlide { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+    .testi-slide .testi-stars { font-size: 18px; letter-spacing: 2px; }
+    .testi-slide .testi-text { font-size: clamp(16px,2vw,19px); line-height: 1.82; margin-bottom: 28px; }
+    .testi-slide .testi-avatar { width: 48px; height: 48px; font-size: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; }
+    .testi-slide-stars { font-size: 18px; color: var(--orange); margin-bottom: 20px; letter-spacing: 2px; }
+    .testi-slide-text { font-size: clamp(16px,2vw,20px); color: var(--grey-3); line-height: 1.8; font-style: italic; margin-bottom: 28px; }
+    .testi-slide-author { display: flex; align-items: center; gap: 14px; }
+    .testi-slide-avatar {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; border: 2px solid rgba(249,115,22,.3);
+    }
+    .testi-slide-name { font-weight: 700; font-size: 16px; }
+    .testi-slide-role { font-size: 13px; color: var(--grey-4); margin-top: 2px; }
+    .testi-slide-metric {
+      margin-left: auto; text-align: right; flex-shrink: 0;
+    }
+    .tsm-val { font-family: var(--font-head); font-size: 28px; font-weight: 800; color: var(--orange); line-height: 1; }
+    .tsm-lbl { font-size: 11px; color: var(--grey-4); font-weight: 500; margin-top: 2px; }
+    .testi-controls {
+      display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px;
+    }
+    .testi-arr {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer; transition: all .2s; color: var(--white);
+    }
+    .testi-arr:hover { background: var(--orange); border-color: var(--orange); }
+    .testi-dots { display: flex; gap: 8px; }
+    .testi-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.2); cursor: pointer; transition: all .3s;
+    }
+    .testi-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+    @media (max-width: 600px) { .testi-slide { padding: 32px 24px; } .testi-slide-metric { display: none; } }
+
+    /* ══════════════════════════════════════════════════
+       PRINT STYLESHEET
+    ══════════════════════════════════════════════════ */
+    @media print {
+      #loader, #progress-bar, #cursor-ring, #cursor-dot,
+      #section-dots, nav, #sticky-bar, #wa-btn, #back-top,
+      #sp-toast, #cookie-banner, #videoModal, #confetti-canvas,
+      .mobile-drawer, .hero-particles, .hero-orb,
+      .port-filters, .ba-toggle, .faq-chevron,
+      footer .footer-socials { display: none !important; }
+
+      body { background: white !important; color: black !important; font-size: 12pt; }
+      .container { max-width: 100%; padding: 0 16px; }
+      section { padding: 24pt 0 !important; break-inside: avoid; }
+      .headline, .hero-title, .why-title, .cta-title, .guarantee-title {
+        color: black !important; -webkit-text-fill-color: black !important;
+        background: none !important;
+      }
+      .tag { background: #f5f5f5 !important; color: #555 !important; border-color: #ccc !important; }
+      .service-card, .case-card, .testi-card, .pricing-card, .guarantee-card {
+        border: 1pt solid #ccc !important; background: white !important;
+        break-inside: avoid;
+      }
+      .hero-dashboard, .hero-right, .fcard, .showreel-frame { display: none !important; }
+      .hero-inner { grid-template-columns: 1fr !important; }
+      .services-grid, .cases-grid, .pricing-grid { grid-template-columns: 1fr 1fr !important; }
+      a { color: #F97316 !important; }
+      .btn-primary, .btn-ghost, .pricing-cta {
+        border: 1pt solid #F97316 !important; background: none !important;
+        color: #F97316 !important; -webkit-text-fill-color: #F97316 !important;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
        ACCESSIBILITY
     ══════════════════════════════════════════════════ */
     .skip-link {
@@ -1713,7 +1903,7 @@
           Agenda abierta — Solo 3 cupos este mes
         </div>
         <h1 class="hero-title">
-          Sistemas digitales<br>
+          <span class="grad-text">Sistemas digitales</span><br>
           para negocios que<br>
           <span class="accent"><span class="typewriter-wrap"><span id="tw-text">quieren crecer</span><span class="typewriter-cursor"></span></span>.</span>
         </h1>
@@ -2535,6 +2725,93 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ PRICING ═══════════════════════ -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="section-header center reveal">
+      <div class="tag">Planes de trabajo</div>
+      <h2 class="headline">Transparencia total.<br><span>Sin sorpresas.</span></h2>
+      <p class="sub-headline">Elegimos trabajar con muy pocos clientes a la vez — para que cada uno reciba atención real y resultados reales.</p>
+    </div>
+
+    <div class="pricing-toggle-wrap reveal">
+      <span class="pricing-toggle-label active" id="ptLabelM">Mensual</span>
+      <button class="ptoggle" id="pToggle" aria-label="Cambiar periodo de pago" aria-pressed="false">
+        <span class="ptoggle-thumb"></span>
+      </button>
+      <span class="pricing-toggle-label" id="ptLabelA">Anual</span>
+      <span class="pricing-badge-annual" id="ptBadge">Ahorra 20%</span>
+    </div>
+
+    <div class="pricing-grid reveal">
+
+      <!-- Diagnóstico -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Punto de partida</div>
+        <div class="pricing-name">Diagnóstico</div>
+        <div class="pricing-desc">Una sesión estratégica de 90 minutos para mapear los cuellos de botella de tu negocio y definir la hoja de ruta de crecimiento.</div>
+        <div class="pricing-price">
+          <span class="pricing-currency">€</span>
+          <span class="pricing-amount" data-monthly="0" data-annual="0">Gratis</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Auditoría de negocio (90 min)</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Mapa de oportunidades</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hoja de ruta personalizada</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Propuesta de trabajo clara</li>
+          <li class="pricing-feature exc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#64748B" stroke-width="2" stroke-linecap="round"/></svg>Implementación incluida</li>
+          <li class="pricing-feature exc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#64748B" stroke-width="2" stroke-linecap="round"/></svg>Seguimiento mensual</li>
+        </ul>
+        <a href="#cta" class="pricing-cta ghost">Agendar diagnóstico →</a>
+      </div>
+
+      <!-- Sistema (popular) -->
+      <div class="pricing-card popular">
+        <div class="pricing-popular-badge">Más elegido</div>
+        <div class="pricing-tier">Sistema completo</div>
+        <div class="pricing-name">Sistema</div>
+        <div class="pricing-desc">Construimos e implementamos la infraestructura digital completa — tecnología, procesos, automatización y estrategia de adquisición.</div>
+        <div class="pricing-price">
+          <span class="pricing-currency">€</span>
+          <span class="pricing-amount" data-monthly="2.500" data-annual="2.000">2.500</span>
+          <span class="pricing-period">/mes</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Todo lo del Diagnóstico</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Arquitectura tecnológica</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>CRM + automatizaciones</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Estrategia de adquisición</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Dashboard de métricas</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Seguimiento semanal</li>
+        </ul>
+        <a href="#cta" class="pricing-cta primary">Empezar ahora →</a>
+      </div>
+
+      <!-- Escala -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Partnership continuo</div>
+        <div class="pricing-name">Escala</div>
+        <div class="pricing-desc">Para negocios que ya crecen y necesitan un socio estratégico de largo plazo. Equipo dedicado, reporting ejecutivo y soporte continuo.</div>
+        <div class="pricing-price">
+          <span class="pricing-currency"></span>
+          <span class="pricing-amount" data-monthly="Consultar" data-annual="Consultar">Consultar</span>
+        </div>
+        <ul class="pricing-features">
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Todo lo del Sistema</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Equipo dedicado full-time</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Expansión a nuevos canales</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Reporting ejecutivo mensual</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Acceso directo vía Slack</li>
+          <li class="pricing-feature inc"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA de respuesta 2h</li>
+        </ul>
+        <a href="#cta" class="pricing-cta ghost">Hablar con el equipo →</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">Todos los planes incluyen diagnóstico gratuito previo. Sin permanencia obligatoria. Garantía de resultados o te devolvemos el dinero del primer mes.</p>
+  </div>
+</section>
+
 <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
 <section id="testimonials" class="section">
   <div class="container">
@@ -2542,41 +2819,89 @@
       <div class="tag">Testimonios</div>
       <h2 class="headline">Lo que dicen<br><span>nuestros clientes.</span></h2>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tomamos decisiones con datos."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</div>
-          <div>
-            <div class="testi-name">Alejandra Morales</div>
-            <div class="testi-role">CEO · NovaModa — España</div>
+
+    <div class="testi-carousel reveal">
+      <div class="testi-slides" id="testiSlides">
+
+        <div class="testi-slide active">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"En 3 meses triplicamos la facturación. No es magia — es que por primera vez tenemos un sistema real. Antes improvisábamos, ahora tomamos decisiones con datos."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#F97316,#EA580C)">AM</div>
+            <div>
+              <div class="testi-name">Alejandra Morales</div>
+              <div class="testi-role">CEO · NovaModa — España</div>
+            </div>
           </div>
         </div>
+
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Pasamos de 12 leads al mes a más de 140. Lo más valioso fue entender que el problema era estructural. EcomLab nos dio orden, claridad y resultados reales."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#06B6D4,#0284C7)">RS</div>
+            <div>
+              <div class="testi-name">Roberto Salcedo</div>
+              <div class="testi-role">Director Comercial · ConsultPro — México</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta, y ejecutaron todo. Los números hablan solos."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#22C55E,#16A34A)">LG</div>
+            <div>
+              <div class="testi-name">Laura González</div>
+              <div class="testi-role">Fundadora · FreshMarket — Colombia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Llevábamos años con el mismo nivel de ventas. En 6 meses con EcomLab llegamos al doble. Lo que más me sorprendió fue la claridad del proceso desde el primer día."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">JP</div>
+            <div>
+              <div class="testi-name">Jorge Pereira</div>
+              <div class="testi-role">Fundador · PrimaCare — Argentina</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Teníamos tráfico pero no convertíamos. EcomLab auditó toda la operación, rediseñó el embudo y automatizó el seguimiento. Ahora el equipo comercial trabaja con leads calificados."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">MC</div>
+            <div>
+              <div class="testi-name">María Castillo</div>
+              <div class="testi-role">Directora · InmoElite — Colombia</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="testi-card reveal d1">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Pasamos de 12 leads al mes a más de 140. Lo más valioso fue entender que el problema era estructural. EcomLab nos dio orden, claridad y resultados."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,#06B6D4,#0284C7)">RS</div>
-          <div>
-            <div class="testi-name">Roberto Salcedo</div>
-            <div class="testi-role">Director Comercial · ConsultPro — México</div>
-          </div>
+
+      <div class="testi-controls">
+        <button class="testi-arr" id="testiPrev" aria-label="Anterior">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="testi-dots" id="testiDots">
+          <button class="testi-dot active" aria-label="Testimonio 1"></button>
+          <button class="testi-dot" aria-label="Testimonio 2"></button>
+          <button class="testi-dot" aria-label="Testimonio 3"></button>
+          <button class="testi-dot" aria-label="Testimonio 4"></button>
+          <button class="testi-dot" aria-label="Testimonio 5"></button>
         </div>
-      </div>
-      <div class="testi-card reveal d2">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Sabía que necesitaba digitalizar el negocio pero no sabía por dónde empezar. EcomLab hizo el diagnóstico y la hoja de ruta, y ejecutaron todo. Los números hablan solos."</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,#22C55E,#16A34A)">LG</div>
-          <div>
-            <div class="testi-name">Laura González</div>
-            <div class="testi-role">Fundadora · FreshMarket — Colombia</div>
-          </div>
-        </div>
+        <button class="testi-arr" id="testiNext" aria-label="Siguiente">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -3595,6 +3920,92 @@
       }, 600);
     });
   }
+
+  /* ── Smart navbar (hide on scroll down, show on scroll up) ── */
+  (function() {
+    const nav = document.getElementById('navbar');
+    if (!nav) return;
+    let lastY = 0, ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y > 80) {
+            nav.classList.toggle('nav-hidden', y > lastY);
+          } else {
+            nav.classList.remove('nav-hidden');
+          }
+          lastY = y;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  /* ── Pricing toggle (monthly / annual) ── */
+  (function() {
+    const toggle = document.getElementById('pToggle');
+    const labelM = document.getElementById('ptLabelM');
+    const labelA = document.getElementById('ptLabelA');
+    const badge  = document.getElementById('ptBadge');
+    if (!toggle) return;
+    let annual = false;
+    toggle.addEventListener('click', () => {
+      annual = !annual;
+      toggle.classList.toggle('on', annual);
+      toggle.setAttribute('aria-pressed', annual);
+      labelM.classList.toggle('active', !annual);
+      labelA.classList.toggle('active', annual);
+      badge.style.opacity = annual ? '1' : '0';
+      document.querySelectorAll('.pricing-amount').forEach(el => {
+        const val = annual ? el.dataset.annual : el.dataset.monthly;
+        const numVal = parseFloat(val.replace('.', ''));
+        if (!isNaN(numVal)) {
+          el.textContent = annual
+            ? (numVal / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+            : el.dataset.monthly;
+        } else {
+          el.textContent = val;
+        }
+      });
+    });
+  })();
+
+  /* ── Testimonial carousel ── */
+  (function() {
+    const slides = document.querySelectorAll('.testi-slide');
+    const dots   = document.querySelectorAll('.testi-dot');
+    const prev   = document.getElementById('testiPrev');
+    const next   = document.getElementById('testiNext');
+    if (!slides.length) return;
+    let cur = 0, autoTimer, paused = false;
+
+    function go(idx) {
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = (idx + slides.length) % slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => { if (!paused) go(cur + 1); }, 5000);
+    }
+
+    if (prev) prev.addEventListener('click', () => { go(cur - 1); startAuto(); });
+    if (next) next.addEventListener('click', () => { go(cur + 1); startAuto(); });
+    dots.forEach((d, i) => d.addEventListener('click', () => { go(i); startAuto(); }));
+
+    const carousel = document.querySelector('.testi-carousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', () => { paused = true; });
+      carousel.addEventListener('mouseleave', () => { paused = false; });
+    }
+
+    startAuto();
+  })();
 
   /* ── Section dots: also add showreel / guarantee / recursos ── */
   /* (dots are capped at 10 — mapping handles overflow gracefully) */
