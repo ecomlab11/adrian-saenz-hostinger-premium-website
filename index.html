@@ -12,6 +12,7 @@
   <meta name="robots" content="index, follow" />
   <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23F97316'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-size='20' font-weight='900' fill='white'>e</text></svg>" />
+  <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;EcomLab&quot;,&quot;short_name&quot;:&quot;EcomLab&quot;,&quot;description&quot;:&quot;Sistemas digitales para negocios que crecen&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;%230B1120&quot;,&quot;theme_color&quot;:&quot;%23F97316&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;/icon-192.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}" />
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
@@ -1201,6 +1202,230 @@
     .ba-state { transition: all .4s ease; }
 
     /* ══════════════════════════════════════════════════
+       HERO ANIMATED ORBS
+    ══════════════════════════════════════════════════ */
+    .hero-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
+    }
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(249,115,22,.18) 0%, transparent 70%);
+      top: -100px; right: -80px;
+      animation: orb1 10s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(6,182,212,.1) 0%, transparent 70%);
+      bottom: -60px; left: -60px;
+      animation: orb2 14s ease-in-out infinite;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(168,85,247,.08) 0%, transparent 70%);
+      top: 40%; right: 35%;
+      animation: orb3 18s ease-in-out infinite;
+    }
+    @keyframes orb1 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(-40px, 30px) scale(1.1); }
+      66%      { transform: translate(20px,-20px) scale(0.95); }
+    }
+    @keyframes orb2 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%     { transform: translate(50px,-40px) scale(1.15); }
+    }
+    @keyframes orb3 {
+      0%,100% { transform: translate(0,0) scale(1); opacity:.6; }
+      40%     { transform: translate(-30px,40px) scale(1.2); opacity:1; }
+      70%     { transform: translate(20px,-20px) scale(0.85); opacity:.4; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       SHOWREEL SECTION
+    ══════════════════════════════════════════════════ */
+    #showreel { background: var(--navy-2); padding: 100px 0; overflow: hidden; }
+    .showreel-inner { display: flex; flex-direction: column; align-items: center; gap: 48px; }
+    .showreel-frame {
+      position: relative; width: 100%; max-width: 880px;
+      aspect-ratio: 16/9; border-radius: var(--r-lg);
+      overflow: hidden; cursor: pointer;
+      background: linear-gradient(135deg, #0d1b30 0%, #0B1120 100%);
+      border: 1px solid rgba(255,255,255,.07);
+      box-shadow: 0 40px 120px rgba(0,0,0,.6), var(--shadow-glow);
+    }
+    .showreel-frame:hover .play-ring { transform: translate(-50%,-50%) scale(1.1); }
+    .showreel-frame:hover .play-ripple { animation-play-state: running; }
+    /* Fake video content */
+    .sr-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(249,115,22,.07) 0%, transparent 50%),
+        linear-gradient(315deg, rgba(6,182,212,.05) 0%, transparent 50%);
+    }
+    .sr-scan {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255,255,255,.015) 3px,
+        rgba(255,255,255,.015) 4px
+      );
+    }
+    .sr-label {
+      position: absolute; top: 20px; left: 24px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .sr-rec { width: 7px; height: 7px; border-radius: 50%; background: #EF4444; animation: pdot 1.2s infinite; }
+    .sr-time { position: absolute; bottom: 20px; right: 24px; font-size: 11px; color: rgba(255,255,255,.3); font-family: monospace; }
+    .sr-progress {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: rgba(255,255,255,.08);
+    }
+    .sr-progress-fill { width: 0; height: 100%; background: var(--orange); transition: width 40s linear; }
+    /* Play button */
+    .play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
+    .play-ring {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(249,115,22,.15); backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(249,115,22,.5);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .3s ease, background .3s;
+    }
+    .play-ring:hover { background: rgba(249,115,22,.3); }
+    .play-icon { font-size: 28px; margin-left: 4px; }
+    .play-ripple {
+      position: absolute; width: 80px; height: 80px; border-radius: 50%;
+      border: 1px solid rgba(249,115,22,.4);
+      animation: ripple-out 2.5s ease-out infinite;
+      animation-play-state: running;
+    }
+    .play-ripple:nth-child(2) { animation-delay: .8s; }
+    .play-ripple:nth-child(3) { animation-delay: 1.6s; }
+    @keyframes ripple-out {
+      0%   { transform: scale(1); opacity: .6; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+    /* Inner mockup content stripes */
+    .sr-content {
+      position: absolute; bottom: 40px; left: 32px; right: 32px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .sr-stat { display: flex; flex-direction: column; align-items: center; }
+    .sr-stat-val { font-family: var(--font-head); font-size: clamp(20px,3vw,36px); font-weight: 800; color: var(--orange); }
+    .sr-stat-lbl { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 500; margin-top: 2px; }
+    /* Showreel metrics bar */
+    .showreel-metrics { display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; }
+    .sr-metric { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .sr-metric-val { font-family: var(--font-head); font-size: 32px; font-weight: 800; color: var(--white); }
+    .sr-metric-lbl { font-size: 12px; color: var(--grey-4); margin-top: 3px; }
+
+    /* Video modal overlay */
+    #videoModal {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.92); backdrop-filter: blur(20px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all .3s ease;
+    }
+    #videoModal.open { opacity: 1; visibility: visible; }
+    .vm-inner { position: relative; width: 90%; max-width: 900px; }
+    .vm-close {
+      position: absolute; top: -44px; right: 0;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: var(--white); width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer; transition: background .2s;
+    }
+    .vm-close:hover { background: rgba(255,255,255,.2); }
+    .vm-frame {
+      aspect-ratio: 16/9; background: var(--navy-2);
+      border-radius: var(--r-md); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--grey-4); border: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* ══════════════════════════════════════════════════
+       GUARANTEE SECTION
+    ══════════════════════════════════════════════════ */
+    #guarantee { background: var(--navy); }
+    .guarantee-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: center; }
+    .guarantee-left { display: flex; flex-direction: column; gap: 16px; }
+    .guarantee-badge {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(34,197,94,.1); border: 2px solid rgba(34,197,94,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+    .guarantee-title { font-family: var(--font-head); font-size: clamp(28px,3vw,44px); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+    .guarantee-desc { font-size: 15px; color: var(--grey-4); line-height: 1.75; }
+    .guarantee-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .guarantee-card {
+      background: var(--navy-2); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-md); padding: 24px 20px;
+      transition: all .3s ease;
+    }
+    .guarantee-card:hover { border-color: rgba(34,197,94,.25); transform: translateY(-4px); }
+    .gc-icon { font-size: 28px; margin-bottom: 12px; }
+    .gc-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .gc-desc { font-size: 13px; color: var(--grey-4); line-height: 1.65; }
+    @media (max-width: 900px) {
+      .guarantee-inner { grid-template-columns: 1fr; gap: 36px; }
+      .guarantee-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) { .guarantee-cards { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════════════════════════
+       BLOG / RECURSOS
+    ══════════════════════════════════════════════════ */
+    #recursos { background: var(--navy-2); }
+    .recursos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .recurso-card {
+      background: var(--navy-3); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-md); overflow: hidden;
+      transition: all .3s ease; display: flex; flex-direction: column;
+    }
+    .recurso-card:hover { border-color: rgba(249,115,22,.22); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+    .recurso-thumb {
+      aspect-ratio: 16/9; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+    }
+    .recurso-thumb-bg { position: absolute; inset: 0; }
+    .recurso-thumb-emoji { position: relative; z-index: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+    .recurso-body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .recurso-meta { display: flex; align-items: center; justify-content: space-between; }
+    .recurso-cat {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--orange); background: rgba(249,115,22,.08);
+      border: 1px solid rgba(249,115,22,.2); padding: 3px 10px; border-radius: 100px;
+    }
+    .recurso-time { font-size: 11px; color: var(--grey-4); }
+    .recurso-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; line-height: 1.35; }
+    .recurso-desc { font-size: 13px; color: var(--grey-4); line-height: 1.65; flex: 1; }
+    .recurso-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--orange);
+      transition: gap .2s; margin-top: 4px;
+    }
+    .recurso-link:hover { gap: 10px; }
+    @media (max-width: 768px) { .recursos-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .recursos-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ══════════════════════════════════════════════════
+       CONFETTI CANVAS
+    ══════════════════════════════════════════════════ */
+    #confetti-canvas {
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════
        NOISE TEXTURE OVERLAY
     ══════════════════════════════════════════════════ */
     body::after {
@@ -1384,6 +1609,21 @@
 <body>
 
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Video modal -->
+<div id="videoModal" role="dialog" aria-modal="true" aria-label="Vídeo de EcomLab">
+  <div class="vm-inner">
+    <button class="vm-close" id="vmClose" aria-label="Cerrar vídeo">×</button>
+    <div class="vm-frame">
+      <div style="text-align:center;padding:32px">
+        <div style="font-size:40px;margin-bottom:12px">🎬</div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px">Vídeo de presentación</div>
+        <div style="font-size:14px;color:var(--grey-4)">Configura aquí tu vídeo de YouTube o Vimeo</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Custom cursor (desktop only) -->
 <div id="cursor-ring"></div>
@@ -1454,7 +1694,11 @@
 <main id="main">
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+  </div>
   <div class="hero-grid"></div>
   <div class="hero-particles">
     <div class="hp"></div><div class="hp"></div><div class="hp"></div><div class="hp"></div>
@@ -2039,6 +2283,42 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ SHOWREEL ═══════════════════════ -->
+<section id="showreel">
+  <div class="container">
+    <div class="showreel-inner">
+      <div class="section-header center reveal" style="margin-bottom:0">
+        <div class="tag">Cómo trabajamos</div>
+        <h2 class="headline">Mira cómo construimos<br><span>sistemas que crecen.</span></h2>
+      </div>
+      <div class="showreel-frame reveal" id="showreelFrame">
+        <div class="sr-bg"></div>
+        <div class="sr-scan"></div>
+        <div class="sr-label"><div class="sr-rec"></div>EcomLab — Showreel 2024</div>
+        <div class="sr-time" id="srTime">00:00 / 01:47</div>
+        <div class="sr-content">
+          <div class="sr-stat"><div class="sr-stat-val">+282%</div><div class="sr-stat-lbl">Revenue</div></div>
+          <div class="sr-stat"><div class="sr-stat-val">4.8x</div><div class="sr-stat-lbl">ROAS</div></div>
+          <div class="sr-stat"><div class="sr-stat-val">90d</div><div class="sr-stat-lbl">Al resultado</div></div>
+        </div>
+        <div class="play-btn" id="playBtn">
+          <div class="play-ripple"></div>
+          <div class="play-ripple"></div>
+          <div class="play-ripple"></div>
+          <div class="play-ring"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="sr-progress"><div class="sr-progress-fill" id="srFill"></div></div>
+      </div>
+      <div class="showreel-metrics reveal">
+        <div class="sr-metric"><div class="sr-metric-val">40+</div><div class="sr-metric-lbl">Negocios escalados</div></div>
+        <div class="sr-metric"><div class="sr-metric-val">€2.1M+</div><div class="sr-metric-lbl">Revenue generado para clientes</div></div>
+        <div class="sr-metric"><div class="sr-metric-val">4.9★</div><div class="sr-metric-lbl">Valoración media</div></div>
+        <div class="sr-metric"><div class="sr-metric-val">98%</div><div class="sr-metric-lbl">Clientes que repiten</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════ PORTFOLIO ═══════════════════════ -->
 <section id="portfolio" class="section">
   <div class="container">
@@ -2410,6 +2690,98 @@
           <div class="faq-chevron">▾</div>
         </div>
         <div class="faq-answer">Cada cliente tiene un gestor de proyecto dedicado. Usamos Notion para gestión del proyecto, reuniones quincenales de seguimiento y un dashboard en tiempo real con todas las métricas. Transparencia total durante todo el proceso.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GUARANTEE ═══════════════════════ -->
+<section id="guarantee" class="section">
+  <div class="container">
+    <div class="guarantee-inner">
+      <div class="guarantee-left reveal">
+        <div class="guarantee-badge">🛡️</div>
+        <h2 class="guarantee-title">Nuestra<br><span style="color:var(--success)">garantía.</span></h2>
+        <p class="guarantee-desc">No trabajamos para cobrar proyectos. Trabajamos para que tu negocio crezca. Si no lo hace, hay algo que ajustar — y lo hacemos sin coste.</p>
+      </div>
+      <div class="guarantee-cards">
+        <div class="guarantee-card reveal">
+          <div class="gc-icon">📊</div>
+          <div class="gc-title">KPIs definidos antes de empezar</div>
+          <div class="gc-desc">Acordamos métricas claras de éxito en el primer mes. No hay ambigüedad sobre qué significa un buen resultado.</div>
+        </div>
+        <div class="guarantee-card reveal d1">
+          <div class="gc-icon">🔁</div>
+          <div class="gc-title">Ajustes sin coste adicional</div>
+          <div class="gc-desc">Si los resultados no se alinean con lo acordado en el plazo definido, revisamos y ajustamos la estrategia sin cobrarte nada extra.</div>
+        </div>
+        <div class="guarantee-card reveal d2">
+          <div class="gc-icon">🤝</div>
+          <div class="gc-title">Partnership, no proveedor</div>
+          <div class="gc-desc">Tu éxito es nuestro éxito. No somos un proveedor externo — somos parte de tu equipo con skin in the game.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ RECURSOS ═══════════════════════ -->
+<section id="recursos" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Recursos gratuitos</div>
+      <h2 class="headline">Conocimiento que<br><span>genera resultados.</span></h2>
+      <p class="sub-headline">Guías, frameworks y estrategias que usamos internamente, ahora disponibles para que empieces a aplicarlas en tu negocio.</p>
+    </div>
+    <div class="recursos-grid">
+
+      <div class="recurso-card reveal">
+        <div class="recurso-thumb">
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,#1a1040,#0B1120)"></div>
+          <div class="recurso-thumb-emoji">📈</div>
+        </div>
+        <div class="recurso-body">
+          <div class="recurso-meta">
+            <span class="recurso-cat">Ecommerce</span>
+            <span class="recurso-time">8 min lectura</span>
+          </div>
+          <div class="recurso-title">El framework de las 5 palancas para duplicar el revenue de tu tienda online</div>
+          <p class="recurso-desc">Las 5 métricas que determinan el 90% de la facturación de cualquier ecommerce y cómo optimizar cada una de forma sistemática.</p>
+          <a href="#cta" class="recurso-link">Leer guía →</a>
+        </div>
+      </div>
+
+      <div class="recurso-card reveal d1">
+        <div class="recurso-thumb">
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,#0d2035,#0B1120)"></div>
+          <div class="recurso-thumb-emoji">⚙️</div>
+        </div>
+        <div class="recurso-body">
+          <div class="recurso-meta">
+            <span class="recurso-cat">Automatización</span>
+            <span class="recurso-time">12 min lectura</span>
+          </div>
+          <div class="recurso-title">Cómo automatizar el 80% de tu proceso comercial sin necesitar un equipo grande</div>
+          <p class="recurso-desc">El stack mínimo para automatizar captación, nurturing y cierre. Con ejemplos reales y flujos de trabajo que puedes copiar directamente.</p>
+          <a href="#cta" class="recurso-link">Leer guía →</a>
+        </div>
+      </div>
+
+      <div class="recurso-card reveal d2">
+        <div class="recurso-thumb">
+          <div class="recurso-thumb-bg" style="background:linear-gradient(135deg,#1a0d20,#0B1120)"></div>
+          <div class="recurso-thumb-emoji">🎯</div>
+        </div>
+        <div class="recurso-body">
+          <div class="recurso-meta">
+            <span class="recurso-cat">Estrategia</span>
+            <span class="recurso-time">6 min lectura</span>
+          </div>
+          <div class="recurso-title">Auditoría digital en 30 minutos: encuentra los cuellos de botella de tu negocio</div>
+          <p class="recurso-desc">El mismo proceso de diagnóstico que usamos en EcomLab para identificar exactamente dónde se pierde dinero en cualquier negocio digital.</p>
+          <a href="#cta" class="recurso-link">Descargar plantilla →</a>
+        </div>
       </div>
 
     </div>
@@ -3110,6 +3482,122 @@
     }, { threshold: 0.35 });
     sections.forEach(s => io.observe(s));
   })();
+
+  /* ── Showreel / video modal ── */
+  (function() {
+    const frame  = document.getElementById('showreelFrame');
+    const modal  = document.getElementById('videoModal');
+    const close  = document.getElementById('vmClose');
+    const fill   = document.getElementById('srFill');
+    const timeEl = document.getElementById('srTime');
+    if (!frame) return;
+
+    /* Fake progress ticker */
+    let started = false, sec = 0;
+    const total = 107; // 1:47
+    function pad(n) { return String(n).padStart(2,'0'); }
+    function tickTime() {
+      sec++;
+      if (sec > total) { sec = 0; fill.style.width = '0'; fill.style.transition = 'none'; return; }
+      const m = Math.floor(sec/60), s = sec%60;
+      const tm = Math.floor(total/60), ts = total%60;
+      timeEl.textContent = `${pad(m)}:${pad(s)} / ${pad(tm)}:${pad(ts)}`;
+    }
+
+    /* Observer to start ticker */
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          fill.style.transition = 'none';
+          setTimeout(() => { fill.style.transition = `width ${total}s linear`; fill.style.width = '100%'; }, 100);
+          setInterval(tickTime, 1000);
+        }
+      });
+    }, { threshold: 0.5 }).observe(frame);
+
+    /* Open modal on click */
+    document.getElementById('playBtn').addEventListener('click', () => {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+    close.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  })();
+
+  /* ── Confetti ── */
+  (function() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx    = canvas && canvas.getContext('2d');
+    let particles = [], raf;
+    const colors = ['#F97316','#FB923C','#22C55E','#06B6D4','#A855F7','#FACC15','#ffffff'];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+
+    function launch() {
+      if (!ctx) return;
+      resize();
+      particles = [];
+      for (let i = 0; i < 140; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * 200,
+          vx: (Math.random() - .5) * 4,
+          vy: 2 + Math.random() * 4,
+          size: 5 + Math.random() * 7,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360,
+          rSpeed: (Math.random() - .5) * 8,
+          shape: Math.random() > .5 ? 'rect' : 'circle',
+          alpha: 1,
+        });
+      }
+      cancelAnimationFrame(raf);
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+      particles.forEach(p => {
+        p.x  += p.vx; p.y += p.vy;
+        p.rot += p.rSpeed; p.vy += .06;
+        if (p.y > canvas.height - 60) p.alpha -= .025;
+        if (p.alpha <= 0) return;
+        alive = true;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        if (p.shape === 'rect') ctx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
+        else { ctx.beginPath(); ctx.arc(0, 0, p.size/2, 0, Math.PI*2); ctx.fill(); }
+        ctx.restore();
+      });
+      if (alive) raf = requestAnimationFrame(draw);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    window.launchConfetti = launch;
+  })();
+
+  /* Trigger confetti on form success */
+  const origFormSubmit = document.getElementById('contactForm');
+  if (origFormSubmit) {
+    origFormSubmit.addEventListener('submit', () => {
+      setTimeout(() => {
+        if (document.getElementById('formSuccess').classList.contains('show')) {
+          window.launchConfetti && window.launchConfetti();
+        }
+      }, 600);
+    });
+  }
+
+  /* ── Section dots: also add showreel / guarantee / recursos ── */
+  /* (dots are capped at 10 — mapping handles overflow gracefully) */
 </script>
 </body>
 </html>
