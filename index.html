@@ -108,7 +108,7 @@
       background: var(--accent);
       color: #fff;
     }
-    .btn-primary:hover { background: #ea6d10; }
+    .btn-primary:hover { background: #ea6d10; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(249,115,22,.35); }
     .btn-ghost {
       background: transparent;
       color: var(--text);
@@ -238,6 +238,46 @@
       background: var(--border);
     }
 
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: #0d0d0d;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 0;
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 32s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 28px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-sep {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      opacity: .6;
+    }
+    .ticker-item strong { color: var(--accent); }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* ── SECTION SHARED ── */
     section { padding: 96px 5%; }
     .section-label {
@@ -337,11 +377,26 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 32px 28px;
-      transition: border-color .25s, transform .25s;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .system-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -12px; right: 10px;
+      font-size: 88px;
+      font-weight: 900;
+      color: rgba(255,255,255,.028);
+      line-height: 1;
+      pointer-events: none;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: -4px;
     }
     .system-card:hover {
       border-color: var(--accent-border);
       transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,.4);
     }
     .system-icon {
       width: 48px; height: 48px;
@@ -766,32 +821,73 @@
 
     /* ── FINAL CTA ── */
     #cta {
-      text-align: center;
-      padding: 120px 5%;
+      padding: 96px 5%;
     }
-    .cta-inner {
-      max-width: 720px;
+    .cta-card {
+      max-width: 800px;
       margin: 0 auto;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--accent-border);
+      border-radius: 16px;
+      padding: 72px 56px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 100px rgba(249,115,22,.1), inset 0 0 60px rgba(249,115,22,.03);
     }
-    .cta-inner .section-label { justify-content: center; display: flex; }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .cta-glow {
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 250px;
+      background: radial-gradient(ellipse, rgba(249,115,22,.18) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .cta-card .section-label { justify-content: center; display: flex; }
     .cta-title {
-      font-size: clamp(32px, 5vw, 60px);
+      font-size: clamp(34px, 5vw, 64px);
       font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      margin: 16px 0 24px;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      margin: 20px 0 24px;
     }
     .cta-title span { color: var(--accent); }
     .cta-sub {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 44px;
+      margin-bottom: 48px;
       line-height: 1.6;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .cta-note {
-      margin-top: 20px;
+    .cta-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
       font-size: 13px;
       color: var(--muted);
+      font-weight: 600;
+    }
+    .cta-trust-item svg { color: var(--accent); flex-shrink: 0; }
+    @media (max-width: 640px) {
+      .cta-card { padding: 48px 28px; }
+      .cta-trust { gap: 16px; }
     }
 
     /* ── FOOTER ── */
@@ -1032,22 +1128,41 @@
     </div>
     <div class="hero-social-proof reveal reveal-delay-4">
       <div class="proof-item">
-        <span class="proof-num">63</span>
+        <span class="proof-num" data-count="63" data-suffix="">63</span>
         <span class="proof-label">Proyectos implementados</span>
       </div>
       <div class="proof-divider"></div>
       <div class="proof-item">
-        <span class="proof-num">100%</span>
+        <span class="proof-num" data-count="100" data-suffix="%">100%</span>
         <span class="proof-label">Clientes satisfechos</span>
       </div>
       <div class="proof-divider"></div>
       <div class="proof-item">
-        <span class="proof-num">50+</span>
+        <span class="proof-num" data-count="50" data-suffix="+">50+</span>
         <span class="proof-label">Negocios activos</span>
       </div>
     </div>
   </div>
 </section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><strong>Mundo Parts</strong><span class="ticker-sep"></span>+$20M facturados</span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Torque Race<span class="ticker-sep"></span><strong>+$10M facturados</strong></span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Argentina<span class="ticker-sep"></span>90 días al primer resultado</span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Web + Pautas + Marketing + Stock<span class="ticker-sep"></span></span>
+    <span class="ticker-item"><strong>63 proyectos</strong><span class="ticker-sep"></span>100% satisfechos<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Somos el sistema. No el intermediario.<span class="ticker-sep"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><strong>Mundo Parts</strong><span class="ticker-sep"></span>+$20M facturados</span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Torque Race<span class="ticker-sep"></span><strong>+$10M facturados</strong></span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Argentina<span class="ticker-sep"></span>90 días al primer resultado</span>
+    <span class="ticker-item"><span class="ticker-sep"></span>Web + Pautas + Marketing + Stock<span class="ticker-sep"></span></span>
+    <span class="ticker-item"><strong>63 proyectos</strong><span class="ticker-sep"></span>100% satisfechos<span class="ticker-sep"></span></span>
+    <span class="ticker-item">Somos el sistema. No el intermediario.<span class="ticker-sep"></span></span>
+  </div>
+</div>
 
 <!-- TRANSFORMATION -->
 <section id="transformation">
@@ -1143,28 +1258,28 @@
       <h2 class="section-title">Un sistema completo,<br /><span>no partes sueltas.</span></h2>
     </div>
     <div class="system-grid">
-      <div class="system-card reveal">
+      <div class="system-card reveal" data-num="01">
         <div class="system-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
         </div>
         <h3>Web que convierte</h3>
         <p>Ecommerce o sitio profesional diseñado para vender, no solo mostrar. El cliente entra, entiende y compra.</p>
       </div>
-      <div class="system-card reveal reveal-delay-1">
+      <div class="system-card reveal reveal-delay-1" data-num="02">
         <div class="system-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <h3>Pautas publicitarias</h3>
         <p>Campañas en Meta y Google que traen tráfico con intención real de compra. Cada peso invertido tiene un objetivo claro.</p>
       </div>
-      <div class="system-card reveal reveal-delay-2">
+      <div class="system-card reveal reveal-delay-2" data-num="03">
         <div class="system-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
         <h3>Marketing digital</h3>
         <p>Contenido, redes sociales y comunicación alineada a ventas. La marca habla, empuja la decisión y convierte.</p>
       </div>
-      <div class="system-card reveal reveal-delay-3">
+      <div class="system-card reveal reveal-delay-3" data-num="04">
         <div class="system-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
@@ -1468,12 +1583,33 @@
 <!-- FINAL CTA -->
 <section id="cta">
   <div class="container">
-    <div class="cta-inner reveal">
+    <div class="cta-card reveal">
+      <div class="cta-glow"></div>
       <div class="section-label">Empezá hoy</div>
-      <h2 class="cta-title">Te ayudamos a <span>duplicar tu facturación</span> en 90 días.</h2>
-      <p class="cta-sub">Hagamos que suceda juntos. La consultoría es gratis y sin compromiso.</p>
-      <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn btn-primary btn-xl">Agendar consultoría gratuita</a>
-      <p class="cta-note">60 minutos. Gratuito. Sin compromiso.</p>
+      <h2 class="cta-title">Duplicá tu<br /><span>facturación</span><br />en 90 días.</h2>
+      <p class="cta-sub">Consultoría gratis, sin compromiso. En 60 minutos te mostramos exactamente qué hay que construir en tu negocio.</p>
+      <a href="https://calendly.com/ecomlab11/60min" target="_blank" rel="noopener" class="btn btn-primary btn-xl">
+        Agendar consultoría gratuita
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="cta-trust">
+        <div class="cta-trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          60 minutos gratuitos
+        </div>
+        <div class="cta-trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Sin compromiso
+        </div>
+        <div class="cta-trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Resultados en 90 días
+        </div>
+        <div class="cta-trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Solo Argentina
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1589,6 +1725,31 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── NUMBER COUNTER ANIMATION ──
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(target * ease) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        animateCount(entry.target);
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
   // ── SMOOTH SCROLL FOR ANCHOR LINKS ──
   document.querySelectorAll('a[href^="#"]').forEach(a => {
