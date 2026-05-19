@@ -60,9 +60,14 @@
       text-decoration: none;
     }
     .logo-mark {
-      width: 36px; height: 36px;
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+    }
+    .logo-img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+      display: block;
     }
     .logo-name {
       font-weight: 800;
@@ -1225,16 +1230,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
-    <svg class="logo-mark" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="lg-nav" x1="18" y1="2" x2="18" y2="35" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#FF9A3C"/>
-          <stop offset="52%" stop-color="#F97316"/>
-          <stop offset="100%" stop-color="#1c2278"/>
-        </linearGradient>
-      </defs>
-      <text x="18" y="29" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" text-anchor="middle" fill="url(#lg-nav)">e</text>
-    </svg>
+    <img src="logo.png" alt="EcomLab" class="logo-img" />
     <span class="logo-name">EcomLab</span>
   </a>
   <ul class="nav-links">
@@ -1835,16 +1831,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#hero" class="nav-logo" style="display:inline-flex;">
-          <svg class="logo-mark" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="lg-foot" x1="18" y1="2" x2="18" y2="35" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FF9A3C"/>
-                <stop offset="52%" stop-color="#F97316"/>
-                <stop offset="100%" stop-color="#1c2278"/>
-              </linearGradient>
-            </defs>
-            <text x="18" y="29" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="30" text-anchor="middle" fill="url(#lg-foot)">e</text>
-          </svg>
+          <img src="logo.png" alt="EcomLab" class="logo-img" />
           <span class="logo-name">EcomLab</span>
         </a>
         <p class="footer-tagline">Construimos negocios digitales.<br />Proyectos reales. Resultados reales.</p>
